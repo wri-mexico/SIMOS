@@ -463,36 +463,29 @@ $.widget( "custom.layerDisplay", {
 			console.log("Propiedad " + equix);
 
 			console.log(flagHeatMap)
-			if( ( (idLayer == 'cCalor' && $('#cCalor').prop('checked')) || (idLayer == 'cCalor_colima_2020' && $('#cCalor_colima_2020').prop('checked')) 
-			|| (idLayer == 'cHVVillaDeAlvares_calor2019' && $('#cHVVillaDeAlvares_calor2019').prop('checked')) || (idLayer == 'cHVVillaDeAlvares_calor' && $('#cHVVillaDeAlvares_calor').prop('checked')) || (idLayer == 'cCalor_manzanillo_2020' && $('#cCalor_manzanillo_2020').prop('checked')) || (idLayer == 'cHVTecoman_calor' && $('#cHVTecoman_calor').prop('checked')) ) ){
+
+			if( ( (idLayer == 'cCalor' && $('#cCalor').prop('checked')) || (idLayer == 'cmapas_calor_colima_2021' && $('#cmapas_calor_colima_2021').prop('checked')) || (idLayer == 'cHVial_Calor_Concentrado_2019_2021' && $('#cHVial_Calor_Concentrado_2019_2021').prop('checked'))  ) ){
+
+
 				console.log('Este es el layername antes' + idLayer );
 				heatnamelayer = idLayer;
 				var layername = '';
+
+
 				switch(idLayer ) {
 					case 'cCalor':
 					  // code block
 					  layername = 'Colima 2019'
 					  break;
-					case 'cCalor_colima_2020':
+					case 'cmapas_calor_colima_2021':
 					  // code block
-					  layername = 'Colima 2020'
+					  layername = 'Colima 2021'
 					  break;
-					case 'cHVVillaDeAlvares_calor2019':
+					case 'cHVial_Calor_Concentrado_2019_2021':
 					// code block
-					layername = 'Villa de Álvarez 2019'
+					layername = 'Concentrado 2019 - 2021'
 					break;
-					case 'cHVVillaDeAlvares_calor':
-					// code block
-					layername = 'Villa de Álvarez 2020'
-					break;
-					case 'cCalor_manzanillo_2020':
-					// code block
-					layername = 'Manzanillo 2020'
-					break;
-					case 'cHVTecoman_calor':
-					// code block
-					layername = 'Tecomán 2020'
-					break;
+					
 					default:
 					  // code block
 				  }
@@ -500,6 +493,8 @@ $.widget( "custom.layerDisplay", {
 				  console.log("2_" + flagHeatMap)
 				  flagHeatMap = true;
 				  console.log("3_" + flagHeatMap)
+
+				  
 				$("#popup_heat").css("display", "block");
 				
 
