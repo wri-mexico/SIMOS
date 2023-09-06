@@ -1,0 +1,286 @@
+/*Local --------------------------------------------------------*/
+.denue-item-container{
+	display: inline-block;
+}
+
+.denue-item-container[status=active]{
+	background-color:#D5E7F2;
+}
+
+
+.denue-item-container[status=active] .denue-tool-led{
+	display:block;
+}
+.denue-item-container div{
+	float:left;	
+}
+.denue-item-icon{
+	cursor:pointer;
+}
+.denue-item-container{
+	padding: 2px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+}
+.denue-item-container{
+	padding: 2px;
+	height:20px;
+}
+.denue-item-label{
+	float:left;
+	margin-top: 9px;
+	margin-left: 3px;
+}
+#minitools_btn_clear{
+	float:left;
+	margin-top:-25px;
+	cursor:pointer;
+}
+.module-denue-bottom-minitools{
+	width:100%;
+	float:left;
+	margin-left:4px;	
+}
+/* Contenedor ------------------------------------------------------*/
+.denue-totals{
+	float: left;
+	background-color: #FFFFFF;
+	padding: 3px;
+	width:380px;
+	margin-top: 4px;
+	font-size: 120%;
+	overflow: hidden;
+	
+	border: solid 1px #DDD;
+	
+	-webkit-box-shadow: 1px 1px 2px 0px #555;
+	box-shadow: 1px 1px 2px 0px #555;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.denue-totals-list{
+	width:100%;
+	float:left;
+	margin-top:4px;
+	margin-bottom:4px;	
+}
+.denue-totals-title{
+	width: 335px;
+	height: 15px;
+	float: left;
+	color: #000;
+	font-weight: bold;
+	font-size: 110%;
+	border-bottom: 1px solid #DDD;	
+}
+.denue-totals-list-sub{
+	float:left;
+	width:50%;	
+}
+.denue-totals-close{
+	float:right;
+	cursor:pointer;
+}
+.denue-detail-color{
+	width:10px;
+	height:10px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;	
+	float:left;
+	margin-top: 6px;
+	margin-right:2px;
+}
+
+
+
+/* Detail Items ----------------------------------------*/
+.denue-detail-item{
+	float: left;
+	width: 174px;	
+	min-height:20px;
+	padding:2px;
+	border-bottom:1px dotted #CCC;
+	margin-right:7px;
+	cursor:pointer;
+}
+.denue-detail-item *{
+	cursor:pointer;
+}
+.denue-detail-item:hover{
+	background-color:#F0F0F0;
+}
+.denue-detail-item label{
+	float:left;
+	max-width:133px;
+	margin-top: 5px;
+}
+.denue-detail-item span{
+	float:right;
+	border: 1px solid #DDD;
+	padding: 2px;
+	background-color:#FFF;
+	-webkit-border-radius: 7px 7px 7px 7px;
+	border-radius: 7px 7px 7px 7px;
+}
+.denue-detail-items{
+	float:left;	
+}
+.denue-tool-led{
+	width: 100%;
+	height: 4px;
+	background-color: #13679F;
+	display:none;
+}
+.dinamic-denue-item-layer{
+	background-color: beige;
+	background-image:url(logoDENUE.png);
+	background-repeat:no-repeat;
+	background-position:right bottom;
+}
+.denue-item-container[type=btn]{
+	width:120px;
+}
+.denue-item-item{
+	cursor:pointer;	
+}
+.denue-item-item *{
+	cursor:pointer;	
+}
+
+/* Tools   */
+#minitools_btns{
+	width:116px;
+	float:left;	
+}
+#minitools_tools_container{
+	width:212px;
+	float:right;
+}
+.minitools-control{
+	width:22px;
+	height:85px;
+	float:right;
+	background-color:#CCC;
+	cursor:pointer;
+}
+.module-denue-up{
+	display:none;
+}
+.dinamicPanel-minitools{
+	height:38px;	
+}
+.dinamicPanel-minitools[opened=true]{
+	height:96px;
+}
+.dinamicPanel-minitools[opened=true] .module-denue-up{
+	display:block;
+}
+.dinamicPanel-minitools[opened=true] .module-denue-down{
+	display:none;
+}
+
+.denue-tools-disable{
+	position:absolute;
+	height:38px;
+}
+.dinamicPanel-minitools[opened=true] .denue-tools-disable{
+	height:96px;
+}
+/* Download ---------------------------------------------------------*/
+.denue-download-container{
+	z-index: 1900;
+	position: absolute;
+	right: 81px;
+	top: 9px;
+	width: 300px;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	border:1px solid #DDD;
+	padding:3px;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-shadow:    1px 1px 2px 0px #555;
+   -webkit-box-shadow: 1px 1px 2px 0px #555;
+   box-shadow:1px 1px 2px 0px #555;
+}
+.denue-download-header{
+	float:left;
+	width:100%;	
+}
+.denue-download-title{
+	font-size: 122%;
+	font-weight: bold;
+	float:left;
+}
+#denue-download-close{
+	float:right;
+	cursor:pointer;
+}
+#denue-download-view *{
+	float:left;	
+	cursor:pointer;
+}
+#denue-download-view label{
+	margin-top:6px;
+	float:left;	
+}
+
+#denue-download-view{
+	float:left;
+	cursor:pointer;
+}
+.denue-download-list{
+	float:left;	
+	width:100%;
+	max-height:300px;
+	overflow-y:auto;
+}
+.denue-download-list-item:first-of-type{
+	border-top:1px solid #EEE;
+}
+.denue-download-list-item{
+	float:left;	
+	width:100%;
+	border-bottom:1px solid #EEE;
+	padding-top:2px;
+	padding-bottom:2px;
+	cursor:pointer;	
+}
+.denue-download-list-item *{
+	cursor:pointer;	
+}
+.denue-download-list-item:hover{
+	background-color:#EEE;
+}
+.denue-download-list-icon{
+	float:left;	
+}
+.denue-download-list-text{
+	font-size: 121%;
+	padding-top: 6px;
+	margin-left: 2px;
+	float: left;
+	width: 230px;
+}
+.denue-download-list-icon-download{
+	float:right;	
+}
+.denue-download-notFound{
+	font-size:120%;
+	font-weight:bold;
+}
+.denue-download-type{
+	font-size: 138%;
+	color: #555;
+	font-style: italic;
+}

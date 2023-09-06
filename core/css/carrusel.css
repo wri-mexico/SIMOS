@@ -1,0 +1,262 @@
+* {box-sizing:border-box}
+
+.popup_container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  
+}
+.popup {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 68%;
+  height: 65%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Hide the images by default */
+.mySlides2 {
+  display: none;
+}
+
+/* The dots/bullets/indicators */
+.dot2 {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active2, .dot2:hover {
+  background-color: #717171;
+}
+
+/* Hide the images by default */
+.mySlides3 {
+  display: none;
+}
+
+/* The dots/bullets/indicators */
+.dot3 {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active3, .dot3:hover {
+  background-color: #717171;
+}
+
+/* Hide the images by default */
+.mySlides4 {
+  display: none;
+}
+
+/* The dots/bullets/indicators */
+.dot4 {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active4, .dot4:hover {
+  background-color: #717171;
+}
+
+/* Hide the images by default */
+.mySlides5 {
+  display: none;
+}
+
+.dot5 {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active5, .dot5:hover {
+  background-color: #717171;
+}
+
+/* Craficas */
+.grafica div {
+
+  width: 93%;
+  margin: 0 auto;
+
+}
+.grafica-title {
+
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.grafica-title_marging {
+
+  margin-bottom: 5rem;
+}
+.estados {
+
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+}
+.close {
+  width: 3rem!important;
+  height: 3rem!important;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.close span {
+
+  font-size: 20px;
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+}
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/******   Heaymap Styles   *******/
+
+.heat_conatiner {
+  position: relative;
+  width: 50vw;
+  height: 50vh;
+  
+  
+}
+.heatpop {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  left: -150px;
+  bottom: 0;
+  
+}
+
+.squareR {
+  height: 15px;
+  width: 15px;
+  background-color: rgb(255, 0, 0);
+  float:left;
+}
+
+.squareO {
+  height: 15px;
+  width: 15px;
+  background-color: rgb(243, 151, 13);
+  float:left;
+}
+.squareY {
+  height: 15px;
+  width: 15px;
+  background-color: rgb(251, 255, 0);
+  float:left;
+}
+.squareG {
+  height: 15px;
+  width: 15px;
+  background-color: rgb(16, 253, 8);
+  float:left;
+}
+.squareB {
+  height: 15px;
+  width: 15px;
+  background-color: rgb(12, 34, 231);
+  float:left;
+}
+
+.closesmall {
+  width: 2rem!important;
+  height: 2rem!important;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.closesmall span {
+
+  font-size: 10px;
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+}

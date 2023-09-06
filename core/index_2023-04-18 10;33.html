@@ -1,0 +1,2856 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES" "http://www.w3.org/TR/html4/loose.dtd">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="apple-touch-icon" sizes="32x32" href="favicon-32x32.png" />
+<link rel="apple-touch-icon-precomposed" href="favicon-32x32.png" />
+
+<meta
+  property="og:title"
+  content="Mapa Digital de M&eacute;xico en l&iacute;nea"
+/>
+<meta property="og:image" content="img/logoMini.png" />
+<meta
+  property="og:description"
+  content="Realic&eacute; una consulta en el Mapa Digital de M&eacute;xico en l&iacute;nea, atrav&eacute;z del portal de INEGI y deseo compartirla"
+/>
+
+<html lang="es">
+  <meta http-equiv="expires" content="Mon, 19 jan 2015 08:00:00 GMT" />
+  <meta
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    name="viewport"
+  />
+  <meta name="viewport" content="width=device-width" />
+  <link
+    rel="stylesheet"
+    href="js/frameworks/jquery/css/custom-theme/jquery-ui-1.10.3.custom.css"
+  />
+
+  <link rel="stylesheet" href="css/carrusel.css" />
+  <link rel="stylesheet" href="css/header.css" />
+
+  <script src="js/frameworks/jquery/js/jquery-1.9.1.js"></script>
+  <script src="js/frameworks/jquery/js/jquery-ui-1.10.3.custom.js"></script>
+  <script src="js/frameworks/jquery/js/jquery.mousewheel-3.0.6.pack.js"></script>
+  <script src="js/frameworks/amplify/amplify.js"></script>
+  <script src="js/frameworks/lz-string/lz-string.min.js"></script>
+  <script src="js/frameworks/base64/base64.js"></script>
+  <script src="js/frameworks/history/history.js"></script>
+  <script src="js/frameworks/chroma/chroma.min.js"></script>
+  <script src="js/frameworks/highcharts/highcharts.js"></script>
+  <script src="js/frameworks/highcharts/modules/data.js"></script>
+  <script src="js/frameworks/highcharts/modules/drilldown.js"></script>
+  <script src="js/frameworks/upload/js/jquery.iframe-transport.js"></script>
+  <script src="js/frameworks/upload/js/jquery.fileupload.js"></script>
+  <script src="js/frameworks/upload/js/jquery.ui.widget.js"></script>
+  <script src="js/frameworks/cookie/jquery.cookie.js"></script>
+
+  <script src="js/frameworks/chartjs/chart.min.js"></script>
+  <script src="js/frameworks/chartjs/chartjs-plugin-datalabels.js"></script>
+
+  <script type="text/javascript" src="js/frameworks/d3/d3.js"></script>
+  <script type="text/javascript" src="js/frameworks/d3/d3.geom.js"></script>
+  <script type="text/javascript" src="js/frameworks/d3/d3.layout.js"></script>
+  <script type="text/javascript" src="js/frameworks/d3/CodeFlower.js"></script>
+  <script
+    type="text/javascript"
+    src="js/frameworks/d3/dataConverter.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="js/frameworks/html2canvas/dist/html2canvas.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="js/frameworks/html2canvas/dist/canvg.js"
+  ></script>
+  <script type="text/javascript" src="js/frameworks/jsPdf/jsPdf.js"></script>
+
+  <script type="text/javascript" src="json2.js"></script>
+  <script type="text/javascript" src="proj4js-combined.js"></script>
+  <script
+    data-main="js/main.js"
+    src="js/frameworks/require/require.js"
+  ></script>
+  <head>
+    <title>SIMOS COLIMA Sistema Integrado de Movilidad Segura</title>
+  </head>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      position: relative;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Estilos de Gráficas */
+    #item_popup2 {
+      display:none;
+      background-color: #fff;
+      margin: 0;
+      width: 45%;
+      z-index: 3;
+      padding: 2rem;
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+    #item_popup3 {
+      display: none;
+      background-color: #fff;
+      margin: 0;
+      width: 45%;
+      z-index: 3;
+      padding: 2rem;
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+    #item_popup4 {
+      display: none;
+      background-color: #fff;
+      margin: 0;
+      width: 45%;
+      z-index: 3;
+      padding: 2rem;
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+    #item_popup {
+      display: none;
+      background-color: #fff;
+      margin: 0;
+      width: 45%;
+      z-index: 3;
+      padding: 2rem;
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+    
+    .close-graphs span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 1rem 2rem 0;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+      position: relative;
+      left: 47%;
+    }
+    .close-graphs span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+    .close-graphs2 span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 1rem 2rem 0;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+      position: relative;
+      left: 47%;
+    }
+    .close-graphs2 span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+    .close-graphs3 span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 1rem 2rem 0;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+      position: relative;
+      left: 47%;
+    }
+    .close-graphs3 span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+    .close-graphs4 span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 1rem 2rem 0;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+      position: relative;
+      left: 47%;
+    }
+    .close-graphs4 span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+    /* .slideshow-container {
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+    }
+    .slideshow-container2 {
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+    } */
+
+    /* Estilos del popup de leyendas del mapa de calor */
+    #popup_heat {
+      display: none;
+      background-color: #fff;
+      width: 18%;
+      z-index: 4;
+      padding: 2rem;
+      position: absolute;
+      bottom: 10%;
+      left: 0;
+      border-radius: 1rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      font-size: 1.2rem;
+    }
+    #popup_heat h3 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 3rem 0 2rem 0;
+    }
+    #popup_heat span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 1rem 2rem 0;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+    }
+    #popup_heat span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+
+    /* #popup_heat {
+      width: 40%;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -20%;
+      margin-top: -12%;
+      z-index: 2;
+      padding: 5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.75);
+    } */
+
+    .cancelbtn,
+    .deletebtn {
+      float: left;
+      width: 50%;
+    }
+
+    /* centra el texto en el container */
+    .container {
+      padding: 1px;
+      text-align: center;
+    }
+
+    /* Modal */
+    .modal {
+      width: 40%;
+      background-color: #fff;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -20%;
+      margin-top: -12%;
+      z-index: 2;
+      padding: 5rem;
+      /* display: flex; */
+      flex-direction: column;
+      align-items: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+      @media (min-width: 960px) {
+        .modal {
+      width: 40%;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -20%;
+      margin-top: -12%;
+      z-index: 2;
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+      }
+    .modal1 {
+      width: 100%;
+      display: none;
+      height: 100%;
+      /* width: 40%; */
+      background-color: #fff;
+      position: absolute;
+      /* top: 30%; */
+      /* left: 50%;
+      margin-left: -20%;
+      margin-top: -12%; */
+      z-index: 10000;
+      padding: 5rem;
+      /* display: flex; */
+      flex-direction: column;
+      align-items: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+    @media (max-width: 960px) {
+      .modal1 {
+      width: 100%;
+      /* display: none; */
+      height: 100%;
+      /* width: 40%; */
+      background-color: #fff;
+      position: absolute;
+      /* top: 30%; */
+      /* left: 50%;
+      margin-left: -20%;
+      margin-top: -12%; */
+      z-index: 10000;
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 2rem;
+      -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75);
+    }
+    /* .modal-action1 {
+      position: absolute;
+    } */
+    .modal-action1 span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+      position: fixed;
+      top: 5vh;
+      right: 10vw;
+      /* position: relative;
+      top: 1vh;
+      left: 1vw; */
+    }
+    .modal-action1 span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+    }
+    .modal-action span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      background-color: gray;
+      color: aliceblue;
+      transition: all 0.6s ease-in-out;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .modal-action span:hover {
+      background-color: lightgrey;
+      color: #000;
+      cursor: pointer;
+    }
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .modal-header h1 {
+      font-size: 2rem;
+    }
+    .modal-content img {
+      width: 100%;
+    }
+    .download{
+        width: 200px;
+        height: 30px;
+        position: absolute;
+        right: 0%;
+        top: 35%;
+        z-index: 5;
+        cursor: pointer;
+        border-radius: 5px;
+        border: transparent;
+        border-radius: 5px;
+    }
+    .download-btn {
+        text-align: center;
+        font-size: 13px;
+        padding: 5px;
+        background-color: rgb(51, 144, 255);
+        box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.75);
+        color: white;
+        text-decoration: none;
+        
+    }
+
+    /* .modal {
+  display: block; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 45%; 
+  overflow: auto; 
+  background-color: #ECF0F1;
+  padding-top: 50px;
+  z-index:5000;
+  margin-left:450px;
+  margin-top: 100px;
+} */
+
+    /*Contenido del modal y caja */
+    /* .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; 
+  border: 1px solid rgb(136, 136, 136);
+  width: 80%;
+  height: 80%; 
+} */
+
+    /*CIERRA BOTON DEL MODAL */
+    /* .close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #FFFFFF
+}
+
+.close:hover,
+.close:focus {
+  color: #5c1cd1;
+  cursor: pointer;
+}
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+} */
+
+    /* @media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+     width: 100%;
+  }
+} */
+  .dinamicPanel-detailContent {
+      height: 400px;
+      overflow-y: scroll !important;
+      
+  }
+  .legend {
+    font-size: 14px;
+    margin-top: 25px;
+    text-align: center;
+
+  }
+  </style>
+
+  <body>
+    <!-- Indicadores para mapa de calor -->
+    <div class="heat_container">
+      <div id="popup_heat" flagged="false">
+        <div class="heat-action">
+          <span>X</span>
+        </div>
+        <div class="heat-header">
+          <h3>Leyenda Mapa de Calor</h3>
+        </div>
+        <div class="heat-content">
+          <div>
+            <div class="squareR"></div>
+            <div>&nbsp Muy alta concentració</div>
+          </div>
+          <br />
+          <div>
+            <div class="squareO"></div>
+            <div>&nbsp Alta concentración</div>
+          </div>
+          <br />
+          <div>
+            <div class="squareY"></div>
+            <div>&nbsp Media concentración</div>
+          </div>
+          <br />
+          <div>
+            <div class="squareG"></div>
+            <div>&nbsp Baja concentración</div>
+          </div>
+          <br />
+          <div>
+            <div class="squareB"></div>
+            <div>&nbsp Muy baja concentración</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ventana modal -->
+    <!-- <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+    <form class="modal-content" >
+      <div class="container" >
+        <h1>Sistema Integrado de Movilidad Segura</h1>
+        
+        <img src="http://187.174.158.163/mxsig/img/SIMOS1.png">
+        <div class="clearfix">
+  
+        </div>
+      </div>
+    </form>
+  </div> -->
+    <div id="modal" class="modal">
+      <div id="close-modal" class="modal-action">
+        <span>X</span>
+      </div>
+      <div class="modal-header">
+        <h1>Sistema Integrado de Movilidad Segura</h1>
+      </div>
+      <div class="modal-content">
+        <img src="http://187.174.158.163/mxsig/img/SIMOS1.png" alt="SIMOS" />
+      </div>
+    </div>
+    <div id="modal1" class="modal1">
+      <div id="close-modal1" class="modal-action1">
+        <span>X</span>
+      </div>
+      <div class="modal-header">
+        <h1>Sistema Integrado de Movilidad Segura</h1>
+      </div>
+      <div class="modal-content">
+        <img src="http://187.174.158.163/mxsig/img/SIMOS1.png" alt="SIMOS" />
+      </div>
+      <div class="legend">
+        <span>Para una mejor experiencia, te recomendamos usar esta aplicación en tu computadora. </span>
+      </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div id="main">
+      <div id="header" style="display: none">
+        <div class="headerBackground">
+          <div class="header_content">
+            <!--<div class="img-header">-->
+            <div class="headerLogoINEGI"></div>
+            <div class="headerLogoSIMOS"></div>
+            <div class="download">
+              <a href="SIMOS_doc.pdf" target="_blank" class="download-btn">Documentación</a>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      <div id="content">
+        <div id="panel-left"></div>
+        <div id="middle">
+          <div id="panel-center">
+            <div id="map"></div>
+          </div>
+          <div id="panel-bottom"></div>
+        </div>
+        <div id="panel-right"></div>
+      </div>
+    </div>
+
+    <!-- Graficas -->
+    <div class="popup_conatiner">
+      <div id="item_popup">
+        <div class="popup">
+          <div class="close-graphs" id="close-graphs">
+            <span>X</span>
+          </div>
+          <div >
+            <span style="color: gray;
+            font-size: 18px">COLIMA</span>
+          </div>
+          <!-- Slideshow container -->
+          <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade" style="display: block">
+              <div class="card text-center">
+                <div class="grafica">
+                  <h1 class="grafica-title">
+                    Tipo de hechos viales registrados, 2019
+                  </h1>
+                  <div>
+                    <canvas id="myChart_1" width="100" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Tipo de persona usuaria víctima (herida o muerta) en hechos viales, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_2" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title grafica-title_margin">
+                  Temporalidad de hechos viales cada hora entre semana y fin de
+                  semana, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_3" width="200" height="00"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por día de la semana, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_4" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por mes, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_5" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="card text-center">
+                <div class="grafica">
+                  <h1 class="grafica-title">
+                    Tipo de hechos viales registrados, 2020
+                  </h1>
+                  <div>
+                    <canvas id="myChart_6" width="100" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Tipo de persona usuaria víctima (herida o muerta) en hechos viales, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_7" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title grafica-title_margin">
+                  Temporalidad de hechos viales cada hora entre semana y fin de
+                  semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_8" width="200" height="00"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por día de la semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_9" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por mes, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_10" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- The dots/circles CLUSTERS -->
+          <div style="text-align: center" class="estados">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+            <span class="dot" onclick="currentSlide(9)"></span>
+            <span class="dot" onclick="currentSlide(10)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup_conatiner">
+      <div id="item_popup2">
+        <div class="popup">
+          <div class="close-graphs2" id="close-graphs2">
+            <span>X</span>
+          </div>
+          <div >
+            <span style="color: gray;
+            font-size: 18px">Manzanillo</span>
+          </div>
+          <!-- Slideshow container -->
+          <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides2 fade" style="display: block">
+              <div class="card text-center">
+                <div class="grafica">
+                  <h1 class="grafica-title">
+                    Tipo de hechos viales registrados, 2020
+                  </h1>
+                  <div>
+                    <canvas id="myChart_11" width="100" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides2 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Tipo de persona usuaria víctima (herida o muerta) en hechos viales, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_12" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides2 fade">
+              <div class="grafica">
+                <h1 class="grafica-title grafica-title_margin">
+                  Temporalidad de hechos viales cada hora entre semana y fin de
+                  semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_13" width="200" height="00"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides2 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por día de la semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_14" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides2 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por mes, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_15" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- The dots/circles CLUSTERS -->
+          <div style="text-align: center" class="estados">
+            <span class="dot2" onclick="currentSlide2(1)"></span>
+            <span class="dot2" onclick="currentSlide2(2)"></span>
+            <span class="dot2" onclick="currentSlide2(3)"></span>
+            <span class="dot2" onclick="currentSlide2(4)"></span>
+            <span class="dot2" onclick="currentSlide2(5)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup_conatiner">
+      <div id="item_popup3">
+        <div class="popup">
+          <div class="close-graphs3" id="close-graphs3">
+            <span>X</span>
+          </div>
+          <div >
+            <span style="color: gray;
+            font-size: 18px">Tecomán</span>
+          </div>
+          <!-- Slideshow container -->
+          <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides3 fade" style="display: block">
+              <div class="card text-center">
+                <div class="grafica">
+                  <h1 class="grafica-title">
+                    Tipo de hechos viales registrados, 2020
+                  </h1>
+                  <div>
+                    <canvas id="myChart_16" width="100" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides3 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Tipo de persona usuaria víctima (herida o muerta) en hechos viales, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_17" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides3 fade">
+              <div class="grafica">
+                <h1 class="grafica-title grafica-title_margin">
+                  Temporalidad de hechos viales cada hora entre semana y fin de
+                  semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_18" width="200" height="00"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides3 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por día de la semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_19" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides3 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por mes, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_20" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- The dots/circles CLUSTERS -->
+          <div style="text-align: center" class="estados">
+            <span class="dot3" onclick="currentSlide3(1)"></span>
+            <span class="dot3" onclick="currentSlide3(2)"></span>
+            <span class="dot3" onclick="currentSlide3(3)"></span>
+            <span class="dot3" onclick="currentSlide3(4)"></span>
+            <span class="dot3" onclick="currentSlide3(5)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup_conatiner">
+      <div id="item_popup4">
+        <div class="popup">
+          <div class="close-graphs4" id="close-graphs4">
+            <span>X</span>
+          </div>
+          <div >
+            <span style="color: gray;
+            font-size: 18px">Villa de Álvarez</span>
+          </div>
+          <!-- Slideshow container -->
+          <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides4 fade" style="display: block">
+              <div class="card text-center">
+                <div class="grafica">
+                  <h1 class="grafica-title">
+                    Tipo de hechos viales registrados, 2019
+                  </h1>
+                  <div>
+                    <canvas id="myChart_21" width="100" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Tipo de persona usuaria víctima (herida o muerta) en hechos viales, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_22" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title grafica-title_margin">
+                  Temporalidad de hechos viales cada hora entre semana y fin de
+                  semana, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_23" width="200" height="00"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por día de la semana, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_24" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por mes, 2019
+                </h1>
+                <div>
+                  <canvas id="myChart_25" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="card text-center">
+                <div class="grafica">
+                  <h1 class="grafica-title">
+                    Tipo de hechos viales registrados, 2020
+                  </h1>
+                  <div>
+                    <canvas id="myChart_26" width="100" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Tipo de persona usuaria víctima (herida o muerta) en hechos viales, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_27" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title grafica-title_margin">
+                  Temporalidad de hechos viales cada hora entre semana y fin de
+                  semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_28" width="200" height="00"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por día de la semana, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_29" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="mySlides4 fade">
+              <div class="grafica">
+                <h1 class="grafica-title">
+                  Temporalidad de hechos viales por mes, 2020
+                </h1>
+                <div>
+                  <canvas id="myChart_30" width="100" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- The dots/circles CLUSTERS -->
+          <div style="text-align: center" class="estados">
+            <span class="dot4" onclick="currentSlide4(1)"></span>
+            <span class="dot4" onclick="currentSlide4(2)"></span>
+            <span class="dot4" onclick="currentSlide4(3)"></span>
+            <span class="dot4" onclick="currentSlide4(4)"></span>
+            <span class="dot4" onclick="currentSlide4(5)"></span>
+            <span class="dot4" onclick="currentSlide4(6)"></span>
+            <span class="dot4" onclick="currentSlide4(7)"></span>
+            <span class="dot4" onclick="currentSlide4(8)"></span>
+            <span class="dot4" onclick="currentSlide4(9)"></span>
+            <span class="dot4" onclick="currentSlide4(10)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      
+      //Carousel1
+      var slideIndex = 1;
+      showSlides(slideIndex);
+      
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+
+      function showSlides(n) {
+        console.log(n)
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+
+
+      var slideIndex2 = 1;
+      showSlides2(slideIndex2)
+      // Next/previous controls
+      function plusSlides2(n) {
+        showSlides2((slideIndex2 += n));
+      }
+
+      // Thumbnail image controls
+      function currentSlide2(n) {
+        showSlides2((slideIndex2 = n));
+      }
+
+      function showSlides2(n) {
+        console.log(slideIndex, n)
+        var i;
+        var slides = document.getElementsByClassName("mySlides2");
+        var dots = document.getElementsByClassName("dot2");
+        if (n > slides.length) {
+          slideIndex2 = 1;
+        }
+        if (n < 1) {
+          slideIndex2 = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active2", "");
+        }
+        slides[slideIndex2 - 1].style.display = "block";
+        dots[slideIndex2 - 1].className += " active2";
+      }
+
+      var slideIndex3 = 1;
+      showSlides3(slideIndex3)
+      // Next/previous controls
+      function plusSlides3(n) {
+        showSlides3((slideIndex3 += n));
+      }
+
+      // Thumbnail image controls
+      function currentSlide3(n) {
+        showSlides3((slideIndex3 = n));
+      }
+
+      function showSlides3(n) {
+        console.log(slideIndex, n)
+        var i;
+        var slides = document.getElementsByClassName("mySlides3");
+        var dots = document.getElementsByClassName("dot3");
+        if (n > slides.length) {
+          slideIndex3 = 1;
+        }
+        if (n < 1) {
+          slideIndex3 = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active3", "");
+        }
+        slides[slideIndex3 - 1].style.display = "block";
+        dots[slideIndex3 - 1].className += " active3";
+      }
+
+      var slideIndex4 = 1;
+      showSlides4(slideIndex4)
+      // Next/previous controls
+      function plusSlides4(n) {
+        showSlides4((slideIndex4 += n));
+      }
+
+      // Thumbnail image controls
+      function currentSlide4(n) {
+        showSlides4((slideIndex4 = n));
+      }
+
+      function showSlides4(n) {
+        console.log(slideIndex4, n)
+        var i;
+        var slides = document.getElementsByClassName("mySlides4");
+        var dots = document.getElementsByClassName("dot4");
+        if (n > slides.length) {
+          slideIndex4 = 1;
+        }
+        if (n < 1) {
+          slideIndex4 = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active4", "");
+        }
+        slides[slideIndex4 - 1].style.display = "block";
+        dots[slideIndex4 - 1].className += " active4";
+      }
+
+      
+    
+
+      //BTN Close
+      const closeBTN = document.getElementById("close-graphs");
+      closeBTN.addEventListener("click", () => {
+        const popupp = document.getElementById("item_popup");
+        popupp.style.display = "none";
+      });
+      const closeBTN2 = document.getElementById("close-graphs2");
+      closeBTN2.addEventListener("click", () => {
+        const popupp = document.getElementById("item_popup2");
+        popupp.style.display = "none";
+      });
+      const closeBTN3 = document.getElementById("close-graphs3");
+      closeBTN3.addEventListener("click", () => {
+        const popupp = document.getElementById("item_popup3");
+        popupp.style.display = "none";
+      });
+      const closeBTN4 = document.getElementById("close-graphs4");
+      closeBTN4.addEventListener("click", () => {
+        const popupp = document.getElementById("item_popup4");
+        popupp.style.display = "none";
+      });
+
+      // const closeHeat = document.getElementById('closeheat');
+      // closeHeat.addEventListener('click', () => {
+      //   const popheat = document.getElementById('popup_heat');
+      //   popheat.style.display = "none";
+      // });
+
+      const closeModal = document.getElementById("close-modal");
+      console.log(closeModal)
+      closeModal.addEventListener("click", () => {
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+      });
+      const closeModal1 = document.getElementById("close-modal1");
+      console.log(closeModal)
+      closeModal1.addEventListener("click", () => {
+        const modal = document.getElementById("modal1");
+        modal.style.display = "none";
+      });
+
+      //Gráficas
+      //Gráfico 1
+      // const legendMargin = {
+      //   id: "legendMargin",
+      //   beforeInit(chart, legend, options) {
+      //     const fitValue = chart.legend.fit;
+
+      //     chart.legend.fit = function fit() {
+      //       fitValue.bind(chart.legend)();
+      //       return (this.height += 20);
+      //     };
+      //   },
+      // };
+
+      //COLIMA
+      var ctx_1 = document.getElementById("myChart_1").getContext("2d");
+      const labels_1 = [
+        "(87%) Colisión con vehículo automotor",
+        "(6%) Colisión con ciclista",
+        "(3%) Colisión con objeto fijo",
+        "(1%) Colisión con peatón (atropellamiento)",
+        "(1%) Otro",
+        "(0%) Colisión con motocicleta",
+        "(0%) Volcadura",
+        "(0%) Caída de pasajero",
+        "(0%) Salida del camino",
+        "(0%) Colisión con animal",
+        "(0%) Colisión con ferrocarril",
+      ];
+      var myChart = new Chart(ctx_1, {
+        type: "pie",
+        data: {
+          labels: labels_1,
+          datasets: [
+            {
+              data: [893, 64, 31, 12, 9, 4, 4, 2, 2, 1, 1],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+                "#2FD05C",
+                "#3390FF",
+                "#A833FF",
+                "#F033FF",
+                "#33FFD1",
+                "#FF3333",
+                "#FFE933"
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {},
+        // plugins: [legendMargin],
+      });
+
+      
+      var ctx_2 = document.getElementById("myChart_2").getContext("2d");
+      const labels_2 = ["Peatón", "Conductor", "Ciclista", "Pasajero"];
+      var myChart = new Chart(ctx_2, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+          labels: labels_2,
+          datasets: [
+            {
+              data: [12, 7, 6, 2],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              /* anchor puede ser "start", "center" o "end" */
+              anchor: "center",
+              /* Podemos modificar el texto a mostrar */
+              formatter: (dato) => (Math.round((dato * 100) / 27)) + "%",
+              /* Color del texto */
+              color: "black",
+              /* Formato de la fuente */
+              font: {
+                family: "Arial",
+                size: "12",
+                weight: "bold",
+              },
+              /* Formato de la caja contenedora */
+              //padding: "4",
+              //borderWidth: 2,
+              //borderColor: "darkblue",
+              //borderRadius: 8,
+              //backgroundColor: "lightblue"
+            },
+          },
+        },
+      });
+
+      
+      var ctx_3 = document.getElementById("myChart_3").getContext("2d");
+      const labels_3 = [
+        "00:00",
+        "01:00",
+        "02:00",
+        "03:00",
+        "04:00",
+        "05:00",
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+      ];
+      var myChart = new Chart(ctx_3, {
+        type: "line",
+        data: {
+          labels: labels_3,
+          datasets: [
+            {
+              label: "LUNES-VIERNES",
+              data: [
+              27, 11, 7, 8, 2, 8, 30, 51, 48, 44, 36, 33, 44, 50, 
+              34, 25, 41, 42, 45, 43, 31, 30, 14, 11
+              ],
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "SÁBADO-DOMINGO",
+              data: [
+              17, 11, 12, 8, 19, 6, 13, 10, 13, 8, 17, 17, 17, 
+              13, 17, 15, 7, 17, 11, 16, 15, 12, 12, 5
+              ],
+              fill: false,
+              borderColor: "#D02FB9",
+              tension: 0.1,
+            },
+          ],
+        },
+      });
+
+      
+      var ctx_4 = document.getElementById("myChart_4").getContext("2d");
+      const labels_4 = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+      ];
+      var myChart = new Chart(ctx_4, {
+        type: "bar",
+        data: {
+          labels: labels_4,
+          datasets: [
+            {
+              axis: "y",
+              data: [133, 174, 140, 118, 150, 167, 141],
+              backgroundColor: [
+                "rgba(255, 99, 132)",
+                "rgba(255, 159, 64)",
+                "rgba(255, 205, 86)",
+                "rgba(75, 192, 192)",
+                "rgba(54, 162, 235)",
+                "rgba(153, 102, 255)",
+                "rgba(201, 203, 207)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      
+      var ctx_5 = document.getElementById("myChart_5").getContext("2d");
+      const labels_5 = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      var myChart = new Chart(ctx_5, {
+        type: "bar",
+        data: {
+          labels: labels_5,
+          datasets: [
+            {
+              axis: "y",
+              data: [92, 97, 106, 87, 69, 79, 47, 80, 109, 90, 92, 75],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+      
+      var ctx_6 = document.getElementById("myChart_6").getContext("2d");
+      const labels_6 = [
+        "(69%) Colisión con vehículo automotor",
+        "(18%) Colisión con motocicleta",
+        "(6%) Colisión con objeto fijo",
+        "(4%) Colisión con ciclista",
+        "(2%) Colisión con peatón (atropellamiento)",
+        "(1%) Volcadura",
+        "(0%) Salida de camino",
+        "(0%) Colisión con animal",
+        "(0%) Otro",
+        // "(0.11%) Colisión con ferrocarril",
+      ];
+      var myChart = new Chart(ctx_6, {
+        type: "pie",
+        data: {
+          labels: labels_6,
+          datasets: [
+            {
+              data: [630, 161, 59, 39, 15, 5, 4, 3, 3],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+                "#2FD05C",
+                "#DB4A4A",
+                // "#DCE56A",
+                "#23C30A",
+                "#6C36C5",
+                "#C5368B "
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {},
+        // plugins: [legendMargin],
+      });
+
+      
+      var ctx_7 = document.getElementById("myChart_7").getContext("2d");
+      const labels_7 = ["Peatón", "Conductor", "Ciclista", "Pasajero"];
+      var myChart = new Chart(ctx_7, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+          labels: labels_7,
+          datasets: [
+            {
+              data: [16, 29, 4, 16],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              /* anchor puede ser "start", "center" o "end" */
+              anchor: "center",
+              /* Podemos modificar el texto a mostrar */
+              formatter: (dato) => (Math.round((dato * 100) / 65)) + "%",
+              /* Color del texto */
+              color: "black",
+              /* Formato de la fuente */
+              font: {
+                family: "Arial",
+                size: "12",
+                weight: "bold",
+              },
+              /* Formato de la caja contenedora */
+              //padding: "4",
+              //borderWidth: 2,
+              //borderColor: "darkblue",
+              //borderRadius: 8,
+              //backgroundColor: "lightblue"
+            },
+          },
+        },
+      });
+
+      
+      var ctx_8 = document.getElementById("myChart_8").getContext("2d");
+      const labels_8 = [
+        "00:00",
+        "01:00",
+        "02:00",
+        "03:00",
+        "04:00",
+        "05:00",
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+      ];
+      var myChart = new Chart(ctx_8, {
+        type: "line",
+        data: {
+          labels: labels_8,
+          datasets: [
+            {
+              label: "LUNES-VIERNES",
+              data: [
+                56, 4, 6, 3, 3, 2, 12, 23, 27, 47, 47, 41,
+                51, 50, 58, 30, 31, 36, 34, 36, 29, 16, 16, 9
+              ],
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "SÁBADO-DOMINGO",
+              data: [
+                25, 6, 7, 1, 6, 4, 5, 9, 10, 10, 13, 11, 13, 12,
+                15, 15, 7, 13, 8, 15, 20, 9, 11, 9, 
+              ],
+              fill: false,
+              borderColor: "#D02FB9",
+              tension: 0.1,
+            },
+          ],
+        },
+      });
+
+      
+      var ctx_9 = document.getElementById("myChart_9").getContext("2d");
+      const labels_9 = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+      ];
+      var myChart = new Chart(ctx_9, {
+        type: "bar",
+        data: {
+          labels: labels_9,
+          datasets: [
+            {
+              axis: "y",
+              data: [151, 114, 123, 122, 155, 157, 97],
+              backgroundColor: [
+                "rgba(255, 99, 132)",
+                "rgba(255, 159, 64)",
+                "rgba(255, 205, 86)",
+                "rgba(75, 192, 192)",
+                "rgba(54, 162, 235)",
+                "rgba(153, 102, 255)",
+                "rgba(201, 203, 207)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      
+      var ctx_10 = document.getElementById("myChart_10").getContext("2d");
+      const labels_10 = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      var myChart = new Chart(ctx_10, 
+      {
+        type: "bar",
+        data: {
+          labels: labels_10,
+          datasets: [
+            {
+              axis: "y",
+              data: [69, 73, 68, 65, 61, 71, 81, 80, 79, 85, 85, 102],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      //MAMZANILLO
+      var ctx_11 = document.getElementById("myChart_11").getContext("2d");
+      const labels_11 = [
+        "(52.95%) Colisión con vehículo automotor",
+        "(23.05%) Colisión con motocicleta",
+        "(10.01%) Colisión con objeto fijo",
+        "(5.96%) Caída de pasajero",
+        "(2.56%) Colisión con peatón (atropellamiento)",
+        "(2.36%) Salida de camino",
+        "(1.25%) Otro",
+        "(0.88%) Volcadura",
+        "(0.66%) Colisión con cilista",
+        "(0.15%) Colisión con animal",
+        "(0.07%) Incendio"
+        
+      ];
+      var myChart = new Chart(ctx_11, {
+        type: "pie",
+        data: {
+          labels: labels_11,
+          datasets: [
+            {
+              data: [719, 313, 136, 81, 36, 32, 17, 12, 9, 2, 1],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+                "#2FD05C",
+                "#DB4A4A",
+                "#DCE56A",
+                "#23C30A",
+                "#6C36C5",
+                "#C5368B"
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {},
+        // plugins: [legendMargin],
+      });
+
+     
+      var ctx_12 = document.getElementById("myChart_12").getContext("2d");
+      const labels_12 = ["Peatón", "Conductor", "Ciclista", "Pasajero"];
+      var myChart = new Chart(ctx_12, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+          labels: labels_12,
+          datasets: [
+            {
+              data: [36, 57, 2, 91],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              /* anchor puede ser "start", "center" o "end" */
+              anchor: "center",
+              /* Podemos modificar el texto a mostrar */
+              formatter: (dato) => ((dato * 100) / 186).toFixed(2) + "%",
+              /* Color del texto */
+              color: "black",
+              /* Formato de la fuente */
+              font: {
+                family: "Arial",
+                size: "12",
+                weight: "bold",
+              },
+              /* Formato de la caja contenedora */
+              //padding: "4",
+              //borderWidth: 2,
+              //borderColor: "darkblue",
+              //borderRadius: 8,
+              //backgroundColor: "lightblue"
+            },
+          },
+        },
+      });
+
+     
+      var ctx_13 = document.getElementById("myChart_13").getContext("2d");
+      const labels_13 = [
+        "00:00",
+        "01:00",
+        "02:00",
+        "03:00",
+        "04:00",
+        "05:00",
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+      ];
+      var myChart = new Chart(ctx_13, {
+        type: "line",
+        data: {
+          labels: labels_13,
+          datasets: [
+            {
+              label: "LUNES-VIERNES",
+              data: [
+              44, 13, 10, 7, 11, 9, 25, 18, 29, 40, 49, 40, 53, 
+              58, 71, 49, 59, 41, 72, 62, 51, 45, 24, 28
+
+              ],
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "SÁBADO-DOMINGO",
+              data: [
+              40, 24, 15, 15, 10, 13, 15, 12, 15, 14, 18, 9, 
+              16, 19, 29, 29, 26, 26, 17, 19, 15, 22, 18, 14
+              ],
+              fill: false,
+              borderColor: "#D02FB9",
+              tension: 0.1,
+            },
+          ],
+        },
+      });
+
+     
+      var ctx_14 = document.getElementById("myChart_14").getContext("2d");
+      const labels_14 = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+      ];
+      var myChart = new Chart(ctx_14, {
+        type: "bar",
+        data: {
+          labels: labels_14,
+          datasets: [
+            {
+              axis: "y",
+              data: [174, 170, 183, 180, 201, 241, 209],
+              backgroundColor: [
+                "rgba(255, 99, 132)",
+                "rgba(255, 159, 64)",
+                "rgba(255, 205, 86)",
+                "rgba(75, 192, 192)",
+                "rgba(54, 162, 235)",
+                "rgba(153, 102, 255)",
+                "rgba(201, 203, 207)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+     
+      var ctx_15 = document.getElementById("myChart_15").getContext("2d");
+      const labels_15 = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      var myChart = new Chart(ctx_15, {
+        type: "bar",
+        data: {
+          labels: labels_15,
+          datasets: [
+            {
+              axis: "y",
+              data: [115, 101, 118, 79, 101, 76, 96, 131, 121, 151, 135, 133],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      // TECOMÁN
+      var ctx_16 = document.getElementById("myChart_16").getContext("2d");
+      const labels_16 = [
+        "(79.04%) Colisión con motocicleta",
+        "(19.85%) Colisión con vehículo automotor",
+        "(0.74%) Colisión con objeto fijo",
+        "(0.37%) Volcadura"
+        
+      ];
+      var myChart = new Chart(ctx_16, {
+        type: "pie",
+        data: {
+          labels: labels_16,
+          datasets: [
+            {
+              data: [215, 54, 2, 1],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9"
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {},
+        // plugins: [legendMargin],
+      });
+
+      
+      var ctx_17 = document.getElementById("myChart_17").getContext("2d");
+      const labels_17 = ["Peatón", "Conductor", "Ciclista", "Pasajero"];
+      var myChart = new Chart(ctx_17, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+          labels: labels_17,
+          datasets: [
+            {
+              data: [0, 235, 0, 3],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              /* anchor puede ser "start", "center" o "end" */
+              anchor: "center",
+              /* Podemos modificar el texto a mostrar */
+              formatter: (dato) => ((dato * 100) / 238).toFixed(2) + "%",
+              /* Color del texto */
+              color: "black",
+              /* Formato de la fuente */
+              font: {
+                family: "Arial",
+                size: "12",
+                weight: "bold",
+              },
+              /* Formato de la caja contenedora */
+              //padding: "4",
+              //borderWidth: 2,
+              //borderColor: "darkblue",
+              //borderRadius: 8,
+              //backgroundColor: "lightblue"
+            },
+          },
+        },
+      });
+
+      
+      var ctx_18 = document.getElementById("myChart_18").getContext("2d");
+      const labels_18 = [
+        "00:00",
+        "01:00",
+        "02:00",
+        "03:00",
+        "04:00",
+        "05:00",
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+      ];
+      var myChart = new Chart(ctx_18, {
+        type: "line",
+        data: {
+          labels: labels_18,
+          datasets: [
+            {
+              label: "LUNES-VIERNES",
+              data: [
+              5, 3, 2, 0, 1, 0, 3, 1, 7, 14, 6, 9, 13, 16, 
+              13, 11, 13, 12, 10, 11, 3, 15, 4, 4
+
+              ],
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "SÁBADO-DOMINGO",
+              data: [
+              5, 4, 4, 0, 1, 0, 1, 1, 1, 3, 8, 7, 5, 
+              2, 5, 4, 9, 4, 5, 10, 4, 3, 4, 6
+              ],
+              fill: false,
+              borderColor: "#D02FB9",
+              tension: 0.1,
+            },
+          ],
+        },
+      });
+
+      
+      var ctx_19 = document.getElementById("myChart_19").getContext("2d");
+      const labels_19 = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+      ];
+      var myChart = new Chart(ctx_19, {
+        type: "bar",
+        data: {
+          labels: labels_19,
+          datasets: [
+            {
+              axis: "y",
+              data: [44, 23, 38, 42, 29, 51, 45],
+              backgroundColor: [
+                "rgba(255, 99, 132)",
+                "rgba(255, 159, 64)",
+                "rgba(255, 205, 86)",
+                "rgba(75, 192, 192)",
+                "rgba(54, 162, 235)",
+                "rgba(153, 102, 255)",
+                "rgba(201, 203, 207)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      
+      var ctx_20 = document.getElementById("myChart_20").getContext("2d");
+      const labels_20 = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      var myChart = new Chart(ctx_20, {
+        type: "bar",
+        data: {
+          labels: labels_20,
+          datasets: [
+            {
+              axis: "y",
+              data: [25, 30, 29, 23, 26, 15, 24, 26, 18, 4, 26, 26],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      //VILLA ALVAREZ
+      var ctx_21 = document.getElementById("myChart_21").getContext("2d");
+      const labels_21 = [
+        "(72.07%) Colisión con vehículo automotor",
+        "(18.39%) Colisión con ciclista",
+        "(4.72%) Colisión con objeto fijo",
+        "(1.87%) Colisión con peatón (atropellamiento)",
+        "(1.47%) Otro",
+        "(0.49%) Colisión con motocicleta",
+        "(0.49%) Volcadura",
+        "(0.29%) Salida de camino",
+        "(0.20%) Colisión con ferrocarril"
+      ];
+      var myChart = new Chart(ctx_21, {
+        type: "pie",
+        data: {
+          labels: labels_21,
+          datasets: [
+            {
+              data: [733, 187, 48, 19, 15, 5, 5, 3, 2],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+                "#2FD05C",
+                "#DB4A4A",
+                "#DCE56A",
+                "#23C30A",
+                "#6C36C5"
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {},
+        // plugins: [legendMargin],
+      });
+
+      
+      var ctx_22 = document.getElementById("myChart_22").getContext("2d");
+      const labels_22 = ["Peatón", "Conductor", "Ciclista", "Pasajero"];
+      var myChart = new Chart(ctx_22, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+          labels: labels_22,
+          datasets: [
+            {
+              data: [20, 38, 51, 43],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              /* anchor puede ser "start", "center" o "end" */
+              anchor: "center",
+              /* Podemos modificar el texto a mostrar */
+              formatter: (dato) => (Math.round((dato * 100) / 152)) + "%",
+              /* Color del texto */
+              color: "black",
+              /* Formato de la fuente */
+              font: {
+                family: "Arial",
+                size: "12",
+                weight: "bold",
+              },
+              /* Formato de la caja contenedora */
+              //padding: "4",
+              //borderWidth: 2,
+              //borderColor: "darkblue",
+              //borderRadius: 8,
+              //backgroundColor: "lightblue"
+            },
+          },
+        },
+      });
+
+      
+      var ctx_23 = document.getElementById("myChart_23").getContext("2d");
+      const labels_23 = [
+        "00:00",
+        "01:00",
+        "02:00",
+        "03:00",
+        "04:00",
+        "05:00",
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+      ];
+      var myChart = new Chart(ctx_23, {
+        type: "line",
+        data: {
+          labels: labels_23,
+          datasets: [
+            {
+              label: "LUNES-VIERNES",
+              data: [
+              14, 6, 7, 1, 5, 1, 14, 24, 49, 47, 29, 53, 44, 
+              39, 65, 51, 42, 40, 42, 30, 30, 39, 27, 10
+              ],
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "SÁBADO-DOMINGO",
+              data: [
+              14, 9, 15, 12, 13, 8, 1, 7, 8, 15, 11, 16, 
+              13, 20, 23, 18, 14, 12, 11, 10, 10, 19, 15, 14
+
+              ],
+              fill: false,
+              borderColor: "#D02FB9",
+              tension: 0.1,
+            },
+          ],
+        },
+      });
+
+      
+      var ctx_24 = document.getElementById("myChart_24").getContext("2d");
+      const labels_24 = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+      ];
+      var myChart = new Chart(ctx_24, {
+        type: "bar",
+        data: {
+          labels: labels_24,
+          datasets: [
+            {
+              axis: "y",
+              data: [150, 137, 136, 141, 145, 161, 147],
+              backgroundColor: [
+                "rgba(255, 99, 132)",
+                "rgba(255, 159, 64)",
+                "rgba(255, 205, 86)",
+                "rgba(75, 192, 192)",
+                "rgba(54, 162, 235)",
+                "rgba(153, 102, 255)",
+                "rgba(201, 203, 207)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      
+      var ctx_25 = document.getElementById("myChart_25").getContext("2d");
+      const labels_25 = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      var myChart = new Chart(ctx_25, {
+        type: "bar",
+        data: {
+          labels: labels_25,
+          datasets: [
+            {
+              axis: "y",
+              data: [91, 91, 97, 71, 103, 84, 92, 71, 75, 76, 72, 94],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+      
+      var ctx_26 = document.getElementById("myChart_26").getContext("2d");
+      const labels_26 = [
+        "(60.13%) Colisión con vehículo automotor",
+        "(21.40%) Colisión con motocicleta",
+        "(7.93%) Colisión con objeto fijo",
+        "(3.44%) Colisión con ciclista",
+        "(2.19%) Volcadura",
+        "(1.98%) Colisión con peatón (atropellamiento)",
+        "(1.57%) Salida de camino",
+        "(1.26%) Colisión con animal",
+        "(0.10%) Colisión con ferrocarril",
+      ];
+      var myChart = new Chart(ctx_26, {
+        type: "pie",
+        data: {
+          labels: labels_26,
+          datasets: [
+            {
+              data: [639, 162, 60, 39, 15, 5, 4, 3, 3, 1],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+                "#2FD05C",
+                "#DB4A4A",
+                "#DCE56A",
+                "#23C30A",
+                "#6C36C5"
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {},
+        // plugins: [legendMargin],
+      });
+
+      
+      var ctx_27 = document.getElementById("myChart_27").getContext("2d");
+      const labels_27 = ["Peatón", "Conductor", "Ciclista", "Pasajero"];
+      var myChart = new Chart(ctx_27, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+          labels: labels_27,
+          datasets: [
+            {
+              data: [22, 132, 17, 49],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#D02FB9",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              /* anchor puede ser "start", "center" o "end" */
+              anchor: "center",
+              /* Podemos modificar el texto a mostrar */
+              formatter: (dato) => ((dato * 100) / 220).toFixed(2) + "%",
+              /* Color del texto */
+              color: "black",
+              /* Formato de la fuente */
+              font: {
+                family: "Arial",
+                size: "12",
+                weight: "bold",
+              },
+              /* Formato de la caja contenedora */
+              //padding: "4",
+              //borderWidth: 2,
+              //borderColor: "darkblue",
+              //borderRadius: 8,
+              //backgroundColor: "lightblue"
+            },
+          },
+        },
+      });
+
+      
+      var ctx_28 = document.getElementById("myChart_28").getContext("2d");
+      const labels_28 = [
+        "00:00",
+        "01:00",
+        "02:00",
+        "03:00",
+        "04:00",
+        "05:00",
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+      ];
+      var myChart = new Chart(ctx_28, {
+        type: "line",
+        data: {
+          labels: labels_28,
+          datasets: [
+            {
+              label: "LUNES-VIERNES",
+              data: [
+              18, 13, 7, 11, 1, 3, 3, 12, 26, 22, 
+              33, 31, 40, 41, 36, 44, 36, 27, 56, 33, 43, 32, 30, 14
+
+              ],
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "SÁBADO-DOMINGO",
+              data: [
+              13, 9, 17, 13, 6, 15, 2, 7, 8, 15, 16, 22,
+              15, 15, 15, 20, 10, 15, 16, 13, 17, 26, 22, 19
+
+              ],
+              fill: false,
+              borderColor: "#D02FB9",
+              tension: 0.1,
+            },
+          ],
+        },
+      });
+
+      
+      var ctx_29 = document.getElementById("myChart_29").getContext("2d");
+      const labels_29 = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+      ];
+      var myChart = new Chart(ctx_29, {
+        type: "bar",
+        data: {
+          labels: labels_29,
+          datasets: [
+            {
+              axis: "y",
+              data: [131, 127, 124, 129, 101, 195, 151],
+              backgroundColor: [
+                "rgba(255, 99, 132)",
+                "rgba(255, 159, 64)",
+                "rgba(255, 205, 86)",
+                "rgba(75, 192, 192)",
+                "rgba(54, 162, 235)",
+                "rgba(153, 102, 255)",
+                "rgba(201, 203, 207)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      
+      var ctx_30 = document.getElementById("myChart_30").getContext("2d");
+      const labels_30 = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      var myChart = new Chart(ctx_30, {
+        type: "bar",
+        data: {
+          labels: labels_30,
+          datasets: [
+            {
+              axis: "y",
+              data: [99, 81, 63, 54, 47, 96, 81, 95, 89, 94, 76, 83],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+                "rgb(201, 203, 207)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+                "rgb(153, 102, 255)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+
+    </script>
+
+  </body>
+</html>

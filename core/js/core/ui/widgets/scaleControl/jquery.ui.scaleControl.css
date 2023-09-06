@@ -1,0 +1,144 @@
+/* Plantilla -----------------------------------------------------*/
+.custom-scaleControl div{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    height: 26px;
+	width:31px;
+	
+    padding-left: 4px;
+    padding-top: 1px;
+	
+	-moz-box-shadow:    1px 1px 2px 0px #555;
+    -webkit-box-shadow: 1px 1px 2px 0px #555;
+    box-shadow:         1px 1px 2px 0px #555;
+}
+
+.custom-scaleControl div:hover{
+	 background-color: #EEE;
+}
+
+.custom-scaleControl div span{
+	float:left;	
+}
+.custom-scaleControl{
+    position: absolute;
+    right: 48px;
+    width: 1px;
+    height: 1px;
+    top: 52px;
+    cursor: pointer;
+    z-index: 1900;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    
+}
+.custom-scaleControl-zoomin:hover{
+    /*background-color: #EEE;*/
+}
+.custom-scaleControl-zoomin{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    
+    background-color: #FFF;
+    border:1px solid #DDD;
+    
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+}
+
+.custom-scaleControl-extent:hover{
+   /* background-color: #EEE;*/
+}
+
+.custom-scaleControl-extent{
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    right: 0px;
+    
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+}
+.custom-scaleControl-zoomout:hover{
+    /*background-color: #EEE;*/
+}
+.custom-scaleControl-zoomout{
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+    
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.custom-scaleControl-gps{
+	position: absolute;
+    top: 103px;
+    left: 0px;
+    right: 0px;
+    
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.custom-scaleControl-pos{
+	position: absolute;
+    top: 129px;
+    left: 0px;
+    right: 0px;
+    
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.custom-scaleControl-pos-aditional{
+    top: 103px !important;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

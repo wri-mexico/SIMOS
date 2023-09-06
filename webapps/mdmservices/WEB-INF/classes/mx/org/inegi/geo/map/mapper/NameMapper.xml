@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.NameMapper">
+    
+     <select id="geoName" resultType="String">
+       SELECT nombre FROM ce2014.${param1} WHERE cvegeo=#{1} LIMIT 1;
+    </select>
+    
+    <select id="entName" parameterType="map" resultType="NameCvegeo">
+       SELECT cvegeo, nombre FROM ce2014.ent ORDER BY cvegeo LIMIT #{0} OFFSET #{1};
+    </select>
+    
+    <select id="munName" parameterType="map" resultType="NameCvegeo">
+       SELECT cvegeo, nombre FROM ce2014.mun where cve_ent=#{0} ORDER BY cvegeo LIMIT #{1} OFFSET #{2};
+    </select>
+    
+     <select id="locName" parameterType="map" resultType="NameCvegeo">
+       SELECT cvegeo, nombre FROM ce2014.loc where cve_ent=#{0} AND cve_mun=#{1} ORDER BY cvegeo LIMIT #{2} OFFSET #{3};
+    </select>
+    
+     <select id="agebName" parameterType="map" resultType="NameCvegeo">
+       SELECT cvegeo, cve_ageb AS nombre FROM ce2014.ageb where cve_ent=#{0} AND cve_mun=#{1} AND cve_loc=#{2} ORDER BY cvegeo LIMIT #{3} OFFSET #{4};
+    </select>
+    
+    <select id="entCount" resultType="int">
+       SELECT count(*) FROM ce2014.ent;
+    </select>
+    
+    <select id="munCount" resultType="int">
+       SELECT count(*)FROM ce2014.mun where cve_ent=#{0};
+    </select>
+    
+     <select id="locCount" resultType="int">
+       SELECT count(*) FROM ce2014.loc where cve_ent=#{0} AND cve_mun=#{1};
+    </select>
+    
+     <select id="agebCount"  resultType="int">
+       SELECT count(*) FROM ce2014.ageb where cve_ent=#{0} AND cve_mun=#{1} AND cve_loc=#{2};
+    </select>
+    
+    <select id="extent" resultType="String">
+    select st_astext (ST_Envelope (the_geom)) from ce2014.${param1} where cvegeo=#{1};
+    </select>
+    
+</mapper>

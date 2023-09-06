@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Raster map reprojection (warping) with JavaScript in a web-browser with HTML5 Canvas</title>
+  <meta name="author" content="Klokan Petr Pridal - http://blog.klokan.cz/ and http://www.maptiler.com/">
+  <!-- Canvas code derived from the "Red Eyes Demo" writen by Daniel Glazman 11-may-2009 -->
+  <style>
+  body { font-family:'Trebuchet MS', Verdana, Arial; }
+  #container { position: relative; float: left; margin-right: 20px;}
+  #outcontainer {  position: relative; }
+  #inputimg { border: 1px solid #ccc; }
+  #canvas { display:none; }
+  #outcanvas { border: 1px solid #ccc; width:300px; height:300px; }
+  #imageView {  }
+  #imageTemp { position: absolute; top: 0px; left: 0px; }
+  #copy { font-size: 8pt;}
+  </style>
+  <script src="gdalwarp.js"></script>
+  <script src="proj4js-combined.js" type="text/javascript" charset="utf-8"></script>
+  <!-- <script src="proj4js.js"></script> -->
+  <script>
+    
+    var sourceCRS = new Proj4js.Proj("EPSG:4326"); 
+    var sourceBounds = {
+        left: -180,
+        bottom: -90,
+        right: 180,
+        top: 90    
+    };
+    var sourceSize = {
+        w: 1024,
+        h: 512  
+    };
+    
+    var targetCRS;
+    var targetBounds;
+    var targetSize;
+    
+    function startWarp(definitions) {
+        var sourceImage = document.getElementById("inputimg");
+        var warper = new GDALWarp(sourceImage, sourceCRS, sourceBounds, sourceSize, 
+                                        targetCRS, targetBounds, targetSize)
+        
+        if (document.getElementById("useWebWorkers").checked) {    
+            // use web workers to run the reprojection in background    
+            
+            // set the callback function, when the reprojection has finished
+            var handlerDone = function(resultCanvas) {
+                showCanvas(resultCanvas);
+            };    
+            
+            // display the progress in a progress bar
+            var handlerProgress = function(progress) {
+                document.getElementById("progressBar").value = progress;   
+                document.getElementById("progressBarFallback").innerHTML = progress; 
+            };
+            
+            var handlerError = function(error) {
+                console.log(error);    
+            };
+            
+            warper.reprojectAsync(
+                "proj4js-combined.js",
+                handlerDone,
+                handlerProgress,
+                handlerError,
+                definitions);
+            
+        } else {
+            // no web workers
+            var image = warper.reproject();
+            showCanvas(image);
+        }
+    }
+    
+    function showCanvas(image) {
+        // and then display it
+        var canvas = document.getElementById("outcanvas");
+        canvas.width = targetSize.w;
+        canvas.height = targetSize.h;
+        canvas.style.width = targetSize.w + "px";
+        canvas.style.height = targetSize.h + "px";
+        canvas.getContext('2d').drawImage(image, 0, 0);
+    }
+    
+    function startWarpMercator() {
+        targetCRS = new Proj4js.Proj("GOOGLE"); 
+        
+        var wld = 20037508.342789244;
+        targetBounds = {
+            left: -wld,
+            bottom: -wld,
+            right: wld,
+            top: wld    
+        };
+        targetSize = {
+            w: 300,
+            h: 300  
+        }; 
+        
+        startWarp();
+    }
+
+    function startWarpMoll() {
+        // Proj4js.defs["EPSG:54009"] = "+proj=moll +lon_0=0 +units=m +x_0=0 +y_0=0"; // Mollweide, Prime Meridian 0, WGS-84
+        Proj4js.defs["EPSG:54009"] = "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
+        
+        targetCRS = new Proj4js.Proj("EPSG:54009");
+        
+        targetBounds = {
+            left: -18040096,
+            bottom: -22672290,
+            right: 18040096,
+            top: 22672290    
+        };
+        targetSize = {
+            w: 300,
+            h: 300  
+        }; 
+        
+        startWarp([{
+            code: "EPSG:54009",
+            definition: "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"      
+        }]);
+    }
+    
+    function startWarpLCC() {
+        Proj4js.defs["EPSG:42304"]="+title=Atlas of Canada, LCC +proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"; 
+        
+        targetCRS = new Proj4js.Proj("EPSG:42304");
+        
+        targetBounds = {
+            left: -2200000,
+            bottom: -712631,
+            right: 3072800,
+            top: 3840000    
+        };
+        targetSize = {
+            w: 300,
+            h: 300  
+        }; 
+        
+        startWarp([{
+            code: "EPSG:42304",
+            definition: "+title=Atlas of Canada, LCC +proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"      
+        }]);
+    }
+
+    function startWarpLAEA() {
+        Proj4js.defs["EPSG:2163"]="+title=US National Atlas Equal Area, LCC +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m"; 
+        // -2863379, 1102460, 3426620, -2567539
+        
+        targetCRS = new Proj4js.Proj("EPSG:2163");
+        
+        // -8040784.5135, -2577524.9210, 3668901.4484, 4785105.1096
+        targetBounds = {
+            left: -2200000,
+            bottom: -3500000,
+            right: 2300000,
+            top: 1000000
+        };
+        targetSize = {
+            w: 300,
+            h: 300  
+        }; 
+        
+        startWarp([{
+            code: "EPSG:2163",
+            definition: "+title=US National Atlas Equal Area, LCC +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m"      
+        }]);  
+    }
+  </script>
+</head>
+<body>
+  <h3>Raster map reprojection (warping) with JavaScript in a web-browser with HTML5 Canvas</h3>
+  <div id="copy">Copyright &copy; 2009 - <a href="http://blog.klokan.cz/">Klokan Petr Pridal</a> (<a href="http://www.maptiler.com/">MapTiler.com</a>) (24 Oct 2009) - FOSS4G Code Sprint, Sydney</div>
+  <p>
+  <div id="buttons">
+  Press a button to calculate the transformation in your browser:<p>
+  <input type="button" id="mercator" onClick="startWarpMercator()" value="Mercator"/>
+  <input type="button" id="lcc" onClick="startWarpLCC()" value="Canada LCC" />
+  <input type="button" id="usnatatlas" onClick="startWarpLAEA()" value="US National Atlas" />
+  <input type="button" id="lcc" onClick="startWarpMoll()" value="Mollweide" />
+  <input type="checkbox" id="useWebWorkers" checked="checked" /> Use web workers (works in Chome 6+, Firefox 4.01b and Opera 10.70)
+  <progress id="progressBar" value="0" max="100">
+    <span id="progressBarFallback">0</span>%
+  </progress>
+  <p>
+  </div>
+  <div id="container">
+    Input: unprojected raster image with dimmension 1024 x 512 pixels:<br/>
+    <img id="inputimg" src="world1024.jpg" width="468" height="234" alt="world"/>
+    <canvas id="canvas"></canvas>
+  </div>
+  <div id="outcontainer">
+    Output: projected image calculated dynamically in JavaScript:<br/>
+    <canvas id="outcanvas" width="300" height="300"></canvas>
+  </div>
+
+</body>
+</html>

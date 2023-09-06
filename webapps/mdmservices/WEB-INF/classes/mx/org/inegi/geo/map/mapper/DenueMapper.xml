@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.DenueMapper">
+
+	<select id="getListEstatal" resultType="ListDenue">
+		SELECT  cvegeo, nombre AS name
+		FROM denue2014.ent 
+		WHERE the_geom &amp;&amp; ST_GeomFromText(#{polygon}, 900913)
+		AND ST_Intersects(the_geom , ST_GeomFromText(#{polygon}, 900913)) 
+	    ORDER BY st_distance(the_geom,ST_GeomFromText(#{centroid},900913)) asc
+	</select>
+
+	<select id="getListMuni" resultType="ListDenue">
+		SELECT  cvegeo, nombre AS name
+		FROM denue2014.mun 
+		WHERE the_geom &amp;&amp; ST_GeomFromText(#{polygon}, 900913)
+		AND ST_Intersects(the_geom , ST_GeomFromText(#{polygon}, 900913)) 
+	    ORDER BY st_distance(the_geom,ST_GeomFromText(#{centroid},900913)) asc
+	</select>
+
+	<select id="getListLocal" resultType="ListDenue">
+		SELECT  cvegeo, nombre AS name		
+		from denue2014.l 
+		WHERE the_geom &amp;&amp; ST_GeomFromText(#{polygon}, 900913)
+		AND ST_Intersects(the_geom , ST_GeomFromText(#{polygon}, 900913)) 
+	    ORDER BY st_distance(the_geom,ST_GeomFromText(#{centroid},900913)) asc
+	</select>
+
+	<select id="getListAgeb" resultType="ListDenue">
+
+	</select>
+
+	<select id="getListMzn" resultType="ListDenue">
+
+	</select>
+
+	<select id="getListEstable" resultType="ListDenue">
+
+	</select>
+
+
+</mapper>

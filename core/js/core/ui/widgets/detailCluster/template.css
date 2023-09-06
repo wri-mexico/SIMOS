@@ -1,0 +1,4 @@
+.detailCluster_template{ background:url("img/detailCluster.png") top left no-repeat; }
+.info_cluster:hover{ width:25px; height:25px; background-position:-27px 0px; }
+.info_cluster{ width:25px; height:25px; background-position:0px 0px; }
+

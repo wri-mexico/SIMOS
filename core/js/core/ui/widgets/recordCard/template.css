@@ -1,0 +1,31 @@
+.recordCard_template{ background:url("img/recordCard.png") top left no-repeat; }
+.left_row:hover{ width:35px; height:80px; background-position:-35px -482px; }
+.left_row{ width:35px; height:80px; background-position:1px -482px; }
+.right_row:hover{ width:35px; height:80px; background-position:-35px -563px; }
+.right_row{ width:35px; height:80px; background-position:1px -563px }
+.C_ff0505{ width:35px; height:35px; background-position:1px -446px }/*sector9*/
+.C_ff9dfe{ width:35px; height:35px; background-position:1px -409px}/*sector8*/
+.C_ff5805{ width:35px; height:35px; background-position:1px -373px; }/*sector7*/
+.C_0505ff{ width:35px; height:35px; background-position:1px -336px; }/*sector6*/
+.C_05da05{ width:35px; height:35px; background-position:1px -299px; }/*sector5*/
+.C_8e05ff{ width:35px; height:35px; background-position:1px -263px; }/*sector4*/
+.C_05a5ff{ width:35px; height:35px; background-position:1px -227px; }/*sector3*/
+.C_a4500c{ width:35px; height:35px; background-position:1px -190px; }/*sector2*/
+.C_ffda05{ width:35px; height:35px; background-position:1px -154px; }/*sector1*/
+.less_item:hover{ width:25px; height:25px; background-position:-26px -127px }
+.less_item{ width:25px; height:25px; background-position:0px -127px }
+.more_item:hover{ width:25px; height:25px; background-position:-26px -101px; }
+.facebook_item:hover{ width:25px; height:25px; background-position:-26px -75px; }
+.twitter_item:hover{ width:25px; height:25px; background-position:-26px -48px; }
+.web_item:hover{ width:25px; height:25px; background-position:-29px -643px; }
+.web_item{ width:25px; height:25px; background-position:-2px -643px; }
+.download_item:hover{ width:25px; height:25px; background-position:-26px -22px; }
+.mail_item:hover{ width:25px; height:25px; background-position:-26px 4px; }
+.more_item{ width:25px; height:25px; background-position:0px -101px; }
+.facebook_item{ width:25px; height:25px; background-position:0px -75px; }
+.twiter_item{ width:25px; height:25px; background-position:0px -48px; }
+.download_item{ width:25px; height:25px; background-position:0px -22px; }
+.mail_item{ width:25px; height:25px; background-position:0px 4px; }
+.print_item{ width:25px; height:25px; background-position:-1px -696px; }
+.print_item:hover{ width:25px; height:25px; background-position:-28px -696px; } 
+

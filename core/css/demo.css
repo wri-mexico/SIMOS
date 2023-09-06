@@ -1,0 +1,32 @@
+/*OCULTAR ELEMENTOS QUE AUN ESTAN EN PRUEBA */
+
+/*#mdmToolBar_download{
+	display:none;
+}
+
+#mdmToolBar_share{
+	display:none;
+}
+#scaleControl_gps{
+	display:none;
+}
+#scaleControl_pos{
+	display:none;
+}
+
+#layersDisplay_btnWms{
+	display:none;
+}
+ 
+#mdm6DinamicPanel_routePanel_tab{
+	display:none;	
+}
+.dinamicPanel-tab{
+	width:19% !important;
+}
+*/
+
+/*Interfaz Manuel*********************/
+.section_share .btn_download{
+	display:none !important;
+}

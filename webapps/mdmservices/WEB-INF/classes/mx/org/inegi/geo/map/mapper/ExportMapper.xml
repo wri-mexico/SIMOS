@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.ExportMapper">
+
+	<insert id="add" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		insert into control.share(json) values (cast (#{json} as json))
+	</insert>
+
+	<select id="findById" resultType="String">
+		select json::character varying from control.share where id = #{id}
+	</select>
+
+</mapper>

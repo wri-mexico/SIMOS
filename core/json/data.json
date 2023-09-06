@@ -1,0 +1,91 @@
+{
+    "name": "root",
+    "color":"red",
+    "children": [{
+        "name": "lib",
+        "color":"#E6B548",
+        "_children": [{
+            "color":"#E6B548",
+            "name": "qosAggregator.js",
+            "size": 1,
+            "language": "Javascript"
+        }, {
+            "color":"#E6B548",
+            "name": "intervalBuilder.js",
+            "size": 1,
+            "language": "Javascript"
+        }, {
+            "color":"#E6B548",
+            "name": "monitor.js",
+            "size": 1,
+            "language": "Javascript"
+        }, {
+            "color":"#E6B548",
+            "name": "pollers",
+            "size": 1
+        }, {
+            "color":"#E6B548",
+            "name": "proxy.js",
+            "size": 1,
+            "language": "Javascript"
+        }, {
+            "color":"#E6B548",
+            "name": "analyzer.js",
+            "size": 1,
+            "language": "Javascript"
+        }, {
+            "color":"#E6B548",
+            "name": "timer.js",
+            "size": 1,
+            "language": "Javascript"
+        }],
+        "size": 7
+    }, {
+        "name": "fixtures",
+        "color":"#1C72B5",
+        "_children": [{
+            "color":"#1C72B5",
+            "name": "computeStats.js",
+            "size": 2,
+            "language": "Javascript"
+        }, {
+            "color":"#1C72B5",
+            "name": "populate.js",
+            "size": 1,
+            "language": "Javascript"
+        }, {
+            "color":"#1C72B5",
+            "name": "fixEvents.js",
+            "size": 20,
+            "language": "Javascript"
+        }, {
+            "color":"#1C72B5",
+            "name": "dummyTargetUdp.js",
+            "size": 20,
+            "language": "Javascript"
+        }, {
+            "color":"#1C72B5",
+            "name": "dummyTarget.js",
+            "size": 10,
+            "language": "Javascript"
+        }],
+        "size": 53
+    },{
+        "name": "config",
+        "color":"#972B8A",
+        "_children": [{
+            "color":"#972B8A",
+            "name": "default.yaml",
+            "size": 36,
+            "language": "YAML"
+        }, {
+            "color":"#972B8A",
+            "name": "test.yaml",
+            "size": 4,
+            "language": "YAML"
+        }],
+        "size": 40
+    }],
+    "nbFiles": 81,
+    "size": 8778
+}

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.ScianMapper">
+
+	<select id="count" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="int">
+		select count(*) as total
+		from denue2016.denue2016
+		where the_geom
+		&amp;&amp; ST_Buffer(ST_GeomFromText(#{point}, 900913), #{buffer})
+		and
+		ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer}))
+		<if test='type.name() != "sector"'>
+			and ${type.parent} = #{superTypeId}
+		</if>
+	</select>
+
+	<select id="countDetailByResolutionLevel" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="int">
+		select count(*) as total
+		from denue2016.denue2016
+		<if test='resolutionLevel == 6'>
+			where cveent = (select cvegeo
+			from denue2014.ent
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 5'>
+			where cvemun = (select cvegeo
+			from denue2014.mun
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 4'>
+			where cveloc = (select cvegeo
+			from denue2014.l
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 3'>
+			where cveageb = (select cvegeo
+			from denue2014.a
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 2'>
+			where cvegeo = (select cvegeo
+			from denue2014.m
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='type.name() != "sector"'>
+			and ${type.parent} = #{superTypeId}
+		</if>
+	</select>
+
+	<select id="countByResolutionLevel" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="ScianCount">
+		<if test='resolutionLevel == 7'>
+			select case when sum(size_2016) is null then 0 else sum(size_2016) end as size,
+			nombre as name
+			from denue2014.nacional_cluster
+			group by nombre
+		</if>
+		<if test='resolutionLevel == 6'>
+			select case when sum(size_2016) is null then 0 else sum(size_2016) end as size,
+			nombre as name
+			from denue2014.estatal_cluster a
+			where cvegeo = ( select cve_ent from denue2014.ent
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+			group by nombre
+		</if>
+		<if test='resolutionLevel == 5'>
+			select case when sum(size_2016) is null then 0 else sum(size_2016) end as size,
+			nombre as name
+			from denue2014.municipal_cluster a
+			where cvegeo = ( select cvegeo from denue2014.mun
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+			group by nombre
+		</if>
+		<if test='resolutionLevel == 4'>
+			select case when sum(size_2016) is null then 0 else sum(size_2016) end as size,
+			nombre as name
+			from denue2014.localidad_cluster a
+			where cvegeo = ( select cvegeo from denue2014.l
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+			group by nombre
+		</if>
+		<if test='resolutionLevel == 3'>
+			select case when sum(size_2016) is null then 0 else sum(size_2016) end as size,
+			cvegeo as name
+			from denue2014.ageb_cluster a
+			where cvegeo = ( select cvegeo from denue2014.a
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+			group by cvegeo
+		</if>
+		<if test='resolutionLevel == 2'>
+			select case when sum(size_2016) is null then 0 else sum(size_2016) end as size,
+			cvegeo as name
+			from denue2014.manzana_cluster a
+			where cvegeo = ( select cvegeo from denue2014.m
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+			group by cvegeo
+		</if>
+	</select>
+
+	<select id="find" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="Scian">
+		select a.${type} as typeid, b.tipo as type, count (*) as size,
+		b.nombre as name, b.color, null as id
+		from denue2016.denue2016${ent} a,
+		denue2014.scian b,
+		(select * from denue2016.denue2016${ent}
+		where
+		the_geom &amp;&amp; ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer})
+		and ST_Intersects(the_geom,
+		ST_Buffer(ST_GeomFromText(#{point}, 900913), #{buffer}))
+		order by
+		ST_Distance(the_geom,ST_GeomFromText(#{point}, 900913)) limit
+		#{limit}) c
+		where c.d_llave = a.d_llave
+		and a.${type} = b.id
+		and b.tipo =
+		#{type}
+		<if test='type.name() != "sector"'>
+			and a.${type.parent} = #{superTypeId}
+		</if>
+		group by a.${type}, b.tipo, b.nombre, b.color
+		having count(*) > 1
+		union
+		select a.${type} as typeid, b.tipo as type, 1 as size, a.nom_est as
+		name, b.color, a.d_llave as id
+		from denue2016.denue2016${ent} a,
+		denue2014.scian b,
+		(select * from denue2016.denue2016${ent}
+		where
+		the_geom &amp;&amp; ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer})
+		and ST_Intersects(the_geom,
+		ST_Buffer(ST_GeomFromText(#{point}, 900913), #{buffer}))
+		order by
+		ST_Distance(the_geom,ST_GeomFromText(#{point}, 900913)) asc limit
+		#{limit}) c
+		where c.${type} in
+		(select sector from
+		(select sector from
+		denue2016.denue2016${ent}
+		where the_geom &amp;&amp;
+		ST_Buffer(ST_GeomFromText(#{point}, 900913), #{buffer})
+		and
+		ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer}))
+		order by ST_Distance(the_geom, ST_GeomFromText(#{point},
+		900913)) asc limit #{limit}) d
+		group by sector
+		having count(*) = 1 )
+		and
+		c.d_llave = a.d_llave
+		and b.tipo = #{type}
+		and a.${type} = b.id
+		<if test='type.name() != "sector"'>
+			and a.${type.parent} = #{superTypeId}
+		</if>
+		order by type
+	</select>
+
+	<select id="findAll" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="Scian">
+		select a.${type} as typeid, b.tipo as type, 1 as size,
+		nom_est as name,
+		b.color, d_llave as id
+		from denue2016.denue2016 a, denue2014.scian b
+		where the_geom &amp;&amp; ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer})
+		and ST_Intersects(the_geom,
+		ST_Buffer(ST_GeomFromText(#{point}, 900913), #{buffer}))
+		and a.${type}
+		= b.id
+		and b.tipo = #{type}
+		<if test='type.name() != "sector"'>
+			and a.${type.parent} = #{superTypeId}
+		</if>
+		order by ST_Distance(the_geom, ST_GeomFromText(#{point}, 900913)) asc
+		limit #{limit}
+	</select>
+
+	<select id="findDetailByResolutionLevel" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="Scian">
+		select a.${type} as typeid, b.tipo as type, 1 as size,
+		nom_est as name,
+		b.color, d_llave as id
+		from denue2016.denue2016 a, denue2014.scian b
+		<if test='resolutionLevel == 6'>
+			where cveent = (select cvegeo
+			from denue2014.ent
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 5'>
+			where cvemun = (select cvegeo
+			from denue2014.mun
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 4'>
+			where cveloc = (select cvegeo
+			from denue2014.l
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 3'>
+			where cveageb = (select cvegeo
+			from denue2014.a
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 2'>
+			where cvegeo = (select cvegeo
+			from denue2014.m
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		and a.${type} = b.id
+		and b.tipo = #{type}
+		<if test='type.name() != "sector"'>
+			and a.${type.parent} = #{superTypeId}
+		</if>
+	</select>
+
+	<select id="findByResolutionLevel" parameterType="mx.org.inegi.geo.map.model.ScianInfo"
+		resultType="Scian">
+		select sector as typeid, b.tipo as type,size_2016 as size, b.nombre as name,
+		b.color, d_llave as id
+		<if test='resolutionLevel == 7'>
+			from denue2014.nacional_cluster, denue2014.scian b
+			where
+			b.id = sector
+		</if>
+		<if test='resolutionLevel == 6'>
+			from denue2014.estatal_cluster a, denue2014.scian b
+			where a.sector = b.id
+			and cvegeo = (select cve_ent from denue2014.ent
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 5'>
+			from denue2014.municipal_cluster a, denue2014.scian b
+			where a.sector = b.id
+			and cvegeo = (select cvegeo from denue2014.mun
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 4'>
+			from denue2014.localidad_cluster a, denue2014.scian b
+			where a.sector = b.id
+			and cvegeo = (select cvegeo from denue2014.l
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 3'>
+			from denue2014.ageb_cluster a, denue2014.scian b
+			where a.sector = b.id
+			and cvegeo = (select cvegeo from denue2014.a
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+		<if test='resolutionLevel == 2'>
+			from denue2014.manzana_cluster a, denue2014.scian b
+			where a.sector = b.id
+			and cvegeo = (select cvegeo from denue2014.m
+			where the_geom &amp;&amp; ST_GeomFromText(#{point}, 900913)
+			and ST_Intersects(the_geom , ST_GeomFromText(#{point}, 900913)) limit 1)
+		</if>
+	</select>
+
+	<select id="findEnt" parameterType="java.lang.String"
+		resultType="String">
+		select cve_ent from denue2014.ent
+		where ST_Intersects(the_geom, ST_GeomFromText(#{point}, 900913))
+	</select>
+
+</mapper>

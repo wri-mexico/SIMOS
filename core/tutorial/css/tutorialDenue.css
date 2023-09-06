@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'customFont';
+  src: url('../fonts/GloriaHallelujah.ttf');
+}
+
+#tutorialDenue{
+  position: absolute;
+  bottom: 30px;
+  left:230px;
+  display:none;
+}
+
+#tutorialDenue .marker{
+  position: relative;
+}
+
+
+#tutorialDenue .icon_marker{
+  position: absolute;
+  top: 68px;
+  left: 14px;
+}
+
+#tutorialDenue .labels{
+  position: relative;
+}
+
+
+#tutorialDenue .labels .description{
+  color:#fff;
+  font-size: 200%;
+  text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 10px #808080, 0 0 10px #808080, 0 0 10px #808080, 0 0 10px #808080, 0 0 10px #808080;
+}
+#tutorialDenue .labels .reference{
+  color:#BCA825;
+  font-size: 300%;
+  font-weight:bold;
+  text-shadow: 0px 2px 1px #808080;
+}
+
+
+.template_tutorialDenue{
+  display:block;background-image:url(../img/denue/tutorialDenue.png);overflow:hidden; background-repeat:no-repeat;
+}
+
+.ttd_marker{ width:107px; height:125px; background-position:-10px -10px; }
+.ttd_icon1{ width:80px; height:80px; background-position:-10px -145px; }
+.ttd_icon2{ width:80px; height:80px; background-position:-10px -235px; }
+.ttd_icon3{ width:80px; height:80px; background-position:-10px -325px; }
+.ttd_icon4{ width:80px; height:80px; background-position:-10px -415px; }
+.ttd_icon5{ width:80px; height:80px; background-position:-10px -505px; }
+.ttd_icon6{ width:81px; height:80px; background-position:-10px -595px; }
+.ttd_icon7{ width:80px; height:80px; background-position:-10px -685px; }
+.ttd_icon8{ width:80px; height:80px; background-position:-10px -775px; }
+.ttd_icon9{ width:80px; height:80px; background-position:-10px -865px; }

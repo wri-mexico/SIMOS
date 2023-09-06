@@ -1,0 +1,84 @@
+
+@import url('template.css');
+
+.detailCluster{
+	position: absolute;
+	/*bottom: 50px;*/
+	/*right: 10px;*/
+	z-index: 3000;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+}
+.detailCluster .header{
+	position:absolute;
+	top:5px;
+	left: 5px;
+	right:5px;
+	height:30px;
+	background-color: #dbdbdb;
+	border-bottom: 1px solid #BBBBBB;
+	padding-top:10px;
+	font-size: 120%;
+	font-weight:bold;
+}
+
+.detailCluster .container{
+	position: absolute;
+	top: 38px;
+	left: 5px;
+	right: 5px;
+	bottom: 5px;
+	background-color: #f8f8f8;
+	border: 1px solid #EFEFEF;
+	
+}
+
+.detailCluster .container .data{
+	position: absolute;
+	top:5px;
+	left: 0px;
+	right: 0px;
+	bottom: 5px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.detailCluster .pleg{
+	position: absolute;
+	top:0px;
+	left:-50px;
+	height: 50px;
+	width:50px;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	display: none;
+	
+}
+
+.data .itemCluster{
+	width:100%;position:relative;height:30px;border-bottom: 1px solid #BBBBBB;padding-top:5px;
+}
+.itemCluster:hover{
+	background: #EEEEEE;
+}
+
+.itemCluster .icono{
+	position:absolute;left:4px;height:20px;width:20px;
+	-webkit-border-radius: 150px;
+    border-radius: 150px;
+}
+.itemCluster .info{
+	position:absolute;right:0px;width:25px;
+}
+.itemCluster .icono label{
+	position: relative;top: 4px;font-weight:bold;color: #FFF;
+}
+.itemCluster .label{
+	position:absolute;left:30px;right:29px;text-align: justify; top:-5px;cursor: pointer;
+}
+
+.detailCluster .header .close_detail{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}

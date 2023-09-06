@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<context:annotation-config />
+
+	<!-- AspectJ -->
+	<aop:aspectj-autoproxy />
+
+	<import resource="cors.xml" />
+
+	<context:component-scan base-package="mx.org.inegi.geo.map" />
+
+	<!-- Properties Mail -->
+	<context:property-placeholder
+		location="classpath:config/web.properties, classpath:mail.properties" />
+	<!-- Email Config -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" />
+
+	<bean id="Mail" class="mx.org.inegi.geo.map.domain.Mail">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+	<!-- Connection Manager -->
+	<bean id="connectionManager" class="mx.org.inegi.geo.map.connection.ConnectionManager"
+		scope="singleton" />
+
+	<!-- Datasource -->
+	<bean id="dataSource" class="mx.org.inegi.geo.map.connection.MapConnectionDataSource" />
+
+	<!-- Transaction Management -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Scan for services -->
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="mx.org.inegi.geo.map.mapper" />
+	</bean>
+
+	<!-- MyBatis SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="mx.org.inegi.geo.map.domain" />
+	</bean>
+
+	<!-- Default layers -->
+	<util:list id="defaultLayers" value-type="java.lang.String"
+		list-class="java.util.ArrayList">
+		<value>c102</value>
+		<value>c101</value>
+		<value>c100</value>
+	</util:list>
+
+	<!-- Periods of time for Censo Economico -->
+	<util:list id="timeFrame" value-type="java.lang.Integer"
+		list-class="java.util.ArrayList">
+		<value>2004</value>
+		<value>2009</value>
+		<value>2014</value>
+	</util:list>
+
+	<bean id="timeFrameUtil" class="mx.org.inegi.geo.map.utils.TimeFrameUtil">
+		<constructor-arg ref="timeFrame" />
+	</bean>
+
+	<bean id="aliasFile" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="/config/${AliasDataFilename}" />
+	</bean>
+
+	<bean id="serversFile" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="/config/${ServersDataFilename}" />
+	</bean>
+
+	<bean id="configOptions" class="mx.org.inegi.geo.map.xml.loader.ConfigOptions">
+		<property name="aliasFilename" value="${AliasDataFilename}" />
+		<property name="serversFilename" value="${ServersDataFilename}" />
+		<property name="stopWordsFilename" value="${StopWordsFilename}" />
+	</bean>
+
+	<bean id="dataLoader" class="mx.org.inegi.geo.map.xml.loader.DataLoader"
+		init-method="loadData">
+		<property name="aliasFile" ref="aliasFile" />
+		<property name="serversFile" ref="serversFile" />
+	</bean>
+
+	<bean id="serverData" factory-bean="dataLoader" factory-method="getServerData" />
+
+	<bean id="pagination" class="mx.org.inegi.geo.map.utils.Pagination" />
+
+</beans>

@@ -1,0 +1,54 @@
+.georeferenceAddress{
+    width:380px;
+}
+
+.georeferenceAddress .top{
+    position:relative;height:70px;width:100%;
+}
+
+.georeferenceAddress .top .left{ 
+    position:absolute;top:0px;left:0px;right:50%;bottom:0px;background:#EEEEEE;
+}
+
+.georeferenceAddress .top .right{
+    position:absolute;top:0px;right:0px;left:50%;bottom:0px;
+}
+
+.georeferenceAddress .middle{
+    position:relative;height:230px;width:100%;margin-bottom: 10px;
+}
+
+.georeferenceAddress .middle .left{
+    position:absolute;top:0px;left:0px;right:50%;bottom:0px;
+}
+
+.georeferenceAddress .middle .right{
+    position:absolute;top:0px;right:0px;left:50%;bottom:0px;background:#EEEEEE;
+}
+
+.georeferenceAddress .bottom{
+    position:relative;height:220px;width:100%;background:#EEEEEE;
+}
+
+.georeferenceAddress .bottom{
+    position:relative;height:220px;width:100%;
+}
+
+.georeferenceAddress .bottom .left{
+    position:absolute;top:0px;left:0px;right:0px;bottom:0px;background:#EEEEEE;
+}
+
+.georeferenceAddress .header{
+    position:relative;height:220px;width:100%;background:#EEEEEE;
+}
+
+.georeferenceAddress .header{
+   position: relative;
+    height: 55px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.georeferenceAddress .header .left{
+    position:absolute;top:0px;left:0px;right:0px;bottom:0px;background:#EEEEEE;
+}

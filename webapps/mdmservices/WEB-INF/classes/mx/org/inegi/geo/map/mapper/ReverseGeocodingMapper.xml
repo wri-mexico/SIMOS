@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.ReverseGeocodingMapper">
+
+    <select id="findAgeb" parameterType="java.lang.String" resultType="Ageb">
+        select cvegeo, cve_ent as ent, cve_mun as mun,
+        cve_loc, cve_ageb as ageb, tipo_area as tipoArea
+		from localidadesmzn.ageb_mgn_geo
+		where ST_Intersects(ST_GeomFromText(#{point}, 900913), the_geom)
+    </select>
+    
+    <select id="findFrenteManzana" parameterType="java.lang.String" resultType="FrenteManzana">
+        select nomvial as vialidad, tipovial as tipoVialidad,
+        nomref1 as entrevialidad1, nomref2 as entrevialidad2,
+		tipovr1 as tipoEntrevialidad1, tipovr2 as tipoEntrevialidad2,
+		a.cve_mza as cvemza, a.cve_ageb as cveageb,
+		d.nomgeo as localidad, a.cve_loc as cveloc,
+		c.nomgeo as municipio, a.cve_mun as cvemun, a.cve_ent as cveent,
+		b.nom_ent as entidad, nomasen as asentamiento, cp as codigoPostal,
+		ST_AsText(ST_Line_Interpolate_Point(ST_LineMerge(a.the_geom), ST_Line_Locate_Point(ST_LineMerge(a.the_geom), ST_GeomFromText(#{point}, 900913)))) as punto,
+		ST_Distance(ST_GeomFromText(#{point}, 900913), a.the_geom) as distance
+		from localidadesmzn.frentesdemanzana_mgn a, localidadesmzn.ent b, localidadesmzn.mun_mgn c, localidadesmzn.localidad_mgn_multi d
+		where ST_DWithin(ST_GeomFromText(#{point}, 900913), a.the_geom, 40)
+		and a.cve_ent = b.cve_ent
+		and a.cve_ent = c.cve_ent
+		and a.cve_mun = c.cve_mun
+		and a.cve_ent = d.cve_ent
+		and a.cve_mun = d.cve_mun
+		and a.cve_loc = d.cve_loc
+		order by distance limit 1
+    </select>
+    
+    <select id="findNumeroExterior" parameterType="java.lang.String" resultType="NumeroExterior">
+        select numextnum as numeroExterior, numextalf as numeroExteriorAlf, numextant as numeroAnterior,
+		nomvial as vialidad, tipovial as tipoVialidad, nomref1 as entrevialidad1, nomref2 as entrevialidad2,
+		tipovr1 as tipoEntrevialidad1, tipovr2 as tipoEntrevialidad2,
+		substr(a.cvegeo, 14, 3) as cvemza, substr(a.cvegeo, 10, 4) as cveageb,
+		d.nomgeo as localidad, substr(a.cvegeo, 6, 4) as cveloc,
+		c.nomgeo as municipio, substr(a.cvegeo, 3, 3) as cvemun, substr(a.cvegeo, 1, 2) as cveent,
+		b.nom_ent as entidad, nomasen as asentamiento, cp as codigoPostal,
+		ST_Distance(ST_GeomFromText(#{point}, 900913), a.the_geom) as distance,
+		ST_AsText(a.the_geom) as punto
+		from localidadesmzn.numeroexteriorurbano a, localidadesmzn.ent b, localidadesmzn.mun_mgn c, localidadesmzn.localidad_mgn_multi d
+		where ST_DWithin(ST_GeomFromText(#{point}, 900913), a.the_geom, 40)
+		and substr(a.cvegeo, 1, 2) = b.cve_ent
+		and substr(a.cvegeo, 1, 2) = c.cve_ent
+		and substr(a.cvegeo, 3, 3) = c.cve_mun
+		and substr(a.cvegeo, 1, 2) = d.cve_ent
+		and substr(a.cvegeo, 3, 3) = d.cve_mun
+		and substr(a.cvegeo, 6, 4) = d.cve_loc
+		order by distance limit 1
+    </select>
+
+</mapper>

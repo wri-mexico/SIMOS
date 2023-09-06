@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- CORS Filter -->
+	<oxm:jaxb2-marshaller id="marshaller">
+		<oxm:class-to-be-bound name="mx.org.inegi.geo.mdm.web.access.Origin" />
+		<oxm:class-to-be-bound name="mx.org.inegi.geo.mdm.web.access.AllowedOrigin" />
+	</oxm:jaxb2-marshaller>
+
+	<bean id="originResource" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="allow-origin.xml" />
+	</bean>
+
+	<bean id="originMaker" class="mx.org.inegi.geo.mdm.web.access.AllowedOriginMaker">
+		<property name="resource" ref="originResource" />
+	</bean>
+
+	<bean id="corsFilter" class="mx.org.inegi.geo.mdm.web.filter.CORSFilter">
+		<property name="originMaker" ref="originMaker" />
+	</bean>
+
+</beans>

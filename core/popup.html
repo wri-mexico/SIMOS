@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        .hidden{display:none;visibility:hidden}
+        .Popup{display:block;background-image:url(img/popup.png);overflow:hidden}
+        .popupProp{width:11px; height:11px; background-repeat:no-repeat;}
+        .row_left{background-position:-23px 0px;}
+        .row_top{background-position:-11px 0px;}
+        .row_right{background-position:-37px 0px;}
+        .row_bottom{background-position:0px 0px;}
+        
+        
+        .dinamicPanel-shadow{ box-shadow: 1px 1px 2px 0 #555555;}
+        .dinamicPanel-border{border: 1px solid #DDDDDD;}
+        .dinamicPanel-box-sizing{ -moz-box-sizing: border-box;}
+        
+        .triangle-border{
+            box-shadow: 0px 0px 6px 0 #555555;
+        }
+        .triangle-border.top:before {
+            border-width: 0 20px 20px;
+            bottom: auto;
+            left: auto;
+            right: 40px;
+            top: -20px;
+        }
+        
+        .triangle-border:before {
+            border-color: #DDDDDD transparent;/*5A8F00*/
+            border-style: solid;
+            border-width: 20px 20px 0; /*20px 20px 0;*/
+            bottom: -20px;
+            content: "";
+            display: block;
+            left: 40px;
+            position: absolute;
+            width: 0;
+        }
+        
+        .triangle-border.top:after {
+            border-width: 0 13px 13px;
+            bottom: auto;
+            left: auto;
+            right: 47px;
+            top: -13px;
+        }
+        
+        .triangle-border:after {
+            border-color: #FFFFFF transparent;
+            border-style: solid;
+            border-width: 13px 13px 0;
+            bottom: -13px;
+            content: "";
+            display: block;
+            left: 47px;
+            position: absolute;
+            width: 0;
+        }
+        .triangle-border {
+            background: none repeat scroll 0 0 #FFFFFF;
+            border: 2px solid #DDDDDD;
+            border-radius: 10px 10px 10px 10px;
+            color: #333333;
+            margin: 1em 0 3em;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .triangle-border.left {
+            margin-left: 30px;
+        }
+        .triangle-border.left:before {
+            border-color: transparent #DDDDDD;
+            border-width: 15px 30px 15px 0;
+            bottom: auto;
+            left: -30px;
+            top: 10px;
+        }
+        
+        .triangle-border.left:after {
+            border-color: transparent #FFFFFF;
+            border-width: 9px 21px 9px 0;
+            bottom: auto;
+            left: -21px;
+            top: 16px;
+        }
+        
+        
+        .triangle-border.right {
+            margin-right: 30px;
+        }
+        .triangle-border.right:before {
+            border-color: transparent #DDDDDD;
+            border-width: 15px 0 15px 30px;
+            bottom: auto;
+            left: auto;
+            right: -30px;
+            top: 10px;
+        }
+        .triangle-border.right:after {
+            border-color: transparent #FFFFFF;
+            border-width: 9px 0 9px 21px;
+            bottom: auto;
+            left: auto;
+            right: -21px;
+            top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="gordo" style="position:absolute;z-index:50000;top:200px;left:500px">
+        <div align="center">
+            <div class="Popup popupProp row_top"></div>
+        </div>
+        <div style="background:green">
+            <table border=0 width="100%" height="100%">
+                
+                <tr style="width:100%">
+                    <td><div class="Popup popupProp row_left"></div></td>
+                    <td><div class="ui-corner-all dinamicPanel-shadow dinamicPanel-border dinamicPanel-box-sizing" style="background:white">hola</div></td>
+                    <td><div class="Popup popupProp row_right"></div></td>
+                </tr>
+            </table>
+        
+        </div>
+        <div align="center">
+            <div class="Popup popupProp row_bottom ui-corner-all dinamicPanel-shadow dinamicPanel-border dinamicPanel-box-sizing"></div>
+        </div>
+    </div>
+    
+</div>
+
+
+<p class="triangle-border top">For example, <code>andale</code>.</p>
+
+</body>
+</html>

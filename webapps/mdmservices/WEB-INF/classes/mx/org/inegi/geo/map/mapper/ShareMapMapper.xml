@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.ShareMapMapper">
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO control.share(json) VALUES (cast (#{jsonS} as json));
+	</insert>
+	
+	<select id="find" resultType="java.util.LinkedHashMap">
+		SELECT json FROM control.share WHERE id=#{id}
+	</select>
+	
+</mapper>

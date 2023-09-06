@@ -1,0 +1,387 @@
+
+@import url('template.css');
+
+.helper_header{
+	width:100%;height:55px;z-index: 3000;
+}
+
+.helper_map{
+	top:0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	z-index: 1800;
+}
+.Helper{
+	position: absolute;
+	
+}
+.Helper .helper_veil{
+	opacity: 0.50;
+	filter: Alpha(Opacity=50);
+	background: #000000;
+	position: absolute;
+}
+
+.Helper .helper_background{
+	-webkit-border-radius: 5px;
+	-moz-border-radiust: 5px;
+	border-radius: 5px;
+	background:white;
+	position:absolute;top:5px;width:25px;height:25px;
+}
+.helper_tools{
+	background: transparent;
+	z-index: 3000;
+	
+}
+
+.helper_tools .helper_region{
+	position: absolute;
+	border: 4px solid #199695;
+	left:-4px;
+	right: -4px;
+	top:-3px;
+	bottom: -3px;
+}
+.helper_bottom_bar{
+	width:100%;height:30px;bottom:0px;
+}
+
+.helper_bottom_veil_first_section{/*helper_veil*/
+	left:0px;
+	width:35px;
+	height: 100%;
+}
+
+.helper_bottom_veil_second_section{
+	right: 230px;
+	height: 100%;
+	width: 35px;
+}
+.helper_bottom_veil_third_section{
+	right: 0px;
+	width:10px;
+	height: 100%;
+}
+.helper_themes{
+	position: absolute;
+	left:35px;
+	right: 265px;
+	top:0px;
+	bottom: 0px;
+}
+.helper_buttons_layers{
+	position: absolute;
+	width:218px;
+	right: 10px;
+	top:0px;
+	bottom: 0px;
+}
+.helper_search{
+	width:400px;height:35px;
+	left:0px;
+	top:65px;
+	background: transparent;
+}
+
+.helper_items{
+	width:380px;height:55px;
+	left:21px;
+	top:104px;
+	background: transparent;
+}
+
+.helper_scaleControl{
+	width:31px;height:76px;
+	
+	top:92px;
+	right:18px;
+	background: transparent;
+}
+.helper_geolocation{
+	width: 31px;
+	height: 52px;
+	top: 196px;
+	right: 18px;
+	background: transparent;
+}
+
+.helper_icon_print{
+	width:25px;
+	height:25px;
+	top:60px;
+	right:46px;
+	background: transparent;
+}
+.helper_icon_help{
+	width:25px;height:25px;
+	top:60px;
+	right:17px;
+	background: transparent;
+}
+
+.helper_icon_share{
+	width:25px;height:25px;
+	top:60px;
+	right:75px;
+	background: transparent;
+}
+.helper_icon_download{
+	width:25px;height:25px;
+	top:60px;
+	right:104px;
+	background: transparent;
+}
+
+.helper_right_corner{
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.helper_corner{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.helper_item_search_tool,.helper_item_themes_tool,.helper_item_help_tool,.helper_item_scaleControl_tool,.helper_item_print_tool,.helper_item_share_tool,.helper_item_download_tool{
+	top:0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	
+}
+
+.helper_item_results_tool{
+	float: left;
+	width:70px;
+	height: 100%;
+	position: relative !important;
+}
+.helper_item_measure_tool {
+	float: left;
+	width:60px;
+	height: 100%;
+	position: relative !important;
+}
+.helper_item_analisis_tool {
+	float: left;
+	width:60px;
+	height: 100%;
+	position: relative !important;
+}
+.helper_item_legend_tool {
+	float: left;
+	width:60px;
+	height: 100%;
+	position: relative !important;
+}
+.helper_item_georeference_tool {
+	float: left;
+	width:65px;
+	height: 100%;
+	position: relative !important;
+}
+.helper_item_routing_tool {
+	float: left;
+	width:65px;
+	height: 100%;
+	position: relative !important;
+}
+
+.helper_item_tracking_tool {
+	float: left;
+	height:25px;
+	width: 100%;
+	position: relative !important;
+}
+
+.helper_item_locateme_tool {
+	float: left;
+	height:25px;
+	width: 100%;
+	position: relative !important;
+}
+.helper_item_layers_tool {
+	float: left;
+	width:73px;
+	height: 100%;
+	position: relative !important;
+}
+.helper_item_baselayers_tool {
+	float: left;
+	width:145px;
+	height: 100%;
+	position: relative !important;
+}
+
+
+
+.helper_option_toSelect{
+	position: absolute;
+}
+.helper_option_toSelect:hover{
+	background: #A0C5E8;
+	opacity: 0.60;
+	filter: Alpha(Opacity=50);
+}
+.helper_itemRow{
+	position:absolute;
+}
+
+
+
+/*blocks*/
+
+
+.helper_block_itemsTools{
+	position: absolute;
+	top: 115px;
+	left: 40px;
+	z-index: 2000;
+	width: 340px;
+	
+}
+.helper_block_itemsTools .row{
+	position:aboslute;
+}
+.helper_block_itemsTools .label{
+	position:aboslute;top:0px;left:0px;
+	font-size: 170%;
+	color: #fff;
+}
+
+.helper_block_themes{
+	position: absolute;
+	bottom: 30px;
+	left: 40px;
+	z-index: 2000;
+	width: 480px;
+	
+}
+.helper_block_themes .row{
+	position:relative;
+	left: 130px;
+}
+.helper_block_themes .label{
+	
+	font-size: 170%;
+	color: #fff;
+}
+.helper_block_layers{
+	position: absolute;
+	bottom: 30px;
+	right: 40px;
+	z-index: 2000;
+	width: 315px;
+}
+.helper_block_layers .row{
+	top: 0px;
+	right: 50px;
+	float: right;
+	position: relative;
+}
+.helper_block_layers .label{
+	
+	font-size: 170%;
+	color: #fff;
+}
+.helper_block_search{
+	position: absolute;
+	top: 8px;
+	left: 410px;
+	z-index: 2000;
+	width: 230px;
+}
+.helper_block_search .row{
+	position:relative;
+}
+.helper_block_search .label{
+	
+	font-size: 170%;
+	color: #fff;
+	float:right;
+}
+.helper_block_scaleControl{
+	position: absolute;
+	top: 120px;
+	right: 123px;
+	z-index: 2000;
+	width: 230px;
+}
+.helper_block_scaleControl .row{
+	position: absolute;
+	float: right;
+	right: -65px;
+	top: -40px;
+}
+.helper_block_scaleControl .label{
+	float: right;
+	font-size: 170%;
+	color: #fff;
+}
+
+.helper_block_tracking{
+	position: absolute;
+	top: 250px;
+	right: 49px;
+	z-index: 2000;
+	width: 230px;
+}
+.helper_block_tracking .row{
+	position: absolute;
+	float: right;
+	right: -47px;
+	top: -49px;
+}
+.helper_block_tracking .label{
+	float: right;
+	font-size: 170%;
+	color: #fff;
+}
+
+.helper_block_otherTools{
+	position: absolute;
+	top: 2px;
+	right: 222px;
+	z-index: 2000;
+	width: 350px;
+}
+.helper_block_otherTools .row{
+	position: absolute;
+	float: right;
+	right: -86px;
+}
+.helper_block_otherTools .label{
+	float: right;
+	font-size: 170%;
+	color: #fff;
+}
+
+
+.helper_headers{
+	margin: auto;
+	position: absolute;
+	top: 42%;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 2000;
+	color: #fff;
+}
+.helper_headers .title{
+	font-size: 400%;
+}
+
+.helper_headers .subtitle{
+	font-size: 200%;
+}
+
+.helper_bold{
+	display: inline-block;
+	font-weight: bold;
+	font-size: 110%;
+}

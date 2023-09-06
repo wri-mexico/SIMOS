@@ -1,0 +1,1 @@
+var mdmVersion = 6.1;

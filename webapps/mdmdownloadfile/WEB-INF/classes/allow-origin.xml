@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allow-origin>
+	<origin>http://200.92.207.46</origin>
+	<origin>http://200.92.207.46:8080</origin>
+	<origin>http://200.92.207.46:8080/mdmdownloadfile</origin>
+	<origin>http://200.92.207.46:8080/mdmdownloadfile/download</origin>
+	<origin>http://localhost</origin>
+	<origin>http://mdm5beta.inegi.org.mx</origin>
+	<origin>http://10.106.12.7</origin>
+	<origin>http://10.106.12.12</origin>
+	<origin>http://10.106.12.36</origin>
+	<origin>http://10.106.12.10</origin>
+	<origin>http://10.106.12.9</origin>
+	<origin>http://10.106.12.18</origin>
+	<origin>http://10.153.3.7</origin>
+	<origin>http://iktan.inegi.gob.mx</origin>
+	<origin>http://iktancapacitacion.inegi.gob.mx</origin>
+	<origin>http://simos.col.gob.mx</origin>
+	<origin>http://simos.col.gob.mx:8080</origin>
+	
+	<origin>http://savi-semov.col.gob.mx</origin>	
+</allow-origin>

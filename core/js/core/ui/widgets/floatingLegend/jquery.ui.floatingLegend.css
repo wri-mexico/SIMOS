@@ -1,0 +1,87 @@
+.custom-floatingLegend{
+    position: absolute;
+	right:-200px;
+	top:200px;
+	width: 200px;
+	height: 250px;
+	background-color: #FFF;
+	padding: 5px;
+	border: 1px solid #DDD;
+	color: #000;
+	text-align: center;
+	z-index: 1900;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+/*sprites*/
+.floatingLegend-sprite{background-image: url(sprite.png);background-repeat: no-repeat;}
+
+/*----------------------*/
+.floatingLegend-shadow{
+   -moz-box-shadow:    1px 1px 2px 0px #555;
+   -webkit-box-shadow: 1px 1px 2px 0px #555;
+   box-shadow:         1px 1px 2px 0px #555;
+}
+
+.floatingLegend-shadow-inset{
+   -moz-box-shadow: inset 1px 1px 2px 0px #999;
+   -webkit-box-shadow: inset 1px 1px 2px 0px #999;
+   box-shadow: inset 1px 1px 2px 0px #999;
+}
+.floatingLegend-boxsize{
+   -moz-box-shadow:    1px 1px 2px 0px #555;
+   -webkit-box-shadow: 1px 1px 2px 0px #555;
+   box-shadow:         1px 1px 2px 0px #555;
+   
+   /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#555555')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#555555');
+}
+.floatingLegend-transition{
+    webkit-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -o-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -moz-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -ms-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -kthtml-transition: all 0.4s lcubic-bezier(0.52,0,0.48,1);
+    transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+}
+
+/* Elements ----------------------------*/
+.floatingLegend-slideBtn{
+	position: absolute;
+	left: 0;
+	top: 0px;
+	bottom: 0px;
+	width: 16px;
+	padding: 1px;
+	background-color: #EEE;
+	
+	cursor:pointer;
+}
+.floatingLegend-slideBtn span{
+	float: left;
+	margin-top: 102px;
+	margin-left: -5px;
+}
+.floatingLegend-container{
+	position: absolute;
+	left: 16px;
+	top: 3px;
+	bottom: 2px;
+	right: 4px;
+	padding: 4px;
+	
+	overflow-y:auto;
+}
+.floatingLegend-container img{
+	float:left;
+	clear:both;	
+}
+.floatingLegend-bringToFront{
+	z-index:2101;
+}

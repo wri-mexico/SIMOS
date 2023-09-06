@@ -1,0 +1,41 @@
+.headerLogoINEGI{
+    background-image: url('../img/header-logo_unitario.png');
+    background-repeat: no-repeat;
+    width: 520px;
+    height: 55px;
+    position: absolute;
+    left: 0px;
+    top: 7px;
+    z-index: 2;
+}
+.headerLogoSIMOS{
+    background-image: url('../img/headerSIMOS.png');
+    background-repeat: no-repeat;
+    width: 185px;
+    height: 70px;
+    position: absolute;
+    right: 18%;
+    top: 0px;
+    z-index: 3;
+}
+
+
+.headerBackground{
+    background-image: url('../img/header-background.jpg');
+    background-repeat: repeat-x;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 70px;
+    overflow: hidden;
+}
+#headerBtnEvalua{
+	position: absolute;
+	right: 359px;
+	top: 0px;
+	z-index: 3;
+	
+	cursor: pointer;
+}

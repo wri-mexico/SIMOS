@@ -1,0 +1,112 @@
+@page { size:landscape;}
+@media print
+{   
+	.ui-tooltip, .ui-tooltip *{
+		display: none !important;
+	} 
+	
+	.no-print, .no-print *
+    {
+        display: none !important;
+    }
+	.print, .print *
+    {
+        display: block !important;
+    }
+	.print-page-break{
+		page-break-after: always !important;
+	}
+	body,html{
+		height: auto !important;
+	}
+	#map{
+		width:11in !important;
+		height:6.5in !important;
+	}
+	#nodo_title{
+		display: block !important;
+	}
+}
+.print-left{
+	float:left;	
+}
+#printContainer{
+	display:none;
+	width:100%;
+	height:100%;
+}
+#printArea{
+	margin-top:55px;
+}
+
+.print-title{
+	float:left;
+	text-align:right;
+	width:100%;
+	font-size:180%;
+}
+.print-top-border{
+	border-top:1px solid #666;
+	padding-top:5px;
+}
+.print-title2{
+	float:left;
+	clear:right;
+	text-align:left;
+	width:100%;
+	font-size:135%;
+}
+.print-title2-right{
+	float:right;
+	padding-right:5px;
+	clear:left;
+	text-align:right;
+	width:100%;
+	font-size:135%;
+}
+.print-title3{
+	float:left;
+	clear:right;
+	text-align:left;
+	width:100%;
+	font-size:115%;
+	margin-left:15px;
+}
+.print-title3-right{
+	float:right;
+	padding-right:5px;
+	clear:left;
+	text-align:right;
+	width:100%;
+	font-size:115%;
+	margin-right:15px;
+}
+
+.qrImage{
+	float:right;
+	clear:left;
+}
+.print-info-block{
+	float:left;
+	width:30%;
+	padding:4px;
+	margin:2px;
+	margin-left:10px;
+	border-bottom:1px dotted #CCC;
+}
+.width-50{
+	width:45%;	
+}
+.print-info-block label:last-of-type{
+	float:right;
+}
+.print-info-block label:first-of-type{
+	float:left;
+	font-weight:bold;
+}
+
+.print-image-legend{
+	padding:5px;
+	float:left;
+	clear:both;
+}

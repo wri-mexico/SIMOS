@@ -1,0 +1,415 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" href="mdm6ico.png"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="apple-touch-icon" href="mdm6ico.png">
+<link rel="apple-touch-icon-precomposed" href="mdm6ico.png">
+
+<meta property="og:title" content="Mapa Digital de M&eacute;xico en l&iacute;nea" /> 
+<meta property="og:image" content="img/logoMini.png" /> 
+<meta property="og:description" content="Realic&eacute; una consulta en el Mapa Digital de M&eacute;xico en l&iacute;nea, atrav&eacute;z del portal de INEGI y deseo compartirla" /> 
+
+<html lang="es">
+<META HTTP-EQUIV="expires" CONTENT="Mon, 19 jan 2015 08:00:00 GMT">
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="js/frameworks/jquery/css/custom-theme/jquery-ui-1.10.3.custom.css" />
+
+<link rel="stylesheet" href="css/carrusel.css">
+<link rel="stylesheet" href="css/header.css">
+
+<script src="js/frameworks/jquery/js/jquery-1.9.1.js"></script>
+<script src="js/frameworks/jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="js/frameworks/jquery/js/jquery.mousewheel-3.0.6.pack.js"></script>
+<script src="js/frameworks/amplify/amplify.js"></script>
+<script src="js/frameworks/lz-string/lz-string.min.js"></script>
+<script src="js/frameworks/base64/base64.js"></script>
+<script src="js/frameworks/history/history.js"></script>
+<script src="js/frameworks/chroma/chroma.min.js"></script>
+<script src="js/frameworks/highcharts/highcharts.js"></script>
+<script src="js/frameworks/highcharts/modules/data.js"></script>
+<script src="js/frameworks/highcharts/modules/drilldown.js"></script>
+<script src="js/frameworks/upload/js/jquery.iframe-transport.js"></script>
+<script src="js/frameworks/upload/js/jquery.fileupload.js"></script>
+<script src="js/frameworks/upload/js/jquery.ui.widget.js"></script>
+<script src="js/frameworks/cookie/jquery.cookie.js"></script>
+
+<script src="js/frameworks/chartjs/chart.min.js"></script>
+
+
+<script type="text/javascript" src="js/frameworks/d3/d3.js"></script>
+<script type="text/javascript" src="js/frameworks/d3/d3.geom.js"></script>
+<script type="text/javascript" src="js/frameworks/d3/d3.layout.js"></script>
+<script type="text/javascript" src="js/frameworks/d3/CodeFlower.js"></script>
+<script type="text/javascript" src="js/frameworks/d3/dataConverter.js"></script>
+<script type="text/javascript" src="js/frameworks/html2canvas/dist/html2canvas.js"></script>
+<script type="text/javascript" src="js/frameworks/html2canvas/dist/canvg.js"></script>
+<script type="text/javascript" src="js/frameworks/jsPdf/jsPdf.js"></script>
+
+<script type="text/javascript" src="json2.js"></script>
+<script type="text/javascript" src="proj4js-combined.js"></script>
+<script data-main="js/main.js" src="js/frameworks/require/require.js"></script>
+<head>
+    <title>Sistema Integrado de Movilidad Segura SIMOS COLIMA</title>
+</head>
+
+<style>
+    #item_popup {
+    display: none;
+    margin: 0;
+    width: 50%;
+    height: 84%;
+    z-index: 5001;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    border-radius: 2rem;
+    padding: 2rem;
+    
+    background-color: #fff;
+    box-shadow: 1px -1px 114px 16px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px -1px 114px 16px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px -1px 114px 16px rgba(0,0,0,0.75);
+    }
+</style>
+
+<body>
+<div id="main">
+    <div id="header" style="display:none">
+    	<div class="headerBackground">
+        <div class="header_content">
+          <!--<div class="img-header">-->
+            <img id="headerLogoINEGI" src="img/header-logo_unitario.png"/>
+            <img id="headerLogoSIMOS" src="img/headerSIMOS.png"/>
+          <!--</div>
+          <div class="img-header">
+            <img id="headerLogoMDM" src="img/headerMDM.png"/>
+          </div>
+          <div class="img-header">
+            <img id="headerLogoMDM" src="img/headerSEMOV.png"/>
+          </div>
+          <div class="img-header">
+            <img id="headerLogoMDM" src="img/headerWRI.png"/>
+          </div>
+          <div class="img-header">
+            <img id="headerLogoMDM" src="img/headerSEMOV.png"/>
+          </div>
+          <div class="img-header"> 
+            <img id="headerLogoSIMOS" src="img/headerSIMOS.png"/>
+          </div>-->
+        </div>
+    	</div>
+    </div>
+    <div id="content">
+        <div id="panel-left"></div>
+        <div id="middle">
+            <div id="panel-center">
+                <div id="map"></div>
+            </div>
+            <div id="panel-bottom"></div>
+        </div>
+        <div id="panel-right"></div>
+    </div>
+</div>
+
+<div class="popup_conatiner">
+  <div id="item_popup">
+    <div class="popup">
+      <!-- Slideshow container -->
+      <div class="slideshow-container">
+    
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade" style="display: block;">
+          <div class="card text-center">
+            <div class="grafica">
+              <h1 class="grafica-title">Tipo de hechos viales registrados en 2019</h1>
+              <div>
+                <canvas id="myChart_1" width="100" height="100"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="grafica">
+            <h1 class="grafica-title">Tipo de persona usuaria lesioanda en un hecho vial de 2019</h1>
+            <div>
+              <canvas id="myChart_2" width="100" height="100"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="grafica">
+            <h1 class="grafica-title grafica-title_margin">Temporalidad hechos viales cada hora entre semana y fin de semana (2019)</h1>
+            <div>
+              <canvas id="myChart_3" width="200" height="00"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="grafica">
+            <h1 class="grafica-title">Temporalidad hechos viales por día de la semana (2019)</h1>
+            <div>
+              <canvas id="myChart_4" width="100" height="100"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="grafica">
+            <h1 class="grafica-title">Temporalidad hechos viales por mes (2019)</h1>
+            <div>
+              <canvas id="myChart_5" width="100" height="100"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <!-- The dots/circles -->
+      <div style="text-align:center" class="estados">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+      </div>
+      <div class="close" id="close">
+        <span>X</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+
+//Gráficas
+//Gráfico 1
+var ctx_1 = document.getElementById('myChart_1').getContext('2d');
+const labels_1 =  [
+  'Colisión con vehículo automotor',
+  'Colisión con ciclista',
+  'Otro',
+  'Atropellamiento',
+  'Colisión con motocicleta'
+];
+var myChart = new Chart(ctx_1, {
+    type: 'pie',
+    data: {
+      labels: labels_1,
+      datasets: [{
+        data: [984, 65, 60, 14, 4],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          '#D02FB9',
+          '#2FD05C'
+        ],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+//Gráfico 2
+var ctx_2 = document.getElementById('myChart_2').getContext('2d');
+const labels_2 = [
+  'Peatón',
+  'Conductor',
+  'Ciclista',
+  'Pasajero',
+];
+var myChart = new Chart(ctx_2, {
+    type: 'pie',
+    data: {
+      labels: labels_2,
+      datasets: [{
+        data: [13, 8, 6, 3],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          '#D02FB9',
+        ],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+//Gráfico 3
+var ctx_3 = document.getElementById('myChart_3').getContext('2d');
+const labels_3 = ["00:00", "01:00",	"02:00",	"03:00",	"04:00",	"05:00",	"06:00",	"07:00",	"08:00",	"09:00",	"10:00", "11:00",	"12:00",	"13:00",	"14:00",	"15:00",	"16:00",	"17:00",	"18:00",	"19:00",	"20:00",	"21:00",	"22:00",	"23:00"];
+var myChart = new Chart(ctx_3, {
+    type: 'line',
+    data: {
+      labels: labels_3,
+      datasets: [{
+        label: 'LUNES-VIERNES',
+        data: [31,	14,	16,	9,	16,	10,	42,	37,	53,	34,	48,	30,	43,	53,	43,	29,	36,	46,	49,	45,	34,	32,	24,	17,
+        ],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      },
+      {
+        label: 'SÁBADO-DOMINGO',
+        data: [23,	9,	4,	9,	8,	6,	5,	28,	19,	26,	11,	22,	21,	15,	14,	13,	16,	16,	12,	21,	12,	13,	7,	6
+        ],
+        fill: false,
+        borderColor: '#D02FB9',
+        tension: 0.1
+      }]
+    }
+});
+
+//Gráfico 4
+var ctx_4 = document.getElementById('myChart_4').getContext('2d');
+const labels_4 = ['Lunes', 'Martes', 'Miércoles', 'Juves', 'Viernes', 'Sábado', 'Domigo'];
+var myChart = new Chart(ctx_4, {
+    type: 'bar',
+    data: {
+      labels: labels_4,
+      datasets: [{
+        label: '',
+        axis: 'y',
+        data: [153, 149 ,190 ,157, 134 ,161 ,183],
+        fill: false,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+    }
+});
+
+
+//Gráfico 5
+var ctx_5 = document.getElementById('myChart_5').getContext('2d');
+const labels_5 = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+var myChart = new Chart(ctx_5, {
+    type: 'bar',
+    data: {
+      labels: labels_5,
+      datasets: [{
+        label: '',
+        axis: 'y',
+        data: [98 ,109 ,110 ,93 ,74 ,85 ,57 ,85 ,117 ,102 ,110 ,87],
+        fill: false,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+    }
+});
+
+//Carousel
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+//BTN Close
+const closeBTN = document.getElementById('close');
+closeBTN.addEventListener('click', () => {
+  const popupp = document.getElementById('item_popup');
+  popupp.style.display = "none";
+});
+</script>
+
+
+</body>
+</html>

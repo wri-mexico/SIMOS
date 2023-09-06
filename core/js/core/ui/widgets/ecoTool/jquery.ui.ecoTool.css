@@ -1,0 +1,724 @@
+@import url('sprite-ecoTool.css');
+.custom-ecoTool{
+	font-family:Arial, Helvetica, sans-serif;
+	width:387px;
+	height: 199px;
+	border: 1px solid #EEE;
+	
+	position:absolute;
+	bottom:55px;
+	left:11px;
+	
+	display:block;
+	background-color:#FFF;
+	
+	-webkit-box-shadow: 1px 1px 2px 0px #555;
+	box-shadow: 1px 1px 2px 0px #555;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.custom-ecoTool[collapsed=true] .ecoTool-content{
+	cursor:pointer;	
+}
+.ecoTool-toolBar{
+	position: absolute;
+	width: 67px;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	
+	background-color:#F2F2F2;
+	overflow:hidden;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-content-header{
+	float:left;	
+	float: left;
+    padding-bottom: 3px;
+	min-height: 68px;
+}
+.ecoTool-toolBar div{
+	float:left;
+}
+#ecoTool_content_panels{
+	position:absolute;
+	bottom:5px;
+	left:0px;
+	right:0px;
+	top:140px;	
+	overflow-y:auto;
+}
+
+.custom-ecoTool[collapsed=true] .ecoTool-toolGroup{
+	position: absolute;
+  	bottom: 10px;
+	
+	width:100%;
+	padding:3px;
+	font-size: 11px;
+  	text-align: center;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+
+.custom-ecoTool[collapsed=false] .ecoTool-toolGroup{
+	width:100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.custom-ecoTool[collapsed=false] .ecoTool-content-header{
+    border-bottom: 2px solid #E5E5E5;
+}
+.ecoTool-toolGroup div{
+	cursor:pointer;	
+}
+.ecoTool-toolBtn{
+	width:100%;
+	padding: 0px 10px 0px 10px;
+	float:left;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+	
+	-webkit-transition: background 500ms ease;
+	-moz-transition: background 500ms ease;
+	-ms-transition: background 500ms ease;
+	-o-transition: background 500ms ease;
+	transition: background 500ms ease;
+}
+.ecoTool-toolBtn[selected=selected]{
+	background-color:#D0D0D0;	
+}
+.ecoTool-content{
+	position: absolute;
+	top: 0px;
+	left: 69px;
+	bottom: 0px;
+	right: 0px;
+	overflow: hidden;	
+	padding:3px;
+}
+.ecoTool-cv-var{
+	color:#333;
+	font-size: 85%;
+	font-weight: bold;
+	width: 202px;
+	float:left;
+}
+.ecoTool-cv-var-val{
+	font-size: 12px;
+    font-weight: bold;
+    width: 71px;
+	float: left;
+	text-align: right;
+	padding-top: 7px;
+}
+.ecoTool-mainEdit{
+	position:absolute;
+	right:0px;
+	top:0px;
+	cursor:pointer;
+}
+.ecoTool-cv-gs{
+	float: left;
+	width: 262px;
+	margin-top: 4px;
+	font-size: 80%;
+	font-weight: bold;	
+}
+.ecoTool-cv-list{
+	font-size:80%;
+	width:262px;
+	float:left;
+	margin: 4px 0px -1px -21px;
+}
+.ecoTool-cv-ss{
+	font-style:italic;
+}
+.ecoTool-geo{
+	float:left;
+	font-size:80%;	
+}
+.ecoTool-geo *{
+	float:left;
+}
+.ecoTool-geo label{
+	margin-top:8px;	
+	margin-left:4px;
+}
+.ecoTool-currentValues-min{
+	font-size: 150%;	
+}
+.ecoTool-cv-var-max {
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  width: 202px;
+  float: left;
+}
+.ecoTool-cv-gs-max{
+  float: left;
+  width: 266px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: bold;	
+}
+div.ecoTool-cv-s{
+	float: left;
+	font-size: 11px;
+	width: 48%;
+	padding-top: 5px;	
+	border-right:1px solid #CCC;
+}
+div.ecoTool-cv-ss{
+	float: left;
+	font-size: 11px;
+	width: 118px;
+	padding-top: 5px;
+	padding-left:3px;
+	border-left:1px solid #CCC;
+}
+.ecoTool-geo-max{
+	margin-top:5px;
+	margin-right:30px;
+    width: 271px;
+  	float: left;
+  	font-size: 11px;
+  
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+}
+.ecoTool-geoEdo-item{
+	width:100%;
+	float:left;
+  	padding: 3px;
+	font-size: 14px;
+	border-bottom: 1px solid #eee;
+	cursor:pointer;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.ecoTool-geoEdo-item:hover{
+	background-color:#EEE;
+}
+.ecoTool-geoEdo-item-label{
+	float:left;
+	width: 244px;
+ 	padding-top: 6px;	
+}
+.ecoTool-geoEdo-icon{
+	float:right;	
+}
+.ecoTool-geoEdo-icon-sel{
+	display:none;	
+}
+.ecoTool-geoEdo-icon-unsel{
+	display:block;	
+}
+.ecoTool-geoEdo-item[selected=selected]{
+	background-color: #FFF6DD;
+}
+.ecoTool-geoEdo-item[selected=selected] .ecoTool-geoEdo-icon-sel{
+	display:block;	
+}
+.ecoTool-geoEdo-item[selected=selected] .ecoTool-geoEdo-icon-unsel{
+	display:none;	
+}
+
+.ecoTool-vars-search-container{
+	width: 212px;
+	float: left;
+	padding: 5px 10px 5px 10px;
+  	background-color: #EEE;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+#ecoTool_vars_input_search{
+	float:left;
+	width:100%;
+	padding-right: 25px;
+  	border: 0px;
+	background-color: transparent;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+#ecoTool_vars_input_search:focus{
+	outline:0;	
+}
+#ecoTool_vars_input_clear{
+	float: left;
+	margin-left: -21px;
+	cursor:pointer;
+}
+.ecoTool-vars-tool-container{
+	float:left;	
+}
+.ecoTool-vars-category{
+	float:left;
+	cursor: pointer;
+	margin-right: 3px;
+	margin-left: 3px;
+	
+	-webkit-transition: background-color 500ms ease;
+	-moz-transition: background-color 500ms ease;
+	-ms-transition: background-color 500ms ease;
+	-o-transition: background-color 500ms ease;
+	transition: background-color 500ms ease;
+}
+.ecoTool-vars-category div{
+	float:left;	
+}
+.ecoTool-vars-category label{
+	font-size:9px !important;
+}
+
+.ecoTool-vars-category[selected=selected]{
+	background-color: #FFE18C;
+	border-bottom: 4px solid #B38F1C;	
+}
+.ecoTool-vars-category label{
+	  padding: 9px 5px 4px 5px;
+	font-size:12px;
+	float: left;
+	cursor:pointer;
+}
+.ecoTool-vars-panel-container{
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	right: 3px;
+	bottom: 3px;
+	border-top:1px solid #D3D2CB;	
+}
+.ecoTool-vars-panel{
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	right: 3px;
+	bottom: 0px;
+}
+.ecoTool-block-sector{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	overflow:hidden;
+}
+.ecoTool-sector-title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 25px;
+	cursor:pointer;
+	padding:5px 5px 0px 5px;
+	background-color:#EEE;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+	
+}
+.ecoTool-sector-title:hover{
+	background-color:#CCC;
+}
+.ecoTool-sectors-container{
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow-y:auto;
+}
+
+.ecoTool-block-vars{
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	overflow:hidden;
+}
+.ecoTool-block-title{
+	font-size:14px;	
+}
+.ecoTool-var-title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 25px;
+	cursor:pointer;
+	padding:5px 5px 0px 5px;
+	background-color:#EEE;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.ecoTool-var-title:hover{
+	background-color:#CCC;
+}
+.ecoTool-vars-container{
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+
+.ecoTool-block-ssector{
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	overflow:hidden;
+}
+.ecoTool-ssector-title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 25px;
+	cursor:pointer;
+	padding:5px 5px 0px 5px;
+	background-color:#EEE;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.ecoTool-ssector-title:hover{
+	background-color:#CCC;
+}
+.ecoTool-ssectors-container{
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow:auto;
+}
+.ecoTool-block{
+	border:1px solid #CCC;	
+}
+.ecoTool-block-item[selected=selected]{
+	background-color: #FFF6DD;
+}
+.ecoTool-colorRamp{
+	float:left;
+	height:15px;
+	width:100%;
+}
+.ecoTool-colorRamp-item{
+	height:100%;	
+	float:left;
+}
+.ecoTool-block-item{
+	float:left;
+	font-size: 13px;
+	padding: 5px 4px 5px 4px;
+	border-bottom: 1px solid #EEE;
+	cursor: pointer;
+	width:100%;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.ecoTool-block-item *{
+	cursor:pointer;
+	float:left;
+}
+.ecoTool-block-item label{
+	width: 246px;
+    margin-left: 5px;	
+}
+.ecoTool-block-item:hover{
+	background-color:#CCC;	
+}
+.ecoTool-block-item[type=ECO]{
+	border-left:2px solid #C90;	
+}
+.ecoTool-block-item[type=REL]{
+	border-left:2px solid #F60;	
+}
+
+#ecoTool_content_panel3 *{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ecoTool-vars-section-title{
+	width:100%;
+	float:left;
+	font-size: 14px;
+	font-weight:bold;
+	font-style:italic;
+	padding: 5px 10px 5px 4px;
+	border-bottom: 1px solid #EEE;
+	background-color:#FCFCFC;
+	text-align: right;
+	cursor:default;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-strats-currentRamp-container{
+	float: left;
+    width: 100%;
+    padding: 7px 5px 0px 5px;
+    background-color: #F1F1F1;
+    margin-bottom: 7px;
+	overflow-x:hidden;
+}
+.ecoTool-strats-currentRamps-container{
+	float: left;
+    width: 100%;	
+}
+.ecoTool-strats-transparency-title{
+	float:left;
+	width:100%;		
+}
+.ecoTool-strats-transparency-tool{
+	float:left;
+	width:285px;
+	margin-left:6px;
+	margin-bottom:8px;
+	margin-top:5px;
+}
+.ecoTool_strats_currentRamp{
+	float:left;
+	width:100%;
+}
+.ecoTool-strats-colorRamp{
+	float:left;
+	width:100%;	
+	padding: 3px 3px 3px 3px;
+	border: 3px solid #FFF;
+	cursor:pointer;
+}
+.ecoTool-strats-colorRamp:hover{
+	border: 3px solid #BBB;
+}
+
+.ecoTool-strats-currentRamps-container .ecoTool-strats-colorRamp[selected=selected]{
+	border: 3px solid #FF9900}
+
+.ecoTool-strats-ramp-color{
+	height:22px;
+	float:left;	
+}
+.ecoTool-strats-data-container{
+	float:left;
+	width:100%;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-theme-normalInfo{
+	float:left;
+	width:48%;
+	padding:0px 3px 10px 6px;
+	font-size:12px;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-theme-mainInfo{
+	float:right;
+	width:48%;
+	padding:0px 3px 10px 6px;
+	font-size:12px;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-theme-info b{
+	margin-right:4px;	
+}
+.ecoTool-theme-info label{
+	float:right;
+	margin-right:4px;
+	text-align:right;	
+}
+.ecoTool-theme-strat-info{
+	float:left;
+	width:100%;
+	padding:0px 0px 5px 0px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.ecoTool-theme-strat-info-item{
+	width:100%;
+	padding: 3px 5px 2px 3px;
+	font-size:10px;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-theme-strat-info span{
+	float:left;
+	margin-top:2px;
+	width:22px;
+	height:22px;
+	margin-right:5px;
+	border-bottom:1px solid #eee;
+	
+	-webkit-border-radius: 11px 11px 11px 11px;
+	border-radius: 11px 11px 11px 11px;
+}
+.ecoTool-theme-strat-info label{
+	float:left;
+	width: 105px;
+	font-size:11px;
+}
+.ecoTool-theme-strat-info b{
+	float:right;
+}
+.ecoTool-theme-strat-left-info{
+	float:left;
+	width:49%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.ecoTool-theme-strat-right-info{
+	float:right;
+	width:49%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#ecoTool_pdfBtn{
+	position:absolute;
+	bottom:9px;
+	left:9px;
+	cursor:pointer;	
+}
+#ecoTool_pdfBtn div{
+	margin-left:3px;
+}
+#ecoTool_pdfBtn label{
+	text-align:center;
+}
+
+
+#ecoTool_cancelBtn{
+	position: absolute;
+    top: 36px;
+    right: 0px;
+    cursor: pointer;	
+}
+
+#ecoTool_content[changed=false] #ecoTool_cancelBtn{
+	display:none;	
+}
+
+
+.ecoTool-strats-transparency-container{
+	float:left;
+	width:100%;
+	padding:4px;
+	background-color:#FFF;	
+}
+#ecoTool_mainAccept,#ecoTool_mainAcceptActive{
+	display:none;	
+}
+#ecoTool_content[changed=false] #ecoTool_mainAccept{
+	display:block;	
+}
+#ecoTool_content[changed=true] #ecoTool_mainAcceptActive{
+	display:block;	
+}
+
+
+.ecoTool-min-max{
+	float: left;
+    clear: both;
+    width: 100%;
+    font-size: 10px;
+    border-left: 1px solid #AAA;
+	border-right: 1px solid #AAA;
+    padding: 0px 4px 0px 4px;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.ecoTool-min-value{
+	float: left;	
+}
+.ecoTool-max-value{
+	float: right;	
+}
+
+
+#ecoTool_block_period{
+	position: absolute;
+    left: 0px;
+    right: 0px;
+	bottom:0px;
+    overflow: hidden;
+	height:55px;
+}
+.ecoTool-period-title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 25px;
+    cursor: pointer;
+    padding: 5px 5px 0px 5px;
+    background-color: #EEE;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.ecoTool-period-container {
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.ecoTool-period-item{
+	float: left;
+    font-size: 14px;
+    padding: 6px 0px 4px 0px;
+    width: 33%;
+    text-align: center;
+    border-bottom: 3px solid #FFF;
+	cursor:pointer;
+}
+.ecoTool-period-item:hover{
+	background-color:#CCCCCC;
+}
+
+.ecoTool-period-item.selected{
+	background-color: #FFE18C;
+	border-bottom: 3px solid #B38F1C;
+}

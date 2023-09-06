@@ -1,0 +1,12 @@
+.timeLine-sprite{ background:url("timeLine.png") top left no-repeat; }
+.timeLine_play:hover{ width:25px; height:25px; background-position:-10px -10px; }
+.timeLine_play{ width:25px; height:25px; background-position:-10px -45px; }
+.timeLine_pause:hover{ width:25px; height:25px; background-position:-10px -80px; }
+.timeLine_pause{ width:25px; height:25px; background-position:-10px -115px; }
+.timeLine_play-circle:hover{ width:25px; height:25px; background-position:-10px -150px; }
+.timeLine_play-circle{ width:25px; height:25px; background-position:-10px -185px; }
+.timeLine_eye_off{ width:25px; height:25px; background-position:-10px -220px; }
+.timeLine_eye_on{ width:25px; height:25px; background-position:-10px -255px; }
+.timeLine_down:hover{ width:25px; height:25px; background-position:-10px -290px; }
+.timeLine_down{ width:25px; height:25px; background-position:-10px -325px; }
+

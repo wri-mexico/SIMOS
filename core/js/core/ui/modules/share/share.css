@@ -1,0 +1,22 @@
+.mdmShareBtn{
+	float:left;
+	padding:3px;
+	border:1px solid #CCC;
+	cursor:pointer;
+	margin-left:4px;
+}
+.mdmShareBtn:first-of-type{
+	margin-left:0px;	
+}
+.mdmShare-input{
+	margin-top:5px;
+	width:475px;
+	float:left;
+	clear:both;
+}
+#mdmShareEmail{
+	width:293px;	
+}
+#mdmShareName{
+	width:293px;	
+}

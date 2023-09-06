@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.TrackingMapper">
+
+	<select id="getVialidad" resultType="Vialidad">
+		SELECT  tipovial||' '||nomvial AS name,
+                ST_AsText(ST_Line_Interpolate_Point(ST_LineMerge(a.the_geom), 
+                ST_Line_Locate_Point(ST_LineMerge(a.the_geom),
+                ST_GeomFromText(#{point}, 900913)))) AS geometry,
+                ST_Distance(ST_GeomFromText(#{point}, 900913), a.the_geom) AS distance
+                FROM localidadesmzn.vialidad_mgn a
+                WHERE ST_DWithin(ST_GeomFromText(#{point}, 900913), a.the_geom, 70)
+		        ORDER BY distance 
+		        LIMIT 1
+	</select>
+</mapper>

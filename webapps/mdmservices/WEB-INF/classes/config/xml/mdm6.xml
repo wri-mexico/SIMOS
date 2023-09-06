@@ -1,0 +1,1401 @@
+<tables>
+
+<table search="true" identify="true" buffer="true" user_alias="Entidad federativa" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>mdm</schema>
+		<name>ent</name>
+		<alias>c100</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>4891.969809375</max>
+		</resolution>
+		<totals>
+		    <column>
+		        <name>pobtot</name>
+		        <alias>Población total</alias>
+		    </column>
+		    <column>
+		        <name>pobmas</name>
+		        <alias>Población masculina</alias>
+		    </column>
+		    <column>
+		        <name>pobfem</name>
+		        <alias>Población femenina</alias>
+		    </column>
+		    <column>
+		        <name>vivtot</name>
+		        <alias>Total viviendas</alias>
+		    </column>
+		    <column>
+		        <name>tvivhab</name>
+		        <alias>Total viviendas habitadas</alias>
+		    </column>
+		    <column>
+		        <name>pob0_14</name>
+		        <alias>Población de 0 a 14 años</alias>
+		    </column>
+		    <column>
+		        <name>pob15_64</name>
+		        <alias>Población de 15 a 65 años</alias>
+		    </column>
+		    <column>
+		        <name>pob65_mas</name>
+		        <alias>Población de 65 años y mas</alias>
+		    </column>
+			<sql alias='totals'>
+				select
+				sum( cast( pobtot as numeric ) ) as pobtot,
+				sum( cast( pobmas as numeric ) ) as pobmas,
+				sum( cast( pobfem as numeric ) ) as pobfem,
+				sum( cast( vivtot as numeric ) ) as vivtot,
+				sum( cast( tvivhab as numeric ) ) as tvivhab,
+				sum( cast( pob0_14 as numeric ) ) as pob0_14,
+				sum( cast( pob15_64 as numeric ) ) as pob15_64,
+				sum( cast( pob65_mas as numeric ) ) as pob65_mas
+				from datosestadisticos.ent
+				THEWHERE
+			</sql>
+		</totals>
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field>
+				<name>cve_ent</name>
+				<alias>Clave geoestadística</alias>
+			</field>
+			<field identify="true">
+				<name>nomgeo</name>
+				<alias>nombre</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+
+			<!-- si field no especifica atributos de search_display y query_display, 
+				ambos son true por default -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+		</search>
+		<orderby>
+			<field>cve_ent</field>
+		</orderby>
+</table>
+
+<table search="true" identify="true" buffer="true" user_alias="Municipio/Delegación" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>mdm</schema>
+		<name>mun</name>
+		<alias>c101</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>305.748113098</max>
+		</resolution>
+		<totals>
+			<column>
+		        <name>pobtot</name>
+		        <alias>Población total</alias>
+		    </column>
+		    <column>
+		        <name>pobmas</name>
+		        <alias>Población masculina</alias>
+		    </column>
+		    <column>
+		        <name>pobfem</name>
+		        <alias>Población femenina</alias>
+		    </column>
+		    <column>
+		        <name>vivtot</name>
+		        <alias>Total viviendas</alias>
+		    </column>
+		    <column>
+		        <name>tvivhab</name>
+		        <alias>Total viviendas habitadas</alias>
+		    </column>
+		    <column>
+		        <name>pob0_14</name>
+		        <alias>Población de 0 a 14 años</alias>
+		    </column>
+		    <column>
+		        <name>pob15_64</name>
+		        <alias>Población de 15 a 65 años</alias>
+		    </column>
+		    <column>
+		        <name>pob65_mas</name>
+		        <alias>Población de 65 años y mas</alias>
+		    </column>
+			<sql alias='totales'>
+			    select
+				sum( cast( pobtot as numeric ) ) as pobtot,
+				sum( cast( pobmas as numeric ) ) as pobmas,
+				sum( cast( pobfem as numeric ) ) as pobfem,
+				sum( cast( vivtot as numeric ) ) as vivtot,
+				sum( cast( tvivhab as numeric ) ) as tvivhab,
+				sum( cast( pob0_14 as numeric ) ) as pob0_14,
+				sum( cast( pob15_64 as numeric ) ) as pob15_64,
+				sum( cast( pob65_mas as numeric ) ) as pob65_mas
+				from datosestadisticos.mun
+				THEWHERE
+			</sql>
+		</totals>
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field>
+				<name>cvegeo</name>
+				<alias>Clave geoestadística</alias>
+			</field>
+			<field identify="true">
+				<name>nom_mun</name>
+				<alias>nombre</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+		</search>
+</table>
+
+<table search="true" identify="true" buffer="true" user_alias="Localidad" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>mdm</schema>
+		<name>l</name>
+		<alias>c102</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>152.874056542</max>
+		</resolution>
+		<totals>
+			<column>
+		        <name>pobtot</name>
+		        <alias>Población total</alias>
+		    </column>
+		    <column>
+		        <name>pobmas</name>
+		        <alias>Población masculina</alias>
+		    </column>
+		    <column>
+		        <name>pobfem</name>
+		        <alias>Población femenina</alias>
+		    </column>
+		    <column>
+		        <name>vivtot</name>
+		        <alias>Total viviendas</alias>
+		    </column>
+		    <column>
+		        <name>tvivhab</name>
+		        <alias>Total viviendas habitadas</alias>
+		    </column>
+		    <column>
+		        <name>pob0_14</name>
+		        <alias>Población de 0 a 14 años</alias>
+		    </column>
+		    <column>
+		        <name>pob15_64</name>
+		        <alias>Población de 15 a 65 años</alias>
+		    </column>
+		    <column>
+		        <name>pob65_mas</name>
+		        <alias>Población de 65 años y mas</alias>
+		    </column>
+			<sql alias='totales'>
+				select
+				sum( cast( pobtot as numeric ) ) as pobtot,
+				sum( cast( pobmas as numeric ) ) as pobmas,
+				sum( cast( pobfem as numeric ) ) as pobfem,
+				sum( cast( vivtot as numeric ) ) as vivtot,
+				sum( cast( tvivhab as numeric ) ) as tvivhab,
+				sum( cast( pob0_14 as numeric ) ) as pob0_14,
+				sum( cast( pob15_64 as numeric ) ) as pob15_64,
+				sum( cast( pob65_mas as numeric ) ) as pob65_mas
+				from datosestadisticos.locurb
+				THEWHERE
+			</sql>
+		</totals>
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field>
+				<name>cvegeo</name>
+				<alias>Clave geoestadística</alias>
+			</field>
+			<field identify="true">
+				<name>nomgeo</name>
+				<alias>nombre</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table>
+
+
+ <!-- hechos viales 2021 Colima  -->
+ <table search="true" identify="true" buffer="true" user_alias="Hechos viales Colima 2021" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>prueba</schema>
+		<name>hv_colima_2021</name>
+		<alias>chechos_viales_colima_2021</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>305.748113098</max>
+		</resolution>
+		<!--<totals>
+			<column>
+		        <name>pobtot</name>
+		        <alias>Población total</alias>
+		    </column>
+		    <column>
+		        <name>pobmas</name>
+		        <alias>Población masculina</alias>
+		    </column>
+		    <column>
+		        <name>pobfem</name>
+		        <alias>Población femenina</alias>s
+		    </column>
+		    <column>
+		        <name>vivtot</name>
+		        <alias>Total viviendas</alias>
+		    </column>
+		    <column>
+		        <name>tvivhab</name>
+		        <alias>Total viviendas habitadas</alias>
+		    </column>
+		    <column>
+		        <name>pob0_14</name>
+		        <alias>Población de 0 a 14 años</alias>
+		    </column>
+		    <column>
+		        <name>pob15_64</name>
+		        <alias>Población de 15 a 65 años</alias>
+		    </column>
+		    <column>
+		        <name>pob65_mas</name>
+		        <alias>Población de 65 años y mas</alias>
+		    </column>
+			<sql alias='totales'>
+				select
+				sum( cast( pobtot as numeric ) ) as pobtot,
+				sum( cast( pobmas as numeric ) ) as pobmas,
+				sum( cast( pobfem as numeric ) ) as pobfem,
+				sum( cast( vivtot as numeric ) ) as vivtot,
+				sum( cast( tvivhab as numeric ) ) as tvivhab,
+				sum( cast( pob0_14 as numeric ) ) as pob0_14,
+				sum( cast( pob15_64 as numeric ) ) as pob15_64,
+				sum( cast( pob65_mas as numeric ) ) as pob65_mas
+				from datosestadisticos.locurb
+				THEWHERE
+			</sql>
+		</totals>-->
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field identify="true">
+				<name>tipaccid</name>
+				<alias>nombre</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<field identify="true" >
+				<name>edo</name>
+				<alias>Estado</alias>
+			</field>
+			<field identify="true">
+				<name>mpio</name>
+				<alias>Municipio</alias>
+			</field>
+			<field identify="true">
+				<name>anio</name>
+				<alias>Año</alias>
+			</field>
+			<field identify="true">
+				<name>mes</name>
+				<alias>Mes</alias>
+			</field>
+			<field identify="true">
+				<name>dia</name>
+				<alias>Día</alias>
+			</field>
+			<field identify="true">
+				<name>hora</name>
+				<alias>Hora</alias>
+			</field>
+			<field identify="true">
+				<name>minutos</name>
+				<alias>Minutos</alias>
+			</field>
+			<field identify="true">
+				<name>diasemana</name>
+				<alias>Día de la semana</alias>
+			</field>
+			<field identify="true">
+				<name>tip_diasem</name>
+				<alias>Tipo de día</alias>
+			</field>
+			<field identify="true">
+				<name>coord_x</name>
+				<alias>Coordenada X</alias>
+			</field>
+			<field identify="true">
+				<name>coord_y</name>
+				<alias>Coordenada Y</alias>
+			</field>
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table>
+
+
+<!-- #############-->
+
+
+
+
+<!-- INICIO ANALISIS PRUEBA RUTAS COLIMA-VILLA DE ALVAREZ -->
+
+<table search="true" identify="true" buffer="true" user_alias="Rutas Colima-Villa de Álvarez" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>prueba</schema>
+		<name>rutas_colima_villadealvarez</name>
+		<alias>cRutasColimaVillaDeAlvarez</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>305.748113098</max>
+		</resolution>
+		<!--<totals>
+			<column>
+		        <name>pobtot</name>
+		        <alias>Población total</alias>
+		    </column>
+		    <column>
+		        <name>pobmas</name>
+		        <alias>Población masculina</alias>
+		    </column>
+		    <column>
+		        <name>pobfem</name>
+		        <alias>Población femenina</alias>s
+		    </column>
+		    <column>
+		        <name>vivtot</name>
+		        <alias>Total viviendas</alias>
+		    </column>
+		    <column>
+		        <name>tvivhab</name>
+		        <alias>Total viviendas habitadas</alias>
+		    </column>
+		    <column>
+		        <name>pob0_14</name>
+		        <alias>Población de 0 a 14 años</alias>
+		    </column>
+		    <column>
+		        <name>pob15_64</name>
+		        <alias>Población de 15 a 65 años</alias>
+		    </column>
+		    <column>
+		        <name>pob65_mas</name>
+		        <alias>Población de 65 años y mas</alias>
+		    </column>
+			<sql alias='totales'>
+				select
+				sum( cast( pobtot as numeric ) ) as pobtot,
+				sum( cast( pobmas as numeric ) ) as pobmas,
+				sum( cast( pobfem as numeric ) ) as pobfem,
+				sum( cast( vivtot as numeric ) ) as vivtot,
+				sum( cast( tvivhab as numeric ) ) as tvivhab,
+				sum( cast( pob0_14 as numeric ) ) as pob0_14,
+				sum( cast( pob15_64 as numeric ) ) as pob15_64,
+				sum( cast( pob65_mas as numeric ) ) as pob65_mas
+				from datosestadisticos.locurb
+				THEWHERE
+			</sql>
+		</totals>-->
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field identify="true">
+				<name>nombre</name>
+				<alias>nombre</alias>
+			</field>
+			
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<field identify="true">
+				<name>hr_inicio</name>
+				<alias>Hora de inicio del servicio</alias>
+			</field>
+			<field identify="true">
+				<name>hr_fin</name>
+				<alias>Hora de término del servicio</alias>
+			</field>
+			<field identify="true">
+				<name>espera_l_v</name>
+				<alias>Tiempo de espera Lunes-Viernes</alias>
+			</field>
+			<field identify="true">
+				<name>espera_sa</name>
+				<alias>Tiempo de espera Sábado</alias>
+			</field>
+			<field identify="true"	>
+				<name>espera_d_f</name>
+				<alias>Tiempo de espera Domingo</alias>
+			</field>
+			
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table>
+
+<!-- FIN ANALISIS PRUEBA RUTAS COLIMA-VILLA DE ALVAREZ -->
+
+
+<!-- Preescolar prueba  -->
+<table search="true" identify="true" buffer="true" user_alias="Escuelas Preescolares" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>prueba</schema>
+		<name>escuelaspreescolar</name>
+		<alias>cPreescolar</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>152.874056542</max>
+		</resolution>
+		<!--
+		<totals>
+			
+			<sql alias='totales'>
+				
+			</sql>
+		</totals>
+		-->
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field identify="true">
+				<name>nom_centro</name>
+				<alias>nombre</alias>
+			</field>
+			<field identify="true">
+				<name>clv_cemabe</name>
+				<alias>nombre</alias>
+			</field>
+			<field identify="true">
+				<name>turno</name>
+				<alias>Turno</alias>
+			</field>
+			<field identify="true">
+				<name>nom_centro</name>
+				<alias>Centro de trabajo</alias>
+			</field>
+			<field identify="true">
+				<name>niv_edu</name>
+				<alias>Nivel educativo</alias>
+			</field>
+			<field identify="true">
+				<name>nom_contr</name>
+				<alias>Control (Público o Privado)</alias>
+			</field>
+			<field identify="true">
+				<name>cve_ent</name>
+				<alias>Clave entidad federativa</alias>
+			</field>
+			<field identify="true">
+				<name>nom_ent</name>
+				<alias>Entidad federativa</alias>
+			</field>
+			<field identify="true">
+				<name>cve_mun</name>
+				<alias>Clave municipio o delegación</alias>
+			</field>
+			<field identify="true">
+				<name>nom_mun</name>
+				<alias>Municipio o delegación</alias>
+			</field>
+			<field identify="true">
+				<name>cve_loc</name>
+				<alias>Clave localidad</alias>
+			</field>
+			<field identify="true">
+				<name>nom_loc</name>
+				<alias>Localidad</alias>
+			</field>
+			<field identify="true">
+				<name>domicilio</name>
+				<alias>Domicilio</alias>
+			</field>
+			<field identify="true">
+				<name>num_ext</name>
+				<alias>Número exterior</alias>
+			</field>
+			<field identify="true">
+				<name>calle_1</name>
+				<alias>Entre la calle</alias>
+			</field>
+			<field identify="true">
+				<name>calle_2</name>
+				<alias>Y la calle</alias>
+			</field>
+			<field identify="true">
+				<name>calle_3</name>
+				<alias>Calle posterior</alias>
+			</field>
+			<field identify="true">
+				<name>nom_col</name>
+				<alias>Colonia</alias>
+			</field>
+			<field identify="true">
+				<name>cod_postal</name>
+				<alias>Código postal</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_h</name>
+				<alias>Alumnos total hombres</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_m</name>
+				<alias>Alumnos total mujeres</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_t</name>
+				<alias>Alumnos total</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_h</name>
+				<alias>Docentes total hombres</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_m</name>
+				<alias>Docentes total mujeres</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_t</name>
+				<alias>Docentes total</alias>
+			</field>
+			<field identify="true">
+				<name>aulas_uso</name>
+				<alias>Aulas en uso</alias>
+			</field>
+			<field identify="true">
+				<name>aulas_exis</name>
+				<alias>Aulas existentes</alias>
+			</field>
+			<field identify="true">
+				<name>coord_x</name>
+				<alias>Coordenada X</alias>
+			</field>
+			<field identify="true">
+				<name>coord_y</name>
+				<alias>Coordenada Y</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table>
+<!-- Fin preescolar -->
+<!-- Primaria prueba  -->
+<table search="true" identify="true" buffer="true" user_alias="Escuelas Primarias" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>prueba</schema>
+		<name>escuelasprimaria</name>
+		<alias>cPrimarias</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>152.874056542</max>
+		</resolution>
+		<!--
+		<totals>
+			
+			<sql alias='totales'>
+				
+			</sql>
+		</totals>
+		-->
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field identify="true">
+				<name>nom_centro</name>
+				<alias>nombre</alias>
+			</field>
+			<field identify="true">
+				<name>clv_cemabe</name>
+				<alias>nombre</alias>
+			</field>
+			<field identify="true">
+				<name>turno</name>
+				<alias>Turno</alias>
+			</field>
+			<field identify="true">
+				<name>nom_centro</name>
+				<alias>Centro de trabajo</alias>
+			</field>
+			<field identify="true">
+				<name>niv_edu</name>
+				<alias>Nivel educativo</alias>
+			</field>
+			<field identify="true">
+				<name>nom_contr</name>
+				<alias>Control (Público o Privado)</alias>
+			</field>
+			<field identify="true">
+				<name>cve_ent</name>
+				<alias>Clave entidad federativa</alias>
+			</field>
+			<field identify="true">
+				<name>nom_ent</name>
+				<alias>Entidad federativa</alias>
+			</field>
+			<field identify="true">
+				<name>cve_mun</name>
+				<alias>Clave municipio o delegación</alias>
+			</field>
+			<field identify="true">
+				<name>nom_mun</name>
+				<alias>Municipio o delegación</alias>
+			</field>
+			<field identify="true">
+				<name>cve_loc</name>
+				<alias>Clave localidad</alias>
+			</field>
+			<field identify="true">
+				<name>nom_loc</name>
+				<alias>Localidad</alias>
+			</field>
+			<field identify="true">
+				<name>domicilio</name>
+				<alias>Domicilio</alias>
+			</field>
+			<field identify="true">
+				<name>num_ext</name>
+				<alias>Número exterior</alias>
+			</field>
+			<field identify="true">
+				<name>calle_1</name>
+				<alias>Entre la calle</alias>
+			</field>
+			<field identify="true">
+				<name>calle_2</name>
+				<alias>Y la calle</alias>
+			</field>
+			<field identify="true">
+				<name>calle_3</name>
+				<alias>Calle posterior</alias>
+			</field>
+			<field identify="true">
+				<name>nom_col</name>
+				<alias>Colonia</alias>
+			</field>
+			<field identify="true">
+				<name>cod_postal</name>
+				<alias>Código postal</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_h</name>
+				<alias>Alumnos total hombres</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_m</name>
+				<alias>Alumnos total mujeres</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_t</name>
+				<alias>Alumnos total</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_h</name>
+				<alias>Docentes total hombres</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_m</name>
+				<alias>Docentes total mujeres</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_t</name>
+				<alias>Docentes total</alias>
+			</field>
+			<field identify="true">
+				<name>aulas_uso</name>
+				<alias>Aulas en uso</alias>
+			</field>
+			<field identify="true">
+				<name>aulas_exis</name>
+				<alias>Aulas existentes</alias>
+			</field>
+			<field identify="true">
+				<name>coord_x</name>
+				<alias>Coordenada X</alias>
+			</field>
+			<field identify="true">
+				<name>coord_y</name>
+				<alias>Coordenada Y</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table>
+<!-- Fin primaria -->
+<!--  prueba secundaria  -->
+<table search="true" identify="true" buffer="true" user_alias="Escuelas Secundarias" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>prueba</schema>
+		<name>escuelassecundaria</name>
+		<alias>cSecundarias</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>152.874056542</max>
+		</resolution>
+		<!--
+		<totals>
+			
+			<sql alias='totales'>
+				
+			</sql>
+		</totals>
+		-->
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field identify="true">
+				<name>nom_centro</name>
+				<alias>nombre</alias>
+			</field>
+			<field identify="true">
+				<name>clv_cemabe</name>
+				<alias>nombre</alias>
+			</field>
+			<field identify="true">
+				<name>turno</name>
+				<alias>Turno</alias>
+			</field>
+			<field identify="true">
+				<name>nom_centro</name>
+				<alias>Centro de trabajo</alias>
+			</field>
+			<field identify="true">
+				<name>niv_edu</name>
+				<alias>Nivel educativo</alias>
+			</field>
+			<field identify="true">
+				<name>nom_contr</name>
+				<alias>Control (Público o Privado)</alias>
+			</field>
+			<field identify="true">
+				<name>cve_ent</name>
+				<alias>Clave entidad federativa</alias>
+			</field>
+			<field identify="true">
+				<name>nom_ent</name>
+				<alias>Entidad federativa</alias>
+			</field>
+			<field identify="true">
+				<name>cve_mun</name>
+				<alias>Clave municipio o delegación</alias>
+			</field>
+			<field identify="true">
+				<name>nom_mun</name>
+				<alias>Municipio o delegación</alias>
+			</field>
+			<field identify="true">
+				<name>cve_loc</name>
+				<alias>Clave localidad</alias>
+			</field>
+			<field identify="true">
+				<name>nom_loc</name>
+				<alias>Localidad</alias>
+			</field>
+			<field identify="true">
+				<name>domicilio</name>
+				<alias>Domicilio</alias>
+			</field>
+			<field identify="true">
+				<name>num_ext</name>
+				<alias>Número exterior</alias>
+			</field>
+			<field identify="true">
+				<name>calle_1</name>
+				<alias>Entre la calle</alias>
+			</field>
+			<field identify="true">
+				<name>calle_2</name>
+				<alias>Y la calle</alias>
+			</field>
+			<field identify="true">
+				<name>calle_3</name>
+				<alias>Calle posterior</alias>
+			</field>
+			<field identify="true">
+				<name>nom_col</name>
+				<alias>Colonia</alias>
+			</field>
+			<field identify="true">
+				<name>cod_postal</name>
+				<alias>Código postal</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_h</name>
+				<alias>Alumnos total hombres</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_m</name>
+				<alias>Alumnos total mujeres</alias>
+			</field>
+			<field identify="true">
+				<name>alumnos_t</name>
+				<alias>Alumnos total</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_h</name>
+				<alias>Docentes total hombres</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_m</name>
+				<alias>Docentes total mujeres</alias>
+			</field>
+			<field identify="true">
+				<name>docentes_t</name>
+				<alias>Docentes total</alias>
+			</field>
+			<field identify="true">
+				<name>aulas_uso</name>
+				<alias>Aulas en uso</alias>
+			</field>
+			<field identify="true">
+				<name>aulas_exis</name>
+				<alias>Aulas existentes</alias>
+			</field>
+			<field identify="true">
+				<name>coord_x</name>
+				<alias>Coordenada X</alias>
+			</field>
+			<field identify="true">
+				<name>coord_y</name>
+				<alias>Coordenada Y</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>the_geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table>
+<!-- Fin secundaria -->
+
+
+
+
+
+<!--Buffer -->
+<table search="false" identify="false" buffer="false" user_alias="Geometria"
+		projects="mdm6;denue">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>control</schema>
+		<name>mibuffer</name>
+		<alias>geometrias</alias>
+		<geometry>the_geom</geometry>
+		<projection>900913</projection>
+		<fields>
+			<field>
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<!-- si field no especifica atributos de search_display y query_display, 
+				ambos son true por default -->
+			<field search_display="true" query_display="false">
+				<name>fechahora</name>
+				<alias>Fecha</alias>
+			</field>
+			<field search_display="true" query_display="false">
+				<name>the_geom</name>
+				<alias>Geometry</alias>
+			</field>
+		</fields>
+	</table>
+	<table search="false" identify="true" buffer="true" user_alias="mdm6" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database> 
+		<schema>control</schema> 
+		<name>share</name>
+		<alias>cshare</alias> 
+		<geometry>the_geom</geometry> 
+		<projection>900913</projection> 
+		<resolution>
+			<min>0.298582141</min> 
+			<max>4.777314266</max> 
+		</resolution> 
+		<fields>
+			<field identify="true"> 
+			<name>gid</name> 
+			<alias>ID</alias> 
+		</field>
+		<field identify="true"> 
+			<name>nom_est</name> 
+			<alias>Nombre</alias> 
+		</field>
+		<field> 
+			<name>gid</name> 
+			<alias>buffer</alias> 
+		</field>
+		<field search_display="false" query_display="true"> 
+		<functions>
+			<function order="2"> 
+			<fname>ST_AsText</fname>
+		</function>
+		<function order="1"> 
+			<fname>ST_Envelope</fname> 
+		</function>
+		</functions> 
+		<name>the_geom</name> 
+		<alias>ubicacion</alias> 
+		</field>
+		</fields>
+	</table>	
+
+	<table search="true" identify="true" buffer="true" user_alias="Hecho Vial" projects="mdm6">
+		<server>servidorsote</server>
+		<database>mdm6data</database>
+		<schema>prueba</schema>
+		<name>pruenue</name>
+		<alias>c714</alias>
+		<geometry>geom</geometry>
+		<projection>900913</projection>
+		<resolution>
+			<min>0.298582141</min>
+			<max>305.748113098</max>
+		</resolution>
+		<!--<totals>
+			<column>
+		        <name>pobtot</name>
+		        <alias>Población total</alias>
+		    </column>
+		    <column>
+		        <name>pobmas</name>
+		        <alias>Población masculina</alias>
+		    </column>
+		    <column>
+		        <name>pobfem</name>
+		        <alias>Población femenina</alias>s
+		    </column>
+		    <column>
+		        <name>vivtot</name>
+		        <alias>Total viviendas</alias>
+		    </column>
+		    <column>
+		        <name>tvivhab</name>
+		        <alias>Total viviendas habitadas</alias>
+		    </column>
+		    <column>
+		        <name>pob0_14</name>
+		        <alias>Población de 0 a 14 años</alias>
+		    </column>
+		    <column>
+		        <name>pob15_64</name>
+		        <alias>Población de 15 a 65 años</alias>
+		    </column>
+		    <column>
+		        <name>pob65_mas</name>
+		        <alias>Población de 65 años y mas</alias>
+		    </column>
+			<sql alias='totales'>
+				select
+				sum( cast( pobtot as numeric ) ) as pobtot,
+				sum( cast( pobmas as numeric ) ) as pobmas,
+				sum( cast( pobfem as numeric ) ) as pobfem,
+				sum( cast( vivtot as numeric ) ) as vivtot,
+				sum( cast( tvivhab as numeric ) ) as tvivhab,
+				sum( cast( pob0_14 as numeric ) ) as pob0_14,
+				sum( cast( pob15_64 as numeric ) ) as pob15_64,
+				sum( cast( pob65_mas as numeric ) ) as pob65_mas
+				from datosestadisticos.locurb
+				THEWHERE
+			</sql>
+		</totals>-->
+		<totals>
+			<column>
+		        <name>sector</name>
+		        <alias>Sector</alias>
+		    </column>
+			<sql>
+				select
+				sector
+				from prueba.pruenue
+				where sector = 61
+			</sql>
+
+		</totals>
+
+		<fields>
+			<field identify="true">
+				<name>gid</name>
+				<alias>ID</alias>
+			</field>
+			<field identify="true">
+				<name>nom_est</name>
+				<alias>nombre</alias>
+			</field>
+			<field>
+				<name>gid</name>
+				<alias>buffer</alias>
+			</field>
+			<field>
+				<name>nom_loc</name>
+				<alias>Nombre Localidad</alias>
+			</field>
+			
+			<!--<field link="II Conteo de Pob. y Viv.|/CubexConnector/generaJson.do?servicio=infoproyecto&amp;proyecto=1&amp;geograficaE="> 
+				<name>clavegeo</name> <alias>destadisticos</alias> </field> -->
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_Envelope</fname>
+					</function>
+				</functions>
+				<name>geom</name>
+				<alias>ubicacion</alias>
+			</field>
+			<field search_display="false" query_display="true">
+				<functions>
+					<function order="2">
+						<fname>ST_AsText</fname>
+					</function>
+					<function order="1">
+						<fname>ST_PointOnSurface</fname>
+					</function>
+				</functions>
+				<name>geom</name>
+				<alias>coordenada</alias>
+			</field>
+		</fields>
+		<search>
+			<!-- el primer field segun definido aqui es el obligatorio -->
+			<field type="tsearch">
+				<name>spvector</name>
+			</field>
+			<field type="tsearch">
+				<name>spvectorref</name>
+			</field>
+		</search>
+</table> 
+
+
+
+
+
+
+
+
+
+</tables>

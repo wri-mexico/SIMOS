@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.ThemeMapper">
+    
+    <select id="themeExists" resultType="boolean">
+        select case when count(*) > 0 then true else false end
+        from temas.temamat
+        where id = #{id}    
+    </select>
+
+    <select id="findType" resultType="int">
+        select id_tipo from ce2014.cat_ce
+        where id = #{sector}
+    </select>
+    
+    <select id="findIndicator" resultType="double">
+        select ${theme.variable}
+        <if test="theme.ent == '00'">
+             from ce2014.${table} where sector = #{theme.sector}
+        </if>
+       <if test="theme.ent != '00'">
+             from ce2014.${table} where sector = #{theme.sector} and cve_ent = #{theme.ent}
+        </if>
+        LIMIT 1
+    </select>
+    
+    <select id="findIndicator4Loc" resultType="double">
+        select ${theme.variable}
+             from ce2014.${table} where sector = #{theme.sector} and cve_ent = #{theme.cveEnt} and cve_mun = #{theme.cveMun}
+        LIMIT 1
+    </select>
+    
+    <select id="findIndicator4Ageb" resultType="double">
+        select ${theme.variable}
+             from ce2014.${table} where sector = #{theme.sector} and cve_ent = #{theme.cveEnt} and cve_mun = #{theme.cveMun} and localidad = #{theme.cveLoc}
+        LIMIT 1
+    </select>
+    
+    <select id="findCevegeo"   resultType="ThemeCvegeo">
+        SELECT cvegeo, nombre, ${param4} AS indicador FROM ${param3} WHERE ${param4} BETWEEN #{0}::numeric AND #{1}::numeric AND sector=#{4}
+    </select>
+    
+    <select id="findCevegeoMun"   resultType="ThemeCvegeo">
+        SELECT cvegeo, nombre, ${param4} AS indicador FROM ${param3} WHERE ${param4} BETWEEN #{0}::numeric AND #{1}::numeric AND sector=#{4} AND cve_ent=#{5}
+    </select>
+    
+    <select id="findCevegeoLoc"   resultType="ThemeCvegeo">
+        SELECT cvegeo, nombre, ${param4} AS indicador FROM ${param3} WHERE ${param4} BETWEEN #{0}::numeric AND #{1}::numeric AND sector=#{4} AND cve_ent=#{5} AND cve_mun=#{6}
+    </select>
+    
+    <select id="findCevegeoAgeb"   resultType="ThemeCvegeo">
+        SELECT cvegeo, nombre, ${param4} AS indicador FROM ${param3} WHERE ${param4} BETWEEN #{0}::numeric AND #{1}::numeric AND sector=#{4} AND cve_ent=#{5} AND cve_mun=#{6} AND localidad=#{7}
+    </select>
+    
+    <select id="findMinAndMax" resultType="map">
+        ${value}
+    </select>
+    
+    <select id="nei" resultType="String"><!-- N.E.I. -->
+       <!--   select daleniushodge2r_ce2014(#{0}, #{1}, #{2})-->
+       select neir_temporal2(#{0}, #{1}, #{2})
+    </select>
+    
+    <select id="c2r" resultType="String"><!-- Cuantiles -->
+       <!--   select daleniushodge2r_ce2014(#{0}, #{1}, #{2})-->
+       select cuantiles2r_ce2014(#{0}, #{1}, #{2})
+    </select>
+    
+    <select id="d2r" resultType="String"><!-- Dalenius -->
+       <!--   select daleniushodge2r_ce2014(#{0}, #{1}, #{2})-->
+       select daleniushodge2r_ce2014(#{0}, #{1}, #{2})
+    </select>
+    
+    <select id="cre" resultType="String"><!-- Cuantiles Relativos-->
+       <!--   select daleniushodge2r_ce2014(#{0}, #{1}, #{2})-->
+       select cuantilesrelativosr_ce2014(#{0}, #{1}, #{2})
+    </select>
+    
+
+    
+    <insert id="add" parameterType="Theme" useGeneratedKeys="true" keyProperty="id">
+        insert into temas.temamat(definicion, clausulawhen, filtro, signature, tabla, proy,variable)
+        values(#{definition}, #{when}, #{filter}, #{signature}, #{table}, 'mdm',#{info.variable})
+    </insert>
+    
+    <update id="updateColors">
+        update temas.temamat
+        set clausulawhen = #{1}
+        where id = #{0}
+    </update>
+    
+        <select id="cvName" resultType="String">
+       SELECT nombre FROM ce2014.${param1} WHERE cvegeo=#{1} LIMIT 1;
+    </select>
+    
+    <select id="cvTheme"  resultType="ThemeCvegeo">
+       SELECT cvegeo, nombre, ${param1} AS indicador FROM ${param2} WHERE cvegeo=#{2} AND sector=#{3};
+    </select>
+    
+</mapper>

@@ -1,0 +1,387 @@
+@import url('trackingSprite.css');
+
+
+/* tracking*/
+
+.tracking-gps-img	{
+	float: left;
+	margin-top: 7px;
+	margin-left: 6px;
+	}	
+	
+.tracking-stop-window{
+	position: absolute;
+	width: 215px;
+	height: 100px;
+	top: 92px;
+	right: 70px;
+	background-color: #FFF;
+	border: .25 px solid #CCC;
+	-webkit-box-shadow: 0 0 1px 1px #ABABAB;
+	box-shadow: 0 0 1px 1px #ABABAB;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	overflow: hidden;
+	z-index: 1000;
+	}
+	
+.tracking-menu{
+	float: left;
+	width: 44px;
+	height: 100%;
+	background-color:#ECEDEF;
+	
+ }	
+		
+.tracking-line-border	{
+	border-right: 1px solid #ccc;
+	width: 1px;
+	height: 100%;
+	margin-left: 43px;
+	
+	}
+	
+/*	ver más */
+
+.tracking-more{
+	position: absolute;
+	margin-top: 84px;
+	margin-left: 45px;
+	width: 170px;
+	height: 16px;
+	/*background-color: rgb(161, 237, 217);*/
+	}
+	
+.tracking-downIcon{
+	float: right;
+	margin-right: 5px;
+	cursor: pointer;
+	
+	}
+	
+.tracking-moreText{
+	float: right;
+	margin-right: 5px;
+	cursor: pointer;
+	}	
+/*verificar*/	
+.tracking-moreInfo{
+	position: absolute;
+	top: 84px;
+	left: 0px;
+	width: 170px;
+	height: 96px;
+	/* background-color: rgb(161, 237, 217); */
+}
+
+.tracking-upIcon{
+	float: right;
+	margin-top: 86px;
+	margin-right: 1px;
+	cursor: pointer;
+	}	
+
+
+.tracking-distance-name{
+	margin-left:34px;
+	}	
+
+.tracking-exactName{
+	margin-left: 34px;
+	}
+	
+.tracking-heightName{
+	margin-left: 34px;
+	}
+.tracking-latName{
+	margin-left: 34px;
+	}	
+.tracking-lonName{
+	margin-left: 34px;
+	}
+
+.tracking-distance{
+	position: absolute;
+	left: 0px;
+	top: 61px;
+	width: 100%;
+	height: 17px;
+	/* background-color: aquamarine; */
+	}
+
+.tracking-exactitud{
+	position: absolute;
+	left: 0px;
+	top: 5px;
+	width: 100%;
+	height: 17px;
+	/*background-color: aquamarine;*/
+	}
+	
+.tracking-altitud{
+	position: absolute;
+	left: 0px;
+	top: 27px;
+	width: 100%;
+	height: 17px;
+	/*background-color: aqua;*/
+}	
+
+.tracking-latitud{
+	position: absolute;
+	left: 0px;
+	top: 49px;
+	width: 100%;
+	height: 17px;
+	/*background-color: turquoise;*/
+	}		
+
+.tracking-longitud{
+	position: absolute;
+	left: 0px;
+	top: 71px;
+	width: 100%;
+	height: 17px;
+	/*background-color: aqua;*/
+	}		
+	
+
+/* fin de ver más*/
+
+/*menu stop/mode ////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*
+.category-selected {
+	background:#666666 !important;
+	}
+.category-selected .act-infinite-text{
+	color:#cccccc !important;
+}
+.category-selected .ExportSprite-infinite{
+	background-position:-10px -167px !important;
+}
+
+.category-selected .act-label-text{
+	color:white !important;
+}
+
+
+*/
+
+.category-selected .tracking_car {
+	background-position:-10px -418px; !important;
+	}
+	
+.category-selected .tracking_walk{
+	background-position:-43px -451px; !important;
+	}	
+
+/*.tracking-walk-mode{
+	display:block;
+	}
+
+.tracking-walk-mode[mode=on] .caminando{
+	display:block;
+}
+.tracking-walk-mode[mode=on] .caminandoStop{
+	display:none;
+}
+.tracking-walk-mode[mode=off] .caminandoStop{
+	display:block;
+}
+.tracking-walk-mode[mode=off] .caminando{
+	display:none;
+}
+		
+.tracking-car-mode[mode=on] .enAuto{
+	display:block;
+}
+.tracking-car-mode[mode=on] .enAutoStop{
+	display:none;
+}
+.tracking-car-mode[mode=off] .enAutoStop{
+	display:block;
+}
+.tracking-car-mode[mode=off] .enAuto{
+	display:none;
+}
+*/
+
+.tracking-walk-mode{
+	float: left;
+	margin-top: 8px;
+	margin-left: 11px;
+	cursor: pointer;
+	
+}
+	
+.tracking-car-mode{
+	float: left;
+	margin-top: 9px;
+	margin-left: 12px;
+	cursor: pointer;
+	
+	}
+	
+.tracking-stop-icon{
+	float: left;
+	margin-top: 6px;
+	margin-left: 10px;
+	cursor: pointer;
+	}	
+		
+.tracking-stop-info{
+	position: absolute;
+	top: 0px;
+	left: 45px;
+	width: 170px;
+	height: 180px;
+	/* background-color: turquoise; */
+}
+
+.tracking-mode{
+	float: left;
+	margin-left: 1px;
+	margin-top: 65px;
+	width: 158px;
+	height: 25px;
+	background-color: #ECEDEF;
+	}
+	
+	
+.tracking-menu-line1{
+	border-top: 1px solid #ccc;
+	width: 28px;
+	height: 1px;
+	left: 9px;
+	top: 33px;
+	position: absolute;
+	}
+
+.tracking-menu-line2{
+	border-top: 1px solid #ccc;
+	width: 28px;
+	height: 1px;
+	left: 9px;
+	top: 65px;
+	position: absolute;
+	}
+	
+.tracking-menu-line3{
+	border-top: 1px solid #ccc;
+	width: 56px;
+	height: 1px;
+	margin-left: 36px;
+	margin-top: 24px;
+	}	
+			
+.tracking-menu-line4{
+	border-top: 1px solid #ccc;
+	width: 138px;
+	height: 1px;
+	margin-left: 18px;
+	margin-top: 55px;
+	
+	}
+
+/*info*/
+.tracking-speed-name{
+	position: absolute;
+	margin-top: 4px;
+	margin-left: 32px;
+	width: 63px;
+	height: 22px;
+	/*background-color: turquoise;*/
+	
+	}
+	
+#tracking-speed-name{
+	color: #434142;
+	margin-left: 4px;
+	margin-top: 5px;
+	font-family: Arial;
+		}
+		
+.tracking-speed-data{
+	position: absolute;
+	margin-top: 33px;
+	margin-left: -8px;
+	width: 170px;
+	height: 32px;
+	/* background-color: turquoise; */
+	}
+
+#tracking-speed-data{
+	color: #717175;
+	margin-left: 6px;
+	margin-top: -31px;
+	font-size: 27px;
+	font-family: Arial;
+	text-align: center;
+	
+	}
+	
+#tracking-distance-name{
+	color: #434142;
+	margin-left: 4px;
+	margin-top: 0px;
+	font-family: Arial;
+		}		
+
+.tracking-distance-data{
+	position: absolute;
+	top: 56px;
+	left: 85px;
+	width: 65px;
+	height: 22px;
+	/* background-color: turquoise; */
+	}
+
+#tracking-distance-data{
+	color: #FFF;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: Arial;
+	background: #717173;
+	
+	}
+	
+#tracking-accuracy-data{
+	color: #FFF;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: Arial;
+	background: #717173;
+	}	
+	
+#tracking-altitude-data{
+	color: #FFF;
+	padding-left: 5px;
+	padding-right: 5px;
+	background: #717173;
+	font-family: Arial;
+	}
+
+#tracking-latitude-data{
+	color: #FFF;
+	padding-left: 5px;
+	padding-right: 5px;
+	background: #717173;
+	font-family: Arial;
+	}	
+
+#tracking-longitude-data{
+	color: #FFF;
+	padding-left: 5px;
+	padding-right: 5px;
+	background: #717173;
+	font-family: Arial;
+	}	
+	
+/*info*/
+
+
+
+

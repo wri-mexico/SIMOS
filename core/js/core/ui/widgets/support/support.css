@@ -1,0 +1,76 @@
+.headerLogoMDM{
+    right: 60px !important;
+}
+#headerSupport{
+    position: absolute;
+    right: 23px;
+    top: 0px;
+    z-index: 3;
+}
+
+.template_support{
+    display:block;
+    background-image:url(img/support.png);
+    overflow:hidden;
+    background-repeat:no-repeat;
+}
+.label_support{
+    display: inline-block;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 120%;
+    width:130px;
+    cursor: pointer;
+    font-weight:bold;
+}
+.label_support a{
+    text-decoration: none;
+    color:#030202;
+}
+.label_support a:hover{
+     color:#13679F;
+     font-weight: bold;
+}
+.margintop{
+    margin-top: 10px;
+}
+.headerPhones{
+    font-weight: bold;
+}
+.phones{
+    /*margin-left: 25px;*/
+    font-size: 120%;
+    color:#808080;
+}
+.icon_support{
+    display: inline-block;
+    position: relative;
+    top: 7px;
+}
+.ts_support{
+    width: 30px;
+    height: 50px;
+    background-position: -148px 6px;
+}
+.ts_email{
+    width:21px; height:22px;background-position:-57px -11px;
+}
+
+.ts_facebook{
+    width:21px; height:22px;background-position:-114px -11px;
+}
+
+.ts_twitter{
+    width:21px; height:22px;background-position:-142px -11px;
+}
+
+.ts_phone{
+    width:21px; height:22px;background-position:-85px -11px;
+}
+
+.ts_chat{
+    width:21px; height:22px;background-position:-30px -11px;
+}
+.ts_manual{
+    width:21px; height:22px;background-position:-2px -11px;
+}

@@ -1,0 +1,3605 @@
+MAP
+	NAME "Servicio_WMS_MXSIG"
+	STATUS ON
+	SHAPEPATH "/web" #Make sure this points to the root of the data folder (where all your shape or raster files are)
+	SIZE 400 400
+	IMAGECOLOR   255 255 255 
+	IMAGETYPE png
+	#EXTENT -119.9926 9.404 -85.1237 37.8468
+	EXTENT -13345293.64051 1516510.64097 -9294742.63818 3991847.36461
+	SYMBOLSET "/opt/map/syms/symbols.sym"
+	FONTSET "/opt/map/fonts/fonts.txt"
+	DEBUG 0
+	PROJECTION 
+	"init=epsg:900913"
+	END
+	UNITS DD
+	#CONFIG  "MS_ERRORFILE" "/tmp/mapserver/mxsigvector.log"
+	MAXSIZE 2200
+	WEB 
+		TEMPLATE "/opt/map/mapserv_template.html"
+		IMAGEPATH "/tmp"
+		IMAGEURL "/tmp/"
+		LOG "/tmp/mapserver.log"
+		METADATA 
+			"max_extents" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461" #ka-map - to prevent navigation out of extents
+			"ows_title" "Servicio WMS. (Mapa Digital de Mexico v5.0)"
+			"ows_keywordlist" "WMS,OGC,MapServer,GeoNetwork"
+			"ows_onlineresource" "http://gaia.inegi.org.mx/NLB/balancer.do?map=/opt/map/mdm5vector.map&amp&"
+			"ows_service_onlineresource" "http://www.inegi.org.mx/"
+			"ows_fees" "none"
+			"ows_accessconstraints" "none"
+			"ows_contactperson" "Aar&oacute;n Israel Villar Mata"
+			"ows_contactorganization" "INEGI"
+			"ows_contactposition" "Subdirector"
+			"ows_addresstype" "postal"
+			"ows_address" "Heroe de Nacozari 2301"
+			"ows_city" "Aguascalientes"
+			"ows_stateorprovince" "Aguascalientes"
+			"ows_postcode" "20276"
+			"ows_country" "M&aacute;xico"
+			"ows_contactvoicetelephone" "+52 4499105300"
+			"ows_contactfacsimiletelephone" "+52 4499105328"
+			"ows_contactelectronicmailaddress" "aaron.villar@inegi.org.mx"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_enable_request" "GetMap GetCapabilities GetLegendGraphic"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_feature_info_mime_type" "text/html"
+            "wms_title" "Servicio de prueba del MXSIG"
+            "wms_srs" "EPSG:900913"
+		END #end metadata 
+	END #end web
+	
+	LAYER
+		NAME 'c100'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		DATA "the_geom from mdm.ent using unique gid using srid=900913"
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Límite Estatal / Internacional"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE polygon
+		STATUS on
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+            CLASS
+				MINSCALEDENOM 1000000
+				NAME 'Entidad federativa'
+				STYLE
+					WIDTH 2.0					
+					#COLOR  133 231 93		
+					OUTLINECOLOR 178 100 147					
+				END #end style			
+		   END # end class
+	END #end layer
+	
+	LAYER
+		NAME 'c101'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		DATA "the_geom from mdm.mun using unique gid using srid=900913"
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Municipios"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "Urbana"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE line
+		STATUS on
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+			NAME 'Municipios'
+			STYLE
+				WIDTH 1.0
+				COLOR 255 0 0 
+				OUTLINECOLOR 220 220 220
+			END #end style
+		   END # end class
+	END #end layer	
+	
+	LAYER
+		NAME 'c102'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+                CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "the_geom from mdm.l using unique gid using srid=900913"
+		MAXSCALE 6000000
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Localidad"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE polygon
+		STATUS ON
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector 
+		TEMPLATE "query.html"
+		   CLASS 
+			NAME 'Localidad urbana'
+			STYLE
+				COLOR 237 229 211
+				OUTLINECOLOR 220 220 220
+				ANTIALIAS FALSE
+			END #end style
+		   END # end classCLASS 
+	END	   	
+
+	LAYER
+		NAME 'c103'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+                CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "the_geom from mdm.l using unique gid using srid=900913"
+		MAXSCALE 6000000
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Localidad"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE polygon
+		STATUS ON
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector 
+		TEMPLATE "query.html"
+		   CLASS 
+			NAME 'Localidad urbana'
+			STYLE
+				COLOR 237 229 211
+				OUTLINECOLOR 220 220 220
+				ANTIALIAS FALSE
+			END #end style
+		   END # end classCLASS 
+	END	   	
+
+	
+
+	###################### INICIO CAPA DE COLIMA ##############################################
+	LAYER
+		NAME 'c108'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		DATA "the_geom from mdm.colima_1 using unique gid using srid=900913"
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Límite Estatal / Internacional"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE polygon
+		STATUS on
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+            CLASS
+				#MINSCALEDENOM 1000000
+				NAME 'Entidad federativa'
+				STYLE
+					WIDTH 5.0					
+					#COLOR  133 231 93		
+					OUTLINECOLOR 88 214 25					
+				END #end style			
+		   END # end class
+	END #end layer
+	####################### FIN CAPA DE COLIMA ###################################################
+
+	LAYER
+		NAME 'c431'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "the_geom from mdm.centrosinfinegi using unique gid using srid=3857"  
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Centros de Informaci�n Inegi"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Centros de Informaci�n INEGI'
+              STYLE
+			        symbol inegi
+			        size 30
+              END #end style
+           END # end class   
+	END #end layer
+
+	#-----------------------------------------> Inicio Prueba Capas DENUE
+	LAYER
+		NAME 'cDenu'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+                CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913"
+		MAXSCALE 6000000
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Actividades Legislativas, Gubernamentales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS ON
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector 
+		TEMPLATE "query.html"
+		CLASS 
+			NAME 'Agricultura, cria y explotacion de animales'
+			EXPRESSION ("[sector]" == "11")
+			STYLE
+				size 5
+				SYMBOL "punto"
+				COLOR 255 0 0
+			END #end style
+		END # end classCLASS
+		
+		CLASS 
+			NAME 'Minera'
+			EXPRESSION ("[sector]"=="21")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 0 255 0
+			END #end style
+		END # end classCLASS 
+
+		CLASS 
+			NAME 'Generacion, transmision y distribucion'
+			EXPRESSION ("[sector]"=="22")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 0 0 255
+			END #end style
+		END # end classCLASS 
+
+		CLASS 
+			NAME 'Construccion'
+			EXPRESSION ("[sector]"=="23")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 0 255 255
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Insdustrias manufactureras'
+			EXPRESSION ("[sector]"=="31")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 255 0 255
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Comercio al por mayor'
+			EXPRESSION ("[sector]"=="43")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 255 255 0
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Comercio al por menor'
+			EXPRESSION ("[sector]"=="46")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 100 100 25
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Transportes, correos y almacenamiento'
+			EXPRESSION ("[sector]"=="48")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 88 45 25
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Informacion en medios masivos'
+			EXPRESSION ("[sector]"=="51")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 50 100 125
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios financieros y de seguros'
+			EXPRESSION ("[sector]"=="52")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 75 220 11
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios inmobiliarios y de alquiler de bienes'
+			EXPRESSION ("[sector]"=="53")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 200 200 10
+			END #end style
+		END # end classCLASS
+		CLASS 
+			NAME 'Servicios profesionales, cientificos y tecnicos'
+			EXPRESSION ("[sector]"=="54")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 77 77 77
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Corporativos'
+			EXPRESSION ("[sector]"=="55")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 56 80 200
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Serv. de apoyo a los negocios y manejo de residuos'
+			EXPRESSION ("[sector]"=="56")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 23 32 61
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios educativos'
+			EXPRESSION ("[sector]"=="61")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 2 77 43
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios de salud y de asistencia social'
+			EXPRESSION ("[sector]"=="62")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 53 149 38
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios de esparcimiento curturales y deportivos'
+			EXPRESSION ("[sector]"=="71")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 147 238 16
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios de alojamiento temporal y de preparacion'
+			EXPRESSION ("[sector]"=="72")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 215 70 199
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Otros serv. excepto actividades gubernamentales'
+			EXPRESSION ("[sector]"=="81")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 159 251 244
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Actividades legislativas, gubernamentales'
+			EXPRESSION ("[sector]"=="93")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 30 10 199
+			END #end style
+		END # end classCLASS
+
+
+
+	END	 #end layer
+	#----------------------TERMINA DENUE
+	
+	#----------------------INICIA CAPA DENUE 2022---------------------------------------------
+	LAYER
+		NAME 'cDenu2022'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+                CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913"
+		MAXSCALE 6000000
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Actividades Legislativas, Gubernamentales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS ON
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector 
+		TEMPLATE "query.html"
+		CLASS 
+			NAME 'Agricultura, cria y explotacion de animales'
+			EXPRESSION ("[sector]" == "11")
+			STYLE
+				size 5
+				SYMBOL "punto"
+				COLOR 255 0 0
+			END #end style
+		END # end classCLASS
+		
+		CLASS 
+			NAME 'Minera'
+			EXPRESSION ("[sector]"=="21")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 0 255 0
+			END #end style
+		END # end classCLASS 
+
+		CLASS 
+			NAME 'Generacion, transmision y distribucion'
+			EXPRESSION ("[sector]"=="22")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 0 0 255
+			END #end style
+		END # end classCLASS 
+
+		CLASS 
+			NAME 'Construccion'
+			EXPRESSION ("[sector]"=="23")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 0 255 255
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Insdustrias manufactureras'
+			EXPRESSION ("[sector]"=="31")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 255 0 255
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Comercio al por mayor'
+			EXPRESSION ("[sector]"=="43")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 255 255 0
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Comercio al por menor'
+			EXPRESSION ("[sector]"=="46")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 100 100 25
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Transportes, correos y almacenamiento'
+			EXPRESSION ("[sector]"=="48")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 88 45 25
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Informacion en medios masivos'
+			EXPRESSION ("[sector]"=="51")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 50 100 125
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios financieros y de seguros'
+			EXPRESSION ("[sector]"=="52")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 75 220 11
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios inmobiliarios y de alquiler de bienes'
+			EXPRESSION ("[sector]"=="53")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 200 200 10
+			END #end style
+		END # end classCLASS
+		CLASS 
+			NAME 'Servicios profesionales, cientificos y tecnicos'
+			EXPRESSION ("[sector]"=="54")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 77 77 77
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Corporativos'
+			EXPRESSION ("[sector]"=="55")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 56 80 200
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Serv. de apoyo a los negocios y manejo de residuos'
+			EXPRESSION ("[sector]"=="56")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 23 32 61
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios educativos'
+			EXPRESSION ("[sector]"=="61")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 2 77 43
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios de salud y de asistencia social'
+			EXPRESSION ("[sector]"=="62")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 53 149 38
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios de esparcimiento curturales y deportivos'
+			EXPRESSION ("[sector]"=="71")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 147 238 16
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Servicios de alojamiento temporal y de preparacion'
+			EXPRESSION ("[sector]"=="72")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 215 70 199
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Otros serv. excepto actividades gubernamentales'
+			EXPRESSION ("[sector]"=="81")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 159 251 244
+			END #end style
+		END # end classCLASS
+
+		CLASS 
+			NAME 'Actividades legislativas, gubernamentales'
+			EXPRESSION ("[sector]"=="93")
+			STYLE
+				symbol "punto"
+			    size 10
+				COLOR 30 10 199
+			END #end style
+		END # end classCLASS
+
+	END	 #end layer
+	#----------------------TERMINA CAPA DENUE 2022--------------------------------------------
+
+	LAYER
+		NAME 'c700'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "11" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Agricultura cria y explotacion de animales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Agricultura cria y explotacion de animales'
+              STYLE
+			        symbol "punto"
+					color 255 0 0
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+	
+	LAYER
+		NAME 'c701'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "21" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Minera"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Minera'
+              STYLE
+			        symbol "punto"
+					color 0 255 0
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c702'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "22" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Generacion, transmision y distribucion"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Generacion, transmision y distribucion'
+              STYLE
+			        symbol "punto"
+					color 0 0 255
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c703'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "23" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Construccion"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Construccion'
+              STYLE
+			        symbol "punto"
+					color 0 255 255
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c704'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "31" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Insdustrias manufactureras"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Insdustrias manufactureras'
+              STYLE
+			        symbol "punto"
+					color 255 0 255
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c705'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "43" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Comercio al por mayor"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Comercio al por mayor'
+              STYLE
+			        symbol "punto"
+					color 255 255 0
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c706'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "46" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Comercio al por menor"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Comercio al por menor'
+              STYLE
+			        symbol "punto"
+					color 100 100 25
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c707'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "48" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Transportes, correos y almacenamiento"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Transportes, correos y almacenamiento'
+              STYLE
+			        symbol "punto"
+					color 88 45 25
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c708'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "51" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Informacion en medios masivos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Informacion en medios masivos'
+              STYLE
+			        symbol "punto"
+					color 50 100 125
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c709'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "52" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios financieros y de seguros"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios financieros y de seguros'
+              STYLE
+			        symbol "punto"
+					color 75 220 11
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c710'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "53" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios inmobiliarios y de alquiler de bienes"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios inmobiliarios y de alquiler de bienes'
+              STYLE
+			        symbol "punto"
+					color 200 200 10
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c711'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "54" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios profesionales, cientificos y tecnicos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios profesionales, cientificos y tecnicos'
+              STYLE
+			        symbol "punto"
+					color 77 77 77
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+
+	LAYER
+		NAME 'c712'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "55" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Corporativos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Corporativos'
+              STYLE
+			        symbol "punto"
+					color 56 80 200
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c713'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "56" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Serv. de apoyo a los negocios y manejo de residuos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Serv. de apoyo a los negocios y manejo de residuos'
+              STYLE
+			        symbol "punto"
+					color 23 32 61
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c714'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "61" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios educativos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios educativos'
+              STYLE
+			        symbol "punto"
+					color 2 77 43
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c715'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "62" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios de salud y de asistencia social"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios de salud y de asistencia social'
+              STYLE
+			        symbol "punto"
+					color 53 149 38
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c716'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "71" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios de esparcimiento curturales y deportivos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios de esparcimiento curturales y deportivos'
+              STYLE
+			        symbol "punto"
+					color 147 238 16
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c717'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "72" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios de alojamiento temporal y de preparacion"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios de alojamiento temporal y de preparacion'
+              STYLE
+			        symbol "punto"
+					color 215 70 199
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c718'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "81" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Otros serv. excepto actividades gubernamentales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Otros serv. excepto actividades gubernamentales'
+              STYLE
+			        symbol "punto"
+					color 159 251 244
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'c719'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.pruenue using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "93" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Actividades legislativas, gubernamentales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Actividades legislativas, gubernamentales'
+              STYLE
+			        symbol "punto"
+					color 30 10 199
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+
+
+
+
+
+	#-----------------------------------------> Fin Prueba Capas DENUE
+	
+
+	#-----------------------------------------> Inicio Prueba  DENUE SECTORES 2022
+
+	LAYER
+		NAME 'cSector11'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "11" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Agricultura cria y explotacion de animales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Agricultura cria y explotacion de animales'
+              STYLE
+			        symbol "punto"
+					color 255 0 0
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+	
+	LAYER
+		NAME 'cSector21'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "21" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Minera"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Minera'
+              STYLE
+			        symbol "punto"
+					color 0 255 0
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector22'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "22" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Generacion, transmision y distribucion"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Generacion, transmision y distribucion'
+              STYLE
+			        symbol "punto"
+					color 0 0 255
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector23'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "23" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Construccion"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Construccion'
+              STYLE
+			        symbol "punto"
+					color 0 255 255
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector31'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "31" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Insdustrias manufactureras"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Insdustrias manufactureras'
+              STYLE
+			        symbol "punto"
+					color 255 0 255
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector43'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "43" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Comercio al por mayor"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Comercio al por mayor'
+              STYLE
+			        symbol "punto"
+					color 255 255 0
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector46'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "46" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Comercio al por menor"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Comercio al por menor'
+              STYLE
+			        symbol "punto"
+					color 100 100 25
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector48'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "48" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Transportes, correos y almacenamiento"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Transportes, correos y almacenamiento'
+              STYLE
+			        symbol "punto"
+					color 88 45 25
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector51'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "51" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Informacion en medios masivos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Informacion en medios masivos'
+              STYLE
+			        symbol "punto"
+					color 50 100 125
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector52'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "52" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios financieros y de seguros"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios financieros y de seguros'
+              STYLE
+			        symbol "punto"
+					color 75 220 11
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector53'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "53" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios inmobiliarios y de alquiler de bienes"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios inmobiliarios y de alquiler de bienes'
+              STYLE
+			        symbol "punto"
+					color 200 200 10
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector54'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "54" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios profesionales, cientificos y tecnicos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios profesionales, cientificos y tecnicos'
+              STYLE
+			        symbol "punto"
+					color 77 77 77
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+
+	LAYER
+		NAME 'cSector55'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "55" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Corporativos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Corporativos'
+              STYLE
+			        symbol "punto"
+					color 56 80 200
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector56'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "56" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Serv. de apoyo a los negocios y manejo de residuos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Serv. de apoyo a los negocios y manejo de residuos'
+              STYLE
+			        symbol "punto"
+					color 23 32 61
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector61'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "61" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios educativos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios educativos'
+              STYLE
+			        symbol "punto"
+					color 2 77 43
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector62'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "62" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios de salud y de asistencia social"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios de salud y de asistencia social'
+              STYLE
+			        symbol "punto"
+					color 53 149 38
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector71'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "71" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios de esparcimiento curturales y deportivos"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios de esparcimiento curturales y deportivos'
+              STYLE
+			        symbol "punto"
+					color 147 238 16
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector72'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "72" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Servicios de alojamiento temporal y de preparacion"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Servicios de alojamiento temporal y de preparacion'
+              STYLE
+			        symbol "punto"
+					color 215 70 199
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector81'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "81" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Otros serv. excepto actividades gubernamentales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Otros serv. excepto actividades gubernamentales'
+              STYLE
+			        symbol "punto"
+					color 159 251 244
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+	LAYER
+		NAME 'cSector93'
+		GROUP 'INEGI'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913" 
+		FILTERITEM "sector"
+        FILTER "93" 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Actividades legislativas, gubernamentales"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "INEGI"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS on
+		TOLERANCE 8 #default is 3 for raster, 0 for vector
+		TEMPLATE "query.html"
+		   CLASS
+              NAME 'Actividades legislativas, gubernamentales'
+              STYLE
+			        symbol "punto"
+					color 30 10 199
+			        size 5
+              END #end style
+           END # end class   
+	END #end layer
+
+
+
+
+	#-----------------------------------------> Inicio Prueba CLUSTER DENUE
+
+	LAYER
+		NAME 'cdenue_cluster'
+		GROUP 'mdm6'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1 port=5432"
+		DATA "geom from prueba.pruenue using unique gid using srid=900913"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		MAXSCALE 60000000 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		
+		TYPE point
+		STATUS ON
+		CLUSTER
+			MAXDISTANCE 250  # in pixels
+			REGION "ellipse"  # can be rectangle or ellipse
+			#GROUP (expression)  # an expression to create separate groups for each value
+			#FILTER (expression) # a logical expression to specify the grouping condition
+		 END
+		LABELITEM "Cluster_FeatureCount"
+		CLASS
+			STYLE
+				SIZE 50
+				SYMBOL "circulo"
+				COLOR 255 195 0
+				OUTLINECOLOR 199 0 57
+				WIDTH 3
+			END #end style
+			LABEL
+				ANGLE auto
+				SIZE 12
+				COLOR 105 105 105
+				MINFEATURESIZE 100
+				TYPE truetype
+				FONT  arial #times # verdana 
+				ANTIALIAS true
+				#OUTLINECOLOR 220 220 220
+				OUTLINEWIDTH 1
+				MAXLENGTH 9
+				#WRAP ","
+				ALIGN center
+				POSITION CC
+				PARTIALS false
+			END
+		END # end class 
+	END # end layer
+
+	
+
+	#-----------------------------------------> Fin Prueba CLUSTER DENUE
+
+	#---------------------------------------- Inicio CLUSTER DENUE 2021 --------------------------
+
+	LAYER
+		NAME 'cdenue_cluster_2021'
+		GROUP 'mdm6'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1 port=5432"
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		MAXSCALE 60000000 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		
+		TYPE point
+		STATUS ON
+		CLUSTER
+			MAXDISTANCE 250  # in pixels
+			REGION "ellipse"  # can be rectangle or ellipse
+			#GROUP (expression)  # an expression to create separate groups for each value
+			#FILTER (expression) # a logical expression to specify the grouping condition
+		 END
+		LABELITEM "Cluster_FeatureCount"
+		CLASS
+			STYLE
+				SIZE 50
+				SYMBOL "circulo"
+				COLOR 220 41 1
+				OUTLINECOLOR 199 0 57
+				WIDTH 3
+			END #end style
+			LABEL
+				ANGLE auto
+				SIZE 12
+				COLOR 5 5 5
+				MINFEATURESIZE 100
+				TYPE truetype
+				FONT  arial #times # verdana 
+				ANTIALIAS true
+				#OUTLINECOLOR 220 220 220
+				OUTLINEWIDTH 1
+				MAXLENGTH 9
+				#WRAP ","
+				ALIGN center
+				POSITION CC
+				PARTIALS false
+			END
+		END # end class 
+	END # end layer
+
+	
+
+	#---------------------------------------- Fin CLUSTER DENUE 2021 --------------------------------
+
+	#---------------------------------------- Inicio CLUSTER DENUE 2022 --------------------------
+
+	LAYER
+		NAME 'cdenue_cluster_2022'
+		GROUP 'mdm6'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1 port=5432"
+		DATA "geom from prueba.denue_2022 using unique gid using srid=900913"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		MAXSCALE 60000000 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		
+		TYPE point
+		STATUS ON
+		CLUSTER
+			MAXDISTANCE 250  # in pixels
+			REGION "ellipse"  # can be rectangle or ellipse
+			#GROUP (expression)  # an expression to create separate groups for each value
+			#FILTER (expression) # a logical expression to specify the grouping condition
+		 END
+		LABELITEM "Cluster_FeatureCount"
+		CLASS
+			STYLE
+				SIZE 50
+				SYMBOL "circulo"
+				COLOR 220 41 1
+				OUTLINECOLOR 199 0 57
+				WIDTH 3
+			END #end style
+			LABEL
+				ANGLE auto
+				SIZE 12
+				COLOR 5 5 5
+				MINFEATURESIZE 100
+				TYPE truetype
+				FONT  arial #times # verdana 
+				ANTIALIAS true
+				#OUTLINECOLOR 220 220 220
+				OUTLINEWIDTH 1
+				MAXLENGTH 9
+				#WRAP ","
+				ALIGN center
+				POSITION CC
+				PARTIALS false
+			END
+		END # end class 
+	END # end layer
+
+	
+
+	#---------------------------------------- Fin CLUSTER DENUE 2022 --------------------------------
+
+	
+
+    # HECHOS VIALES COLIMA 2021
+
+	#-----------------------------------------> Inicio Prueba Capa HECHOS VIALES COLIMA 2021
+
+	LAYER
+		NAME 'chechos_viales_colima_2021'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "the_geom from prueba.hv_colima_2021 using unique gid using srid=900913"
+		# FILTERITEM "diasemana"
+        # FILTER /lunes/
+		MAXSCALE 6000000
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Localidad"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS ON
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector 
+		TEMPLATE "query.html"
+		   CLASS 
+			NAME 'Hechos viales Colima 2021'
+			STYLE
+				symbol morado
+			    size 10
+			END #end style
+		   END # end classCLASS 
+	END
+
+  #-----------------------------------------> FIN Prueba Capa HECHOS VIALES COLIMA 2021
+  
+	#-------------------------- INICIA CLUSTER HECHOS VIALES 2021 COLIMA
+	LAYER
+		NAME 'cHVColima_cluster2021'
+		GROUP 'mdm6'
+		CONNECTIONTYPE postgis
+		CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1 port=5432"
+		DATA "the_geom from prueba.hv_colima_2021 using unique gid using srid=900913"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		MAXSCALE 60000000 
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		
+		TYPE point
+		STATUS ON
+		CLUSTER
+			MAXDISTANCE 250  # in pixels
+			REGION "ellipse"  # can be rectangle or ellipse
+			#GROUP (expression)  # an expression to create separate groups for each value
+			#FILTER (expression) # a logical expression to specify the grouping condition
+		END
+		LABELITEM "Cluster_FeatureCount"
+		CLASS
+			STYLE
+				SIZE 50
+				SYMBOL "circulo"
+				COLOR 170 146 4
+				OUTLINECOLOR 170 146 4
+				
+				WIDTH 3
+			END #end style
+			LABEL
+				ANGLE auto
+				SIZE 16
+				COLOR 0 0 0
+				MINFEATURESIZE 100
+				TYPE truetype
+				FONT  arial #times # verdana 
+				ANTIALIAS true
+				#OUTLINECOLOR 220 220 220
+				OUTLINEWIDTH 1
+				MAXLENGTH 9
+				#WRAP ","
+				ALIGN center
+				POSITION CC
+				PARTIALS false
+			END
+		END # end class 
+	END # end layer
+	#--------------------------- TERMINA CLUSTER HECHOS VIALES 2021 COLIMA
+#
+
+
+  #-----------------------------------------> Inicio Prueba MAPA DE CALOR COLIMA 2021
+	LAYER
+		NAME "cmapas_calor_colima_2021"
+		TYPE raster
+		CONNECTIONTYPE kerneldensity
+		CONNECTION "chechos_viales_colima_2021"
+		STATUS ON 
+		PROCESSING "RANGE_COLORSPACE=HSL"
+		PROCESSING "KERNELDENSITY_RADIUS=9"
+		PROCESSING "KERNELDENSITY_COMPUTE_BORDERS=ON"
+		PROCESSING "KERNELDENSITY_NORMALIZATION=3"
+		OFFSITE 0 0 0
+		CLASS
+			STYLE
+				COLORRANGE "#0000ff00" "#0000ffff"
+				DATARANGE 0 32
+			END #END STYLE
+			STYLE
+				COLORRANGE "#0000ffff" "#ff0000ff" 
+				DATARANGE 32 260
+				
+			END #END STYLE
+		END #END CLASS
+	END #END LAYER
+	#-----------------------------------------> Fin Prueba MAPA DE CALOR COLIMA 2021 
+
+
+	#-----------------------------------------> Inicio Prueba MAPA DE CALOR COLIMA VICTIMAS 2019-2021
+	LAYER
+		NAME "cHVial_Calor_Concentrado_2019_2021"
+		TYPE raster
+		CONNECTIONTYPE kerneldensity
+		CONNECTION "cHVial_Concentrado_2019_2021"
+		STATUS ON 
+		PROCESSING "RANGE_COLORSPACE=HSL"
+		PROCESSING "KERNELDENSITY_RADIUS=9"
+		PROCESSING "KERNELDENSITY_COMPUTE_BORDERS=ON"
+		PROCESSING "KERNELDENSITY_NORMALIZATION=3"
+		OFFSITE 0 0 0
+		CLASS
+			STYLE
+				COLORRANGE "#0000ff00" "#0000ffff"
+				DATARANGE 0 32
+			END #END STYLE
+			STYLE
+				COLORRANGE "#0000ffff" "#ff0000ff" 
+				DATARANGE 32 260
+				
+			END #END STYLE
+		END #END CLASS
+	END #END LAYER
+	#-----------------------------------------> Fin Prueba MAPA DE CALOR COLIMA VICTIMAS 2019-2021
+
+	
+
+
+
+	#--------> Inicio Prueba HECHOS VIALES POR DIA DE LA SEMANA (ENTRE SEMANA Y FINES DE SEMANA ) COLIMA 2021
+	LAYER
+		NAME 'chechos_colima_2021_weeknd'
+		GROUP 'MGE'
+		CONNECTIONTYPE postgis
+                CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+		PROCESSING "CLOSE_CONNECTION=DEFER"		
+		DATA "the_geom from prueba.hv_colima_2021 using unique gid using srid=900913"
+		#FILTERITEM "tip_diasem"
+        #FILTER "Fin de semana"
+		MAXSCALE 6000000
+		PROJECTION
+			"init=epsg:900913"
+		END #end projection
+		METADATA 
+			"queryable" "true"
+			"ows_title" "Localidad"
+			"ows_abstract" ""
+			"ows_keywordlist" ""
+			"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+			"wms_group_title" "MGE"
+			"wms_dataurl_format" "text/html"
+			"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+			"wms_style_default_title" "default"
+			"wms_format" "image/png"
+			"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+			"wms_attribution_title" "INEGI"
+			"wms_attribution_logourl_width" "20"
+			"wms_attribution_logourl_height" "20"
+			"wms_attribution_logourl_format" "image/jpg"
+			"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+			"wms_srs" "EPSG:900913"
+			END #end metadata 
+		TYPE point
+		STATUS ON
+		DEBUG 0
+		TOLERANCE 8 #default is 3 for raster, 0 for vector 
+		TEMPLATE "query.html"
+		   CLASS 
+			NAME 'Entre semana'
+			EXPRESSION ("[tip_diasem]" == "Entre semana")
+			STYLE
+				size 5
+				SYMBOL "punto"
+				COLOR 0 0 255
+			END #end style
+		   END # end classCLASS 
+
+		   CLASS 
+			NAME 'Fines de semana'
+			EXPRESSION ("[tip_diasem]" == "Fin de semana")
+			STYLE
+				size 5
+				SYMBOL "punto"
+				COLOR 255 0 0
+			END #end style
+		END # end classCLASS
+	END
+	#--------> Fin Prueba HECHOS VIALES POR DIA DE LA SEMANA (ENTRE SEMANA Y FINES DE SEMANA ) COLIMA 2021
+
+	
+
+
+ #--------> Inicio Prueba HECHOS VIALES CONCENTRADO COLIMA 2019 2021
+
+ LAYER
+	NAME 'cHVial_Concentrado_2019_2021'
+	GROUP 'MGE'
+	CONNECTIONTYPE postgis
+			CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+	PROCESSING "CLOSE_CONNECTION=DEFER"		
+	DATA "the_geom from prueba.hv_col_2019_2021 using unique gid using srid=900913"
+	#FILTERITEM "tip_diasem"
+	#FILTER "Fin de semana"
+	MAXSCALE 6000000
+	PROJECTION
+		"init=epsg:900913"
+	END #end projection
+	METADATA 
+		"queryable" "true"
+		"ows_title" "Localidad"
+		"ows_abstract" ""
+		"ows_keywordlist" ""
+		"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+		"wms_group_title" "MGE"
+		"wms_dataurl_format" "text/html"
+		"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+		"wms_style_default_title" "default"
+		"wms_format" "image/png"
+		"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+		"wms_attribution_title" "INEGI"
+		"wms_attribution_logourl_width" "20"
+		"wms_attribution_logourl_height" "20"
+		"wms_attribution_logourl_format" "image/jpg"
+		"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+		"wms_srs" "EPSG:900913"
+		END #end metadata 
+	TYPE point
+	STATUS ON
+	DEBUG 0
+	TOLERANCE 8 #default is 3 for raster, 0 for vector 
+	TEMPLATE "query.html"
+	   CLASS 
+		NAME 'Fatal'
+		EXPRESSION ("[clase]" == "Fatal")
+		STYLE
+			size 5
+			SYMBOL "punto"
+			COLOR 255 0 0
+		END #end style
+	   END # end classCLASS 
+
+	   CLASS 
+		NAME 'Solo Daños'
+		EXPRESSION ("[clase]" == "Solo daños")
+		STYLE
+			size 5
+			SYMBOL "punto"
+			COLOR 45 87 44
+		END #end style
+	   END # end classCLASS 
+
+	   CLASS 
+		NAME 'No fatal'
+		EXPRESSION ("[clase]" == "No fatal")
+		STYLE
+			size 5
+			SYMBOL "punto"
+			COLOR 0 0 255
+		END #end style
+	END # end classCLASS
+END
+#--------> FIN Prueba HECHOS VIALES VICTIMAS COLIMA 2019 2021
+
+
+
+
+#-----------------------------------------> Inicio Capa Nuevas Preescolares
+LAYER
+	NAME 'cPreescolar'
+	GROUP 'MGE'
+	CONNECTIONTYPE postgis
+			CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+	PROCESSING "CLOSE_CONNECTION=DEFER"		
+	DATA "the_geom from prueba.escuelaspreescolar using unique gid using srid=900913"
+	# FILTERITEM "diasemana"
+	# FILTER /lunes/
+	MAXSCALE 6000000
+	PROJECTION
+		"init=epsg:900913"
+	END #end projection
+	METADATA 
+		"queryable" "true"
+		"ows_title" "Localidad"
+		"ows_abstract" ""
+		"ows_keywordlist" ""
+		"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+		"wms_group_title" "MGE"
+		"wms_dataurl_format" "text/html"
+		"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+		"wms_style_default_title" "default"
+		"wms_format" "image/png"
+		"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+		"wms_attribution_title" "INEGI"
+		"wms_attribution_logourl_width" "20"
+		"wms_attribution_logourl_height" "20"
+		"wms_attribution_logourl_format" "image/jpg"
+		"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+		"wms_srs" "EPSG:900913"
+		END #end metadata 
+	TYPE point
+	STATUS ON
+	DEBUG 0
+	TOLERANCE 8 #default is 3 for raster, 0 for vector 
+	TEMPLATE "query.html"
+	CLASS 
+		NAME 'Escuelas Preescolares'
+		STYLE
+			symbol azul
+			size 10
+		END #end style
+	END # end classCLASS 
+END
+
+#-----------------------------------------> Fin Capa Nuevas Preescolares
+
+#-----------------------------------------> Inicio Capa Nuevas Primarias
+LAYER
+	NAME 'cPrimarias'
+	GROUP 'MGE'
+	CONNECTIONTYPE postgis
+			CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+	PROCESSING "CLOSE_CONNECTION=DEFER"		
+	DATA "the_geom from prueba.escuelasprimaria using unique gid using srid=900913"
+	# FILTERITEM "diasemana"
+	# FILTER /lunes/
+	MAXSCALE 6000000
+	PROJECTION
+		"init=epsg:900913"
+	END #end projection
+	METADATA 
+		"queryable" "true"
+		"ows_title" "Localidad"
+		"ows_abstract" ""
+		"ows_keywordlist" ""
+		"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+		"wms_group_title" "MGE"
+		"wms_dataurl_format" "text/html"
+		"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+		"wms_style_default_title" "default"
+		"wms_format" "image/png"
+		"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+		"wms_attribution_title" "INEGI"
+		"wms_attribution_logourl_width" "20"
+		"wms_attribution_logourl_height" "20"
+		"wms_attribution_logourl_format" "image/jpg"
+		"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+		"wms_srs" "EPSG:900913"
+		END #end metadata 
+	TYPE point
+	STATUS ON
+	DEBUG 0
+	TOLERANCE 8 #default is 3 for raster, 0 for vector 
+	TEMPLATE "query.html"
+	CLASS 
+		NAME 'Escuelas Preescolares'
+		STYLE
+			symbol verde
+			size 10
+		END #end style
+	END # end classCLASS 
+END
+
+#-----------------------------------------> Fin Capa Nuevas Primarias
+
+#-----------------------------------------> Inicio Capa Nuevas Secundarias
+LAYER
+	NAME 'cSecundarias'
+	GROUP 'MGE'
+	CONNECTIONTYPE postgis
+			CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+	PROCESSING "CLOSE_CONNECTION=DEFER"		
+	DATA "the_geom from prueba.escuelassecundaria using unique gid using srid=900913"
+	# FILTERITEM "diasemana"
+	# FILTER /lunes/
+	MAXSCALE 6000000
+	PROJECTION
+		"init=epsg:900913"
+	END #end projection
+	METADATA 
+		"queryable" "true"
+		"ows_title" "Localidad"
+		"ows_abstract" ""
+		"ows_keywordlist" ""
+		"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+		"wms_group_title" "MGE"
+		"wms_dataurl_format" "text/html"
+		"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+		"wms_style_default_title" "default"
+		"wms_format" "image/png"
+		"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+		"wms_attribution_title" "INEGI"
+		"wms_attribution_logourl_width" "20"
+		"wms_attribution_logourl_height" "20"
+		"wms_attribution_logourl_format" "image/jpg"
+		"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+		"wms_srs" "EPSG:900913"
+		END #end metadata 
+	TYPE point
+	STATUS ON
+	DEBUG 0
+	TOLERANCE 8 #default is 3 for raster, 0 for vector 
+	TEMPLATE "query.html"
+	CLASS 
+		NAME 'Escuelas Secundarias'
+		STYLE
+			symbol morado
+			size 10
+		END #end style
+	END # end classCLASS 
+END
+
+#-----------------------------------------> Fin Capa Nuevas Secundarias
+
+
+
+
+#---------------------------------- Inicio IDU Colima-Villa de Alvarez 2021
+
+LAYER
+	NAME 'cIdu_Col_Vda_2021'
+	GROUP 'MGE'
+	CONNECTIONTYPE postgis
+			CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+	PROCESSING "CLOSE_CONNECTION=DEFER"		
+	DATA "the_geom from prueba.idu_colima_villa_de_alvarez_2021 using unique gid using srid=900913"
+	MAXSCALE 6000000
+	PROJECTION
+		"init=epsg:900913"
+	END #end projection
+	METADATA 
+		"queryable" "true"
+		"ows_title" "Localidad"
+		"ows_abstract" ""
+		"ows_keywordlist" ""
+		"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+		"wms_group_title" "MGE"
+		"wms_dataurl_format" "text/html"
+		"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+		"wms_style_default_title" "default"
+		"wms_format" "image/png"
+		"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+		"wms_attribution_title" "INEGI"
+		"wms_attribution_logourl_width" "20"
+		"wms_attribution_logourl_height" "20"
+		"wms_attribution_logourl_format" "image/jpg"
+		"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+		"wms_srs" "EPSG:900913"
+		END #end metadata 
+	TYPE polygon
+	STATUS ON
+	DEBUG 0
+	TOLERANCE 8 #default is 3 for raster, 0 for vector 
+	TEMPLATE "query.html"
+	   
+	CLASS 
+		NAME 'Muy Alto'
+		EXPRESSION ("[iisu_cd]"=="Muy Alto")
+		STYLE
+			WIDTH 3.0
+			COLOR 11 102 15 
+			#OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Alto'
+		EXPRESSION ("[iisu_cd]"=="Alto")
+		STYLE
+			WIDTH 3.0
+			COLOR 76 238 83
+			#OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Intermedio'
+		EXPRESSION ("[iisu_cd]"=="Intermedio")
+		STYLE
+			WIDTH 3.0
+			COLOR 253 253 150
+			#OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Bajo'
+		EXPRESSION ("[iisu_cd]"=="Bajo")
+		STYLE
+			WIDTH 3.0
+			COLOR 255 179 71
+			#OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Muy Bajo'
+		EXPRESSION ("[iisu_cd]"=="Muy Bajo")
+		STYLE
+			WIDTH 3.0
+			COLOR 255 0  0
+			#OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Sin Poblacion'
+		EXPRESSION ("[iisu_cd]"=="S/P")
+		STYLE
+			WIDTH 3.0
+			COLOR 155 155 155
+			#OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+
+	
+
+
+END
+
+#----------------------------------Fin IDU Colima-Villa de Alvarez 2021
+
+
+
+
+
+
+# INicio Rutas
+
+
+#-----------------------------------> INICIO RUTAS COLIMA-VILLA DE ALVAREZ
+
+LAYER
+	NAME 'cRutasColimaVillaDeAlvarez'
+	GROUP 'MGE'
+	CONNECTIONTYPE postgis
+			CONNECTION "user=postgres password=password1 dbname=mdm6data host=127.0.0.1  port=5432"
+	PROCESSING "CLOSE_CONNECTION=DEFER"		
+	DATA "the_geom from prueba.rutas_colima_villadealvarez using unique gid using srid=900913"
+	MAXSCALE 6000000
+	PROJECTION
+		"init=epsg:900913"
+	END #end projection
+	METADATA 
+		"queryable" "true"
+		"ows_title" "Actividades Legislativas, Gubernamentales"
+		"ows_abstract" ""
+		"ows_keywordlist" ""
+		"wms_extent" "-13345293.64051 1516510.64097 -9294742.63818 3991847.36461"
+		"wms_group_title" "MGE"
+		"wms_dataurl_format" "text/html"
+		"wms_dataurl_href" "http://mapserver.inegi.org.mx/geografia/espanol/normatividad/metadatos/gateway.cfm?id="
+		"wms_style_default_title" "default"
+		"wms_format" "image/png"
+		"wms_attribution_onlineresource" "http://www.inegi.org.mx/"
+		"wms_attribution_title" "INEGI"
+		"wms_attribution_logourl_width" "20"
+		"wms_attribution_logourl_height" "20"
+		"wms_attribution_logourl_format" "image/jpg"
+		"wms_attribution_logourl_href" "http://mapserver.inegi.org.mx/images/logoINEGI.JPG"
+		"wms_srs" "EPSG:900913"
+		END #end metadata 
+	TYPE line
+	STATUS ON
+	DEBUG 0
+	TOLERANCE 8 #default is 3 for raster, 0 for vector 
+	TEMPLATE "query.html"
+
+	CLASS 
+		NAME 'Ruta 1'
+		EXPRESSION ("[gid]"=="1")
+		STYLE
+			WIDTH 4.0
+			COLOR 0 0 255 
+			OUTLINECOLOR 220 220 220
+			
+			
+		END #end style
+	END # end classCLASS
+
+	
+	CLASS 
+		NAME 'Ruta 10'
+		EXPRESSION ("[gid]"=="2")
+		STYLE
+			WIDTH 6.0
+			COLOR 88 24 69 
+			OUTLINECOLOR 88 24 69
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 13'
+		EXPRESSION ("[gid]"=="3")
+		STYLE
+			WIDTH 6.0
+			COLOR 234 9 238 
+			OUTLINECOLOR 234 9 238	
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 13-A'
+		EXPRESSION ("[gid]"=="4")
+		STYLE
+			WIDTH 6.0
+			COLOR 142 42 134 
+			OUTLINECOLOR 142 42 134
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 14'
+		EXPRESSION ("[gid]"=="5")
+		STYLE
+			WIDTH 6.0
+			COLOR 248 113 59
+			OUTLINECOLOR 248 113 59
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 20'
+		EXPRESSION ("[gid]"=="6")
+		STYLE
+			WIDTH 6.0
+			COLOR 37 228 234
+			OUTLINECOLOR 37 228 234
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 21'
+		EXPRESSION ("[gid]"=="7")
+		STYLE
+			WIDTH 6.0
+			COLOR 255 0 19 
+			OUTLINECOLOR 255 0 19
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 22'
+		EXPRESSION ("[gid]"=="8")
+		STYLE
+			WIDTH 6.0
+			COLOR 58 66 228
+			OUTLINECOLOR 58 66 22
+		END #end style
+	END # end classCLASS
+	
+	CLASS 
+		NAME 'Ruta 24'
+		EXPRESSION ("[gid]"=="9")
+		STYLE
+			WIDTH 6.0
+			COLOR 199 0 57
+			OUTLINECOLOR 199 0 57
+	  END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 28'
+		EXPRESSION ("[gid]"=="10")
+		STYLE
+			WIDTH 6.0
+			COLOR 244 238 30
+			OUTLINECOLOR 244 238 30
+
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 30'
+		EXPRESSION ("[gid]"=="11")
+		STYLE
+			WIDTH 6.0
+			COLOR 233 150 222
+			OUTLINECOLOR 233 150 222
+	   END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 31'
+		EXPRESSION ("[gid]"=="12")
+		STYLE
+			WIDTH 7.0
+			COLOR 20 143 119
+			OUTLINECOLOR 20 143 119
+		END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 5'
+		EXPRESSION ("[gid]"=="13")
+		STYLE
+			WIDTH 6.0
+			COLOR 83 220 118 
+			OUTLINECOLOR 83 220 118
+		 END #end style
+	END # end classCLASS
+
+	CLASS 
+		NAME 'Ruta 9-A'
+		EXPRESSION ("[gid]"=="14")
+		STYLE
+			WIDTH 6.0
+			COLOR 144 12 63
+			OUTLINECOLOR 144 12 63
+		END #end style
+	END # end classCLASS
+
+	
+
+	
+END
+
+#-----------------------------------> FINAL RUTAS COLIMA-VILLA DE ALVAREZ
+
+
+
+
+
+
+ #------------------------------------> INICIO CONFIGURACION
+
+	LEGEND
+		STATUS ON
+		IMAGECOLOR 255 255 255 #233 236 202 # 238 238 238
+		KEYSIZE 16 10
+		KEYSPACING 10 10 
+		LABEL
+			TYPE truetype
+			FONT arial
+			SIZE 8
+			COLOR 90 90 90
+		END  # end Label
+	END # end Legend
+	
+	SCALEBAR
+		STATUS on
+		POSITION lc
+		STYLE 0
+		INTERVALS 3
+		SIZE 129 3
+		IMAGECOLOR  255 255 255
+		LABEL
+			COLOR 0 0 0
+			SIZE 1
+		END  # end label
+		OUTLINECOLOR 0 0 0
+		COLOR  0 0 0
+		BACKGROUNDCOLOR  255 255 255
+		UNITS kilometers
+	END   # end scalebar
+	
+	REFERENCE
+		EXTENT 299819.4023 -134216.153 4695934.1014 2714439.6185
+		IMAGE "../images/reference.jpg"
+		SIZE 200 100
+		COLOR -1 -1 -1
+		OUTLINECOLOR 255 0 0
+	END  # end reference
+	
+	OUTPUTFORMAT
+		NAME "png"
+		MIMETYPE "image/png"
+		DRIVER  "GD/PNG" # "AGG/PNG"  # 
+		EXTENSION "png"
+		IMAGEMODE "RGBA" #"PC256"  # "RGBA"
+		TRANSPARENT true
+	END #end outputformat
+
+	
+END #end map
+
+

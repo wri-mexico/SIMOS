@@ -1,0 +1,469 @@
+@import url('css/sprite_infoCard.css');
+
+
+
+.infoCard_mainContainer .selectedClass{
+	background: #F2BD97;;
+}
+
+.infoCard_mainContainer{
+	position: absolute;
+  	width: 780px;
+  	height: 450px;
+  	/* margin: 0 auto; */
+  	background: #fff;
+	/*font-weight:bold*/
+}
+
+.infoCard_dataContainer{
+	position: absolute;
+  	width: 90%;
+
+  	/*height: 200px;*/
+  	/* background-color: rgb(89, 141, 187); */
+}
+
+.infoCard_resumeContainer{
+	float:left;
+	width: 100%;
+}
+
+.infoCard_dataSelect{
+	float: left;
+  	width: 100%;
+}
+	
+.infoCard_arrowDown	{
+	float: left;
+  	margin-top: 4px;
+  	margin-left: 10px;
+}
+
+.infoCard_toolBar{
+	position: absolute;
+  	right: -8px;
+  	width: 50px;
+  	/*height: 200px;*/
+  	/*background-color: aliceblue;*/
+}
+
+.infoCard_tools{
+	float: left;
+    margin-left: -15px;
+    margin-top: 25px;
+	}
+
+.infoCard_varTitle{
+	font-size: 13px;
+  	font-weight: bold;
+  	font-family: arial;
+  	color: #514F4F;
+}
+
+.infoCard_dataRow{
+	width: 100%;
+  	padding-top: 4px;
+ 	height: 20px;
+  	/*background-color: aliceblue;*/
+}
+
+.infoCard_option_title{
+	float: left;
+  	margin-left: 4px;
+ 	margin-right: 5px;
+  	font-size: 10pt;
+  	font-family: arial;
+  	font-weight: bold;
+ 	color: #514F4F;
+}
+
+.infoCard_varList_title{
+	float: left;
+	width: 60%;
+   /* background-color: green;*/
+  	margin-left: 4px;
+  	margin-right: 5px;
+  	font-size: 8.7pt;
+  	font-family: arial;
+  	font-weight: bold;
+ 	color: #514F4F;
+}
+
+
+.infoCard_data{
+	  margin-left: 60px;
+}
+
+
+.infocard_sectorData{
+  float: left;		
+  width: 50%;
+  /*background-color: aliceblue;*/
+  
+}
+
+.infoCard_granSector{
+  font-size: 10pt;
+  font-family: arial;
+  font-weight: bold;
+  color: #514F4F;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.infoCard_sector{
+  font-size: 100%;
+  color: #514F4F;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.infoCard_subsector{
+  font-size: 100%;
+  font-style: italic;
+  color: #514F4F;
+  margin-top: 6px;
+}
+
+.infoCard_sectores{
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+  padding-bottom: 10px;
+  padding-bottom: 7px;
+  padding-right: 5px;
+   background: #E2E2E2;
+}
+
+
+.infoCard_variables{
+	position: absolute;
+    top: 155px;
+  	left: 7px;
+  	width: 97%;
+  	bottom:35px;
+	overflow:auto;
+	/*background-color: aliceblue;*/
+	}	
+
+.infoCard_variableRow{
+	width: 100%;
+  	padding-top: 4px;
+	padding-bottom: 4px;
+ 	height: 11px;
+	
+	}
+		
+.infoCard_variableData{
+	float: left;
+    width: 12%;
+    margin-right: 5px;
+    margin-top: -2px;
+    text-align: right;
+}	
+	
+.infoCard_bottomTools{
+	position: absolute;
+  	bottom: 0px;
+  	left: 0px;
+  	right: 0px;
+  	width: 100%;
+  	height: 35px;
+  	background-color: rgb(226, 226, 226);	
+}
+
+/*.infoCard_selectedYear{
+	background-color:grey;
+	font-color:#FFF;
+	}*/
+
+/*************************************AnalysisCard********************************************************/	
+
+.analysisCard_container{
+	position: absolute;
+  	bottom: 35px;
+  	background-color: #FFF;
+  	width: 100%;
+	top:0px;
+}
+
+
+.analysisCard_geographic{
+	width: 100%;
+	  height: 105px;
+	}
+	
+.analysisCard_arrow{
+	float: left;
+  	/* margin-left: 7px; */
+	position:absolute;
+  	margin-top: -4px;
+}		
+
+#analysisCard_searchInput{
+	width: 210px;
+  	margin-top: 7px;
+	}
+
+#analysisCard_iconPosition{
+	position: absolute;
+  	right: 10px;
+  	top: 8px;
+	}
+
+.analysisCard_iconPosition{
+	position: absolute;
+  	right: 4px;
+  	top: 8px;
+}
+
+.analysisCard_location{
+  float: left;
+  width: 50%;
+  /* height: 35px; */
+  margin-top: 10px;
+  margin-left: 7px;
+  font-size: 12px;
+  font-family: arial;
+	
+}
+.analysisCard_datosComparativos{
+	position:relative;
+	top: -22px;
+	height:30px;
+	width:100%;
+	border-bottom:2px solid #E2E2E2;
+}
+.analysisCard_title{
+	float:left;
+	width:33%;
+	line-height: 30px;
+}
+
+
+.analysisCard_datoComparativo{
+	display:inline-block;
+	  margin-left: 5px;
+}
+
+
+.analysisCard_menuBar{
+	position: relative;
+    background: #FBFBFB;
+    border-bottom: solid 2px #E2E2E2;
+    padding-left: 7px;
+    left: -17px;
+    top: -24px;
+    height: 30px;
+    width: 100%;
+}
+
+.analysisCard_menuBar .item_analysisCard_menuBar{
+	  float: left;
+	  line-height: 28px;
+	  
+}
+.analysisCard_menuBar .option_menuBar{
+	  padding-left: 7px;
+  	  padding-right: 10px;
+}
+.analysisCard_menuBar .option_menuBar:hover{
+	  background:#E2E2E2;
+	  cursor:pointer;
+}
+
+.option_menuBar_selected{
+	background:#E2E2E2;
+	}
+
+
+.analysisCard_graphic{
+	position: relative;
+    width: 100%;
+    height: 146px;
+    top: -16px;
+    bottom: 0px;
+}
+
+.analysisCard_table{
+	  position: absolute;
+  top: 73%;
+  width: 100%;
+  overflow: auto;
+  max-height: 130px;
+  
+  
+}
+
+/*Analisis table*/
+
+.analysisTable {  
+  display: table;  
+}  
+  
+.analysisRow{  
+  display: table-row;  
+}  
+  
+.analysisCell{  
+  	display: table-cell;
+  height: 15px;
+  /* border: 1px solid #FFF; */
+  border-width: thin;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+} 
+
+.analysisCell_grey{
+	background:#E6E6E6;
+	}
+
+.tab-mpio-container{
+	display:inline-block;
+	
+	} 
+	
+.tab-participacion-container{
+	display:inline-block;
+	
+	} 	
+	
+.tab-personal-container{
+	display:inline-block;
+	
+	} 	
+
+.tab-analiticas-container{
+	display:inline-block;
+	
+	}
+	
+#personal_data{
+	display: block;
+    overflow: auto;
+    width: 1000px;
+	}	 	
+#unidades_data{
+	display: block;
+    overflow: auto;
+    width: 1000px;
+	}		
+		
+.btn_addGeo{
+  position: absolute;
+  bottom: -42px;
+  right: 16px;
+
+	}
+#ecoInfoCard_dialog{
+	overflow:hidden !important;
+	
+	}
+.borderCell{
+	border-bottom: 2px solid #E6E6E6;
+	cursor:pointer;
+}
+
+.analysisCard_marginTitle{
+	margin-left:15px;
+}
+
+.analysisCellCenter{
+	  width: 100%;
+  text-align: center;
+ }
+ 
+ .analysisFontTitle{
+	 font-weight: bold;
+	}
+	
+.analysisCard_varSelected{
+	background-color:#EE8C55;
+}
+
+.analysisCell_textAlign{
+	display: inline-block;
+  	/* line-height: 13px; */
+  	margin-left: 5px;
+	}	
+	
+.mainVars{
+	font-weight: bold;
+	color: #000000;
+	}
+	
+.analysisCard_spaceRow{
+	width:100%;
+	height:35px;
+}
+.dialogInfoCard-minimize{
+	height:200px !important;
+	overflow:hidden;
+	width:500px !important;	
+}
+#analysisCard_hintFormat{
+	-webkit-border-radius: 15px 15px 15px 15px;
+	border-radius: 15px 15px 15px 15px;
+	-webkit-box-shadow: px px px 1px #BDBDBD;
+	box-shadow: px px px 1px #BDBDBD;
+	padding:5px;
+	position:absolute;
+	z-index:5000;
+}
+
+.analysisCard_collapseWindow{
+	position: absolute;
+    top: 10px;
+}
+
+.analysisCard_btnPosition{
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    right: 280px;
+    top: 120px;
+}
+
+.infoCard_titlesStyles{
+	width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 5px 10px 5px 4px;
+    border-bottom: 1px solid #EEE;
+    background-color: #FCFCFC;
+    text-align: right;
+    cursor: default;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.infoCard_titlesYears{
+	float: right;
+	margin-right: 6px;
+	font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+	text-align: right;
+	/*padding: 5px 10px 5px 4px;*/
+   /* height:27px;*/
+	
+}
+
+.btn_export{
+	position: absolute;
+    bottom: -39px;	
+	
+	}
+
+.dialogInfoCard-Small{
+	height: 21px !important;
+    overflow: hidden;
+    width: 320px !important;
+	}	
+		
+/**/

@@ -1,0 +1,708 @@
+.routing-dinamicPanel-segment{
+	float: left;
+	background-color: #FFFFFF;
+	padding: 3px;
+	width:380px;
+	margin-top: 4px;
+	font-size: 120%;
+	overflow: hidden;
+	
+	border: solid 1px #DDD;
+	
+	-webkit-box-shadow: 1px 1px 2px 0px #555;
+	box-shadow: 1px 1px 2px 0px #555;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+/* Routing */
+.module-routing-line{ 
+	/*background:url("line.png") top left; */
+}
+.module-routing-container{
+	width:100%;
+	display:block;
+	float: left;
+	margin-left: 3px;
+}
+.module-routing-point{
+	float:left;	
+}
+.module-routing-point-letter{
+	text-align:left;
+	float: left;
+	width:20px;
+	height:15px;
+	font-size: 208%;
+	color: #555;
+	font-weight: bold;
+	margin-top: 3px;
+}
+.module-routing-point[inner=true]{
+	background-color: #EFEFEF;
+}
+.module-routing-point[inner=true] .module-routing-point-letter{
+	text-align:center;
+	font-size: 180%;
+}
+.module-routing-point[edit=true] .module-routing-point-info{
+	background-color:#D5EAF0;
+}
+.module-routing-point[edit=true] .module-routing-inputField{
+	background-color:#D5EAF0;
+}
+
+.module-routing-point-info{
+	float: left;
+	width: 285px;
+	padding: 3px;
+	border: 1px solid #CCC;
+	margin-left: 4px;
+	font-size: 120%;
+	background-color:#FFF;	
+}
+.module-routing-point-separator{
+	float: left;
+	width: 293px;
+	height: 5px;
+	border-top: 1px solid #EEE;
+	margin-top: 5px;
+	margin-left: 25px;
+}
+.module-routing-point-tools{
+	float: right;
+	margin-right: -46px;
+	margin-top: -10px;	
+}
+.module-routing-point-tools div{
+	float:left;
+	cursor:pointer;
+}
+.module-routing-point-tools div:last-of-type{
+	margin-left:3px;
+}
+.module-routing-point-side-tool{
+	float:left;
+	width:100%;	
+}
+.module-routing-point-side-tool div{
+	margin-left:155px;
+	cursor:pointer;
+}
+.module-routing-inputField{
+	float:left;
+	width: 263px;
+	padding-right:24px;
+	margin-top: 3px;
+	border: none;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-item-close{
+	float:left;
+	cursor:pointer;	
+}
+.module-routing-item-ok{
+	float:left;
+	margin-left:-22px;	
+	cursor:pointer;
+}
+.module-routing-item-swap{
+	cursor:pointer;	
+}
+/*----------------Config-----------------------------*/
+#module_routing_config{
+	float: left;
+	background-color: #FFFFFF;
+	padding: 3px;
+	width:380px;
+	margin-top: 4px;
+	font-size: 120%;
+	overflow: hidden;
+	
+	border: solid 1px #DDD;
+	
+	-webkit-box-shadow: 1px 1px 2px 0px #555;
+	box-shadow: 1px 1px 2px 0px #555;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#module_routing_config_title{
+	width:100%;
+	text-align:center;	
+	float:left;
+	font-size: 125%;
+	padding-bottom: 4px;
+	font-weight: bold;
+}
+#module_routing_vehicle{
+	width:100%;
+	float:left;
+}
+.module-routing-axle-container{
+	width:84px;
+	height:47px;
+	float:left;	
+}
+.module-routing-trail-container{
+	width:63px;
+	height:47px;
+	float:left;	
+	margin-left:10px;
+}
+.module-routing-trail-container div{
+	display:none;
+}
+.module-routing-trail-container[type=trail] .module-routing-sprite-trail{
+	display:block;
+}
+.module-routing-trail-container[type=trailbig] .module-routing-sprite-trailbig{
+	display:block;
+}
+.module-routing-vehicle-container{
+	height:47px;
+	float:left;	
+}
+.module-routing-vehicle-container div{
+	display:none;
+	float:left;
+}
+.module-routing-vehicle-container[type=moto] .module-routing-sprite-moto{
+	display:block;
+}
+.module-routing-vehicle-container[type=car] .module-routing-sprite-car{
+	display:block;
+}
+.module-routing-vehicle-container[type=bus] .module-routing-sprite-bus{
+	display:block;
+}
+.module-routing-vehicle-container[type=truck] .module-routing-sprite-truck{
+	display:block;
+}
+.module-routing-vehicle-edit{
+	float:left;
+	cursor:pointer;	
+}
+#module_routing_vehicle select{
+	font-size:210%;	
+}
+.module-routing-combo-label{
+	width:100%;
+	float:left;
+	font-size: 95%;
+	margin-top:-9px;
+}
+.module-routing-vehicle-axle-container{
+	float:right;
+	width:69px;
+}
+.module-routing-vehicle-axle-container *{
+	float:right;
+}
+.module-routing-line-separator{
+	margin-top:3px;
+	width:100%;
+	float:left;
+	height:2px;
+	background-color:#000;	
+}
+/*--------------bottom data ------------------*/
+.module-routing-fuel-container{
+	width:49.5%;
+	padding:2px;
+	float:left;
+	background-color:#F7F7F7;
+	cursor:pointer;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-fuel-container *,.module-routing-fuelYield-container,module-routing-fuelYield-container *{
+	cursor:pointer;	
+}
+.module-routing-trail-container,.module-routing-vehicle-container{
+	cursor:pointer;	
+}
+.module-routing-fuel-title{
+	width:100%;
+	text-align:center;
+	float:left;	
+	margin-bottom:4px;
+}
+.module-routing-fuel-icon{
+	width:45px;
+	float:left;
+	margin-left:8px;	
+}
+.module-routing-fuel-info{
+	float: left;
+	width: 96px;
+	text-align: center;	
+}
+.module-routing-fuel-edit{
+	float:right;
+	cursor:pointer;	
+}
+
+.module-routing-fuelYield-container{
+	width:49.5%;
+	padding:2px;
+	float:right;
+	background-color:#F7F7F7;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-fuelYield-title{
+	width:100%;
+	text-align:center;
+	float:left;	
+	margin-bottom:4px;
+}
+.module-routing-fuelYield-icon{
+	width:45px;
+	float:left;
+	margin-left:8px;	
+}
+.module-routing-fuelYield-info{
+	float: left;
+	width: 96px;
+	text-align: center;	
+	font-size: 110%;
+	margin-top: 7px;
+}
+.module-routing-fuelYield-edit{
+	float:right;
+	cursor:pointer;	
+}
+.module-routing-menu-container{
+	width:100%;
+	height:0px;
+	float:left;
+}
+.module-routing-menu{
+	position:absolute;
+	background-color: #FFF;
+	padding: 3px;
+	width:122px;
+	font-size: 120%;
+	overflow: hidden;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#module-routing-menu-title{
+	float:right;	
+}
+.module-routing-menu-close{
+	float:left;
+	cursor:pointer;	
+}
+.module-routing-menu-content{
+	width:100%;
+	float:left;	
+}
+.module-routing-vehicle-item{
+	width: 81px;
+	float:left;
+	padding:4px;
+	margin:1px;
+	background-color:#F4F4F4;
+	cursor:pointer;
+	overflow:hidden;
+}
+.module-routing-vehicle-item-title{
+	width:100%;
+	text-align:center;	
+}
+.module-routing-vehicle-item:last-of-type{
+	margin-bottom:none;
+}
+.module-routing-vehicle-item:hover{
+	background-color:#EEE;
+		
+}
+
+.module-routing-fuel-item{
+	padding:4px;
+	margin-bottom:2px;
+	background-color:#F4F4F4;
+	cursor:pointer;
+	float:left;
+	width:105px;
+	height:41px;
+	margin-left:2px;
+}
+.module-routing-fuel-item:last-of-type{
+	margin-bottom:none;
+}
+.module-routing-fuel-item:hover{
+	background-color:#EEE;
+}
+.module-routing-fuel-item div{
+	float:left;	
+}
+.module-routing-fuel-item-label{
+	width:70px;
+	text-align:center;	
+}
+
+.module-routing-yield-title{
+	width:100%;
+	text-align:center;
+	float:left;
+}
+.module-routing-yield-item{
+	width: 28px;
+	height: 21px;
+	margin:1px;
+	float: left;
+	text-align: center;
+	padding-top: 4px;
+	cursor:pointer;
+}
+.module-routing-yield-item:hover{
+	background-color:#CCC !important;
+}
+/*  Spinner   */
+#module-routing-spinner{
+	position:absolute;
+	background-color:rgba(255,255,255,.7);
+}
+.module-routing-spinner-label{
+	position: absolute;
+	top: 44%;
+	width: 100%;
+	text-align: center;
+	font-size: 142%;
+}
+.module-routing-spinner-img{
+	width:99px;
+	height:9px;
+	background-image:url(spinner_points.GIF);
+	float: left;
+	margin-left: 125px;
+}
+/*Routing Detail */
+.module-routing-detail-header-route{
+	float: left;
+	width: 183px;
+	padding: 4px;
+	margin-left:4px;
+	cursor:pointer;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-detail-header-route:hover{
+	background-color:#EEE !important;
+}
+.module-routing-detail-header-route:first-of-type{
+	margin-left:0px;
+}
+.module-routing-dh-title{
+	float: left;
+	width: 100%;
+	font-size: 110%;
+	text-align: center;
+	font-weight: bold;
+	background-color:rgba(204,204,204,.3);
+}
+.module-routing-dh-info-left{
+	float: left;
+	width: 100%;		
+}
+.module-routing-dh-info-left div:first-of-type{
+	padding-right:2px;
+		
+}
+
+
+.module-routing-dh-info-50{
+	width:50%;
+	float:left;
+	text-align:center;
+}
+.module-routing-detail-header-route .module-routing-dh-info-50:last-of-tpe{
+	float:right;	
+}
+.module-routing-dh-lb-right-big{
+	font-size: 125%;
+	font-weight: bold;	
+}
+/*------------------------- */
+.module-routing-dh-info-distance{
+	width: 97px;
+	float: left;
+	padding:2px;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-dh-lb-left-width{
+	float:left;
+	width:100%;	
+}
+
+.module-routing-dh-info-time{
+	float:left;
+	width:71px;
+	border-right: 2px solid #CCC;
+	border-left: 2px solid #CCC;
+	text-align:center;
+}
+.module-routing-dh-info-cost{
+	float:left;
+	width:175px;
+}
+.module-routing-dh-info-cost-total{
+	float: left;
+	width: 56px;
+	margin-right:3px;
+	border-right:2px solid #CCC;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-dh-info-cost-total:last-of-type{
+	margin-right:0px;
+	border-right:none;	
+}
+.module-routing-dh-lbBig-left{
+	float:left;
+	font-size: 176%;	
+}
+.module-routing-dh-lb-left-bold{
+	font-weight:bold;
+}
+.module-routing-dh-info-cost-total div{
+	width:100%;
+	text-align:center;	
+}
+.module-routing-dh-lb-left{
+	float:left;
+	font-size:88%;	
+}
+.module-routing-dh-info-distance .module-routing-dh-lb-left{
+	margin-top:9px;	
+}
+.module-routing-dh-info-time .module-routing-dh-lb-left{
+	margin-top:9px;	
+}
+.module-routing-dh-notebook-icon{
+	float:left;	
+}
+/* Itinerario */
+.module_routing_detail[option=op1] .module-routing-detail-header-route:first-of-type{
+	width:100%;	
+}
+.module_routing_detail[option=op1] .module-routing-detail-header-route:last-of-type{
+	display:none;
+}
+.module_routing_detail[option=op2] .module-routing-detail-header-route:first-of-type{
+	display:none;
+}
+.module_routing_detail[option=op2] .module-routing-detail-header-route:last-of-type{
+	width:100%;	
+}
+#module_routing_itinerary{
+	float:left;
+	width:100%;
+	padding: 3px;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-itinerary-header{
+	float:left;
+	width:100%;
+}
+.module-routing-itinerary-hd-option{
+	float:left;
+	width:60px;
+	padding:2px;
+	text-align:center;
+	border:1px solid #CCC;
+	margin-left:2px;
+	cursor:pointer;
+}
+.module-routing-itinerary-hd-option:hover{
+	background-color:#EEE;
+}
+.module-routing-itinerary-hd-close{
+	float:right;
+	cursor:pointer;	
+}
+.module-routing-itinerary-contailer{
+	float:left;
+	width:100%;
+	max-height:293px;
+	overflow-y:auto;
+	padding-top:3px;
+	margin-top: 5px;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.module-routing-itinerary-item{
+	float:left;
+	width:100%;	
+	cursor:pointer;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-bottom: 1px solid #DDD;
+}
+.module-routing-itinerary-item:last-of-type{
+	border-bottom: none;
+}
+.module-routing-itinerary-item:hover{
+	background-color:#EEE;
+}
+.module-routing-itinerary-item-icon{
+	float:left;
+}
+.module-routing-itinerary-item-info{
+	float:left;
+	padding-left:3px;
+	width: 308px;
+	padding-top: 5px;
+}
+.module-routing-itinerary-markpoint{
+	background-color:#F0F0F0;
+}
+.module-routing-itinerary-markpoint .module-routing-itinerary-item-icon{
+	font-size: 243%;
+	width: 28px;
+	text-align: center;
+	font-weight: bold;
+}
+.module-routing-itinerary-item-direction{
+	float:left;
+	width:100%;
+	font-weight:bold;
+}
+.module-routing-itinerary-item-length{
+	margin-top:4px;
+	color:#666;
+	float:right;
+	min-width:79px;
+	text-align:center;	
+}
+.module-routing-itinerary-item-cost{
+	margin-top:4px;
+	color:#666;
+	float:right;
+	min-width:79px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.module-routing-itinerary-item-time{
+	margin-top:4px;
+	color:#666;
+	float:right;
+	min-width:79px;
+	text-align:center;	
+}
+.module-routing-itinerary-contailer[type=caseta] .module-routing-itinerary-item:not([type=caseta]){
+	display:none;
+}
+.module-routing-inputField.ui-autocomplete-loading {
+    background: white url("spinner_16x16.gif") right center no-repeat;
+}
+
+#module_routing_detail[routecount=count_1] .module-routing-detail-header-route{
+	display:block;
+	width:100%;
+}
+.module-routing-itinerary-btools{
+	float: left;
+	padding-top:3px;
+	width: 100%;	
+}
+.module-routing-itinerary-dwfile{
+	float:left;
+	margin-right:3px;
+	cursor:pointer;
+}
+.icon-disclaimer{
+	background-image:url(icons/info.png);
+	width:18px;height:18px;
+}
+
+.module-routing-disclaimer-btn{
+	background-color:#FDF8DA;
+	float:left;
+	width: 55px;
+  	height: 19px;
+	cursor:pointer;
+}
+
+.module-routing-disclaimer-btn *{
+	cursor:pointer;	
+	float:left;
+}
+.module-routing-disclaimer-btn label{
+	margin-top:3px;
+	margin-left:3px;
+}
+
+.module-routing-clear-btn{
+	float:right;	
+}
+.module-routing-clear-btn *{
+	float:right;
+	cursor:pointer;	
+}
+.module-routing-clear-btn label{
+	margin-right:3px;
+	margin-top:3px;
+}
+.module-routing-itinerary-dwfile[type=xls], .module-routing-itinerary-dwfile[type=csv] {
+	display:none;
+}

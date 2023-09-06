@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.DenueLabelMapper">
+
+
+
+	<select id="getLabelInfo" resultType="java.util.LinkedHashMap">
+		SELECT 
+		nom_est AS "Nombre de la unidad económica",		
+		scian AS "Nombre de la clase de actividad",
+		domicilio AS "Domicilio",
+		tel_1 AS "Número de teléfono",
+		campo_imagen AS "Imagenes"		
+		FROM denue2016.denue2016 WHERE d_llave=#{id}
+	</select>
+
+	<select id="getLabelDetail" resultType="java.util.LinkedHashMap">
+		SELECT	
+		d_llave AS "Número de Identificador DENUE",
+		nom_est AS "Nombre del Establecimiento",	
+		raz_soc AS "Razón social",	
+		desc_scian AS "Nombre de la clase de actividad",	
+		cve_scian AS "Código SCIAN ",								
+		estr_poc AS "Personal ocupado",	
+		tipovial||' '||nomvial  AS "Tipo y nombre de Vialidad",
+		numextnum||' '||numextalf AS "Número exterior o kilómetro",
+		edif_nom||' '||edif_piso AS "Edificio, piso o nivel",
+		numintnum||' '||numintalf AS "Número o letra interior",
+		tipoasen||' '||nomasen AS "Tipo y Nombre de asentamiento humano",	
+		cp AS "Código postal",
+		tipo_cori||' '||cor_indust AS "Tipo y Nombre de Corredor Industrial, Centro Comercial Otros",
+		local AS "Número de local",			
+		tiporef1|| ' ' || nomref1 AS "Tipo y nombre entre calle 1",
+		tiporef2|| ' ' || nomref2 AS "Tipo y nombre entre calle 2",
+		nom_ent AS "Entidad",
+		nom_mun AS "Municipio",
+		nom_loc AS "Localidad",
+		cve_ageb AS "AGEB",
+		manzana AS "Número de manzana",					
+		tel_1 AS "Número telefónico",	
+		tipo_est AS "Tipo de establecimiento",	 									
+		coord_x AS "Longitud",
+		coord_y AS "Latitud",
+		fecha_alta AS "Fecha de alta al DENUE"
+		FROM denue2016.denue2016 WHERE d_llave=#{id}
+	</select>
+
+	<select id="getLabelContact" resultType="Contact">
+		SELECT 
+		d_llave AS "ID",
+		facebook AS facebook,
+		twitter AS twitter,
+		dir_elec_1 AS mail,
+		sitio_web AS web,
+		color AS color
+		FROM denue2016.denue2016 WHERE d_llave=#{id}
+	</select>
+	
+	<select id="getLabelInfoByGeom" resultType="java.util.LinkedHashMap">
+		SELECT nom_est AS "Nombre de la unidad económica",
+		nom_est AS "Nombre de la unidad económica",		
+		scian AS "Nombre de la clase de actividad",
+		domicilio AS "Domicilio",
+		tel_1 AS "Número de teléfono",		
+		campo_imagen AS "Imagenes"	
+		FROM denue2016.denue2016 
+		WHERE the_geom &amp;&amp; ST_Buffer(ST_GeomFromText(#{geometry},900913), #{buffer}) 
+		AND ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{geometry}, 900913), #{buffer})) 
+		<if test='denue == false'>
+			AND tipo != ''
+		</if>	
+		ORDER BY st_distance(the_geom,ST_GeomFromText(#{geometry},900913))
+		limit 1
+	</select>
+
+	<select id="getLabelDetailByGeom" resultType="java.util.LinkedHashMap">
+			SELECT	
+		d_llave AS "Número de Identificador DENUE",
+		nom_est AS "Nombre del Establecimiento",	
+		raz_soc AS "Razón social",	
+		desc_scian AS "Nombre de la clase de actividad",	
+		cve_scian AS "Código SCIAN ",								
+		estr_poc AS "Personal ocupado",	
+		tipovial||' '||nomvial  AS "Tipo y nombre de Vialidad",
+		numextnum||' '||numextalf AS "Número exterior o kilómetro",
+		edif_nom||' '||edif_piso AS "Edificio, piso o nivel",
+		numintnum||' '||numintalf AS "Número o letra interior",
+		tipoasen||' '||nomasen AS "Tipo y Nombre de asentamiento humano",	
+		cp AS "Código postal",
+		tipo_cori||' '||cor_indust AS "Tipo y Nombre de Corredor Industrial, Centro Comercial Otros",
+		local AS "Número de local",			
+		tiporef1|| ' ' || nomref1 AS "Tipo y nombre entre calle 1",
+		tiporef2|| ' ' || nomref2 AS "Tipo y nombre entre calle 2",
+		nom_ent AS "Entidad",
+		nom_mun AS "Municipio",
+		nom_loc AS "Localidad",
+		cve_ageb AS "AGEB",
+		manzana AS "Número de manzana",					
+		tel_1 AS "Número telefónico",	
+		tipo_est AS "Tipo de establecimiento",	 									
+		coord_x AS "Longitud",
+		coord_y AS "Latitud",
+		fecha_alta AS "Fecha de alta al DENUE"
+		FROM denue2016.denue2016 		
+		WHERE the_geom &amp;&amp; ST_Buffer(ST_GeomFromText(#{geometry},900913), #{buffer}) 
+		AND ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{geometry}, 900913), #{buffer})) 
+				<if test='denue == false'>
+			AND tipo != ''
+		</if>	
+		ORDER BY st_distance(the_geom,ST_GeomFromText(#{geometry},900913))
+		limit 1
+	</select>
+	
+	<select id="getLabelContactGeom" resultType="Contact">
+		SELECT 
+		d_llave AS "ID",
+		facebook AS facebook,
+		twitter AS twitter,
+		dir_elec_1 AS mail,
+		sitio_web AS web,
+		color AS color		
+		FROM denue2016.denue2016 
+		WHERE the_geom &amp;&amp; ST_Buffer(ST_GeomFromText(#{geometry},900913), #{buffer}) 
+		AND ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{geometry}, 900913), #{buffer})) 
+		<if test='denue == false'>
+			AND tipo != ''
+		</if>	
+		ORDER BY st_distance(the_geom,ST_GeomFromText(#{geometry},900913))
+		limit 1
+	</select>
+
+
+</mapper>

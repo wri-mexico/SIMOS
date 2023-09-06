@@ -1,0 +1,1 @@
+{"success":true,"data":{"value":{"asignado":2,"noAsignado":8,"summary":null,"barGraph":{"tipo":3,"altura":300,"childList":[{"userName":"Asesor 04","charge":0.0,"color":"#F3F781","user":139,"figura":3,"maximo":300},{"userName":"Asesor 05","charge":0.0,"color":"#F3F781","user":140,"figura":3,"maximo":300}]}}}}

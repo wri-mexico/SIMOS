@@ -1,0 +1,12 @@
+.scaleControl-sprite{ background:url("scaleControl-sprite.png") top left no-repeat; }
+.scaleControl-icon-pos:hover{ width:22px; height:22px; background-position:-10px -10px; }
+.scaleControl-icon-pos{ width:22px; height:22px; background-position:-10px -42px; }
+.scaleControl-icon-gps:hover{ width:22px; height:22px; background-position:-10px -74px; }
+.scaleControl-icon-gps{ width:22px; height:22px; background-position:-10px -106px; }
+.scaleControl-icon-extent:hover{ width:22px; height:22px; background-position:-10px -138px; }
+.scaleControl-icon-extent{ width:22px; height:22px; background-position:-10px -170px; }
+.scaleControl-icon-zoomout:hover{ width:22px; height:22px; background-position:-10px -202px; }
+.scaleControl-icon-zoomout{ width:22px; height:22px; background-position:-10px -234px; }
+.scaleControl-icon-zoomin:hover{ width:22px; height:22px; background-position:-10px -266px; }
+.scaleControl-icon-zoomin{ width:22px; height:22px; background-position:-10px -298px; }
+

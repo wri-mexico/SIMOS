@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<bean id="downloadFile" class="mx.org.inegi.geo.downloadfile.domain.DownloadFile"
+		scope="singleton" />
+	<context:annotation-config />
+
+
+	<!-- Application properties -->
+	<context:property-placeholder location="classpath:database.properties" />
+
+	<!-- Component Scan -->
+	<context:component-scan base-package="mx.pruebas.wps" />
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- Transaction Management -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- DataSource Configuration -->
+
+	<!-- Commons DBCP DataSource for PostgreSQL -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="initialSize" value="${initialSize}" />
+		<property name="maxTotal" value="${maxTotal}" />
+		<property name="maxIdle" value="${maxIdle}" />
+		<property name="minIdle" value="${minIdle}" />
+		<property name="maxWaitMillis" value="${maxWaitMillis}" />
+		<property name="removeAbandonedOnBorrow" value="${removeAbandonedOnBorrow}" />
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${usernm}" />
+		<property name="password" value="${password}" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Scan for services -->
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="mx.pruebas.wps.db.persistence" />
+	</bean>
+
+	<!-- MyBatis SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="mx.org.inegi.geo.downloadfile.domain" />
+	</bean>
+
+	<!-- CORS Filter -->
+	<import resource="cors.xml" />
+
+</beans>

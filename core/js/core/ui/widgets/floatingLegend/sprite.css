@@ -1,0 +1,6 @@
+.floatingLegend-sprite{ background:url("sprite.png") top left no-repeat; }
+.floatingLegend-slide{ width:25px; height:25px; background-position:-10px -45px; }
+.floatingLegend-slide:hover{ width:25px; height:25px; background-position:-10px -10px; }
+.floatingLegend-close:hover{ width:25px; height:25px; background-position:-10px -80px; }
+.floatingLegend-close{ width:25px; height:25px; background-position:-10px -115px; }
+

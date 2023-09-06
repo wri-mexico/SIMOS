@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.RasterElevationMapper">
+
+    <select id="findEnt" parameterType="java.lang.String" resultType="String">
+	    select cve_ent from denue2014.ent
+	    where ST_Intersects(the_geom, ST_GeomFromText(#{point}, 900913))
+	</select>
+	
+	<select id="findElevation" parameterType="map" resultType="double">
+	    select ST_Value(rast, ST_GeomFromText(#{point}, 900913))
+	    from modelo_elevacion.modelo_elevacion_${ent}
+	    where ST_Intersects(rast, ST_GeomFromText(#{point}, 900913))
+	</select>
+
+</mapper>

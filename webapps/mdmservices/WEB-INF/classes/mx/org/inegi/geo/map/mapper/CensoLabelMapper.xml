@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.CensoLabelMapper">
+
+
+	<select id="geographicalState" resultType="java.util.LinkedHashMap">
+		SELECT
+		cvegeo AS
+		"Clave",
+		nombre AS "Nombre"
+		FROM ce2014.ent
+		WHERE the_geom &amp;&amp;
+		ST_Buffer(ST_GeomFromText(#{point},900913),
+		#{buffer})
+		AND
+		ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer}))
+		limit 1
+	</select>
+
+	<select id="geographicalMun" resultType="java.util.LinkedHashMap">
+		SELECT
+		cve_ent AS
+		"Clave_ent",
+		nom_ent AS "Entidad",
+		cve_mun AS "Clave",
+		nombre AS
+		"Municipio"
+		FROM ce2014.mun
+		WHERE the_geom &amp;&amp;
+		ST_Buffer(ST_GeomFromText(#{point},900913),
+		#{buffer})
+		AND
+		ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{point}, 900913),
+		#{buffer}))
+		limit 1
+	</select>
+
+	<!-- GranSector -->
+	<select id="granEconomicalState" resultType="java.util.LinkedHashMap">
+		SELECT
+		<!-- c.nombre AS "Sector", -->
+		ue AS "V01",
+		h001a AS "V02",
+		h020a AS "V03",
+		h010a AS "v04",
+		i100a AS "V05",
+		k000a AS "V06",
+		m000a AS "V07",
+		q000a AS "V08",
+		a111a AS "V09",
+		a131a AS "V10",
+		k412a AS "V11",
+		k976a AS "V12",
+		r01,
+		r02,
+		r03,
+		r04,
+		r05,
+		r06,
+		r07,
+		r08,
+		r09,
+		r10,
+		r11
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.entidad_gransector_${year} e,
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.entidad_sector_${year} e,
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.entidad_subsector_${year} e,
+			</when>
+		</choose>
+		ce2014.cat_ce c
+		WHERE e.sector=c.id
+		AND cvegeo=#{cvegeo}
+		AND
+		sector=#{granSector}
+	</select>
+
+	<select id="granEconomicalMun" resultType="java.util.LinkedHashMap">
+		SELECT
+		<!-- c.nombre AS "Sector", -->
+		ue AS "V01",
+		h001a AS "V02",
+		h020a AS "V03",
+		h010a AS "v04",
+		i100a AS "V05",
+		k000a AS "V06",
+		m000a AS "V07",
+		q000a AS "V08",
+		a111a AS "V09",
+		a131a AS "V10",
+		k412a AS "V11",
+		k976a AS "V12",
+		r01,
+		r02,
+		r03,
+		r04,
+		r05,
+		r06,
+		r07,
+		r08,
+		r09,
+		r10,
+		r11
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.municipal_gransector_${year} m,
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.municipal_sector_${year} m,
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.municipal_subsector_${year} m,
+			</when>
+		</choose>
+		ce2014.cat_ce c
+		WHERE m.sector= c.id
+		AND cvegeo=#{cvegeo}
+		AND
+		sector=#{granSector}
+	</select>
+
+	<select id="getIndicatorNational" resultType="Double">
+		SELECT
+		<choose>
+			<when test="type==1">
+				h001a
+			</when>
+			<otherwise>
+				ue
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.nacional_gransector_${year}
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.nacional_sector_${year}
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.nacional_subsector_${year}
+			</when>
+		</choose>
+
+		WHERE sector=#{id}
+	</select>
+
+	<select id="getIndicatorEst" resultType="Double">
+		SELECT
+		<choose>
+			<when test="type==1">
+				h001a
+			</when>
+			<otherwise>
+				ue
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.entidad_gransector_${year}
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.entidad_sector_${year}
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.entidad_subsector_${year}
+			</when>
+		</choose>
+		WHERE cvegeo=#{ent}
+		AND sector=#{id}
+	</select>
+
+	<select id="getPositionState" resultType="int">
+		SELECT
+		posicion${type}
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.entidad_gransector_${year}
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.entidad_sector_${year}
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.entidad_subsector_${year}
+			</when>
+		</choose>
+		WHERE cvegeo=#{ent}
+		AND sector=#{id}
+
+	</select>
+
+	<select id="getSates" resultType="java.util.LinkedHashMap">
+		SELECT
+		nombre AS "Nombre Municipio",
+		<choose>
+			<when test="type==1">
+				participa AS "Participación",
+				ue AS "V01",
+				h001a AS "V02",
+				h020a AS "V03",
+				h010a AS "V04",
+				i100a AS "V05",
+				k000a AS "V06",
+				m000a AS "V07",
+				q000a AS "V08",
+				a111a AS "V09",
+				a131a AS "V10",
+				k412a AS "V11",
+		        k976a AS "V12",
+				r01 AS "R01",
+				r02 AS "R02",
+				r03 AS "R03",
+				r04 AS "R04",
+				r05 AS "R05",
+				r06 AS "R06",
+				r07 AS "R07",
+				r08 AS "R08",
+				r09 AS "R09",
+				r10 AS "R10",
+				r11 AS "R11"
+			</when>
+			<otherwise>
+				participa2 AS "Participación",
+				ue AS "V01",
+				h001a AS "V02",
+				h020a AS "V03",
+				h010a AS "V04",
+				i100a AS "V05",
+				k000a AS
+				"V06",
+				m000a AS "V07",
+				q000a AS "V08",
+				a111a AS "V09",
+				a131a AS "V10",
+				k412a AS "V11",
+		        k976a AS "V12",				
+				r01 AS "R01",
+				r02 AS "R02",
+				r03 AS "R03",
+				r04 AS "R04",
+				r05 AS "R05",
+				r06 AS "R06",
+				r07 AS "R07",
+				r08 AS "R08",
+				r09 AS "R09",
+				r10 AS "R10",
+				r11 AS "R11"
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.entidad_gransector_${year} e
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.entidad_sector_${year} e
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.entidad_subsector_${year} e
+			</when>
+		</choose>
+		WHERE sector=#{id}
+		<foreach item="item" index="index" collection="listCompare"
+			open="AND (" separator="OR" close=")">
+			cvegeo=#{item}
+		</foreach>
+		<choose>
+			<when test="type==1">
+				ORDER BY participa
+			</when>
+			<otherwise>
+				ORDER BY participa2
+			</otherwise>
+		</choose>
+		limit 10
+	</select>
+
+	<select id="getMun" resultType="java.util.LinkedHashMap">
+		SELECT
+		nombre AS "Nombre Municipio",
+		<choose>
+			<when test="type==1">
+				participa AS "Participación",
+				ue AS "V01",
+				h001a AS "V02",
+				h020a AS "V03",
+				h010a AS "V04",
+				i100a AS "V05",
+				k000a AS
+				"V06",
+				m000a AS "V07",
+				q000a AS "V08",
+				a111a AS "V09",
+				a131a AS "V10",
+				k412a AS "V11",
+		        k976a AS "V12",
+		        r01 AS "R01",
+				r02 AS "R02",
+				r03 AS "R03",
+				r04 AS "R04",
+				r05 AS "R05",
+				r06 AS "R06",
+				r07 AS "R07",
+				r08 AS "R08",
+				r09 AS "R09",
+				r10 AS "R10",
+				r11 AS "R11"
+			</when>
+			<otherwise>
+				participa2 AS "Participación",
+				ue AS "V01",
+				h001a AS "V02",
+				h020a AS "V03",
+				h010a AS "V04",
+				i100a AS "V05",
+				k000a AS
+				"V06",
+				m000a AS "V07",
+				q000a AS "V08",
+				a111a AS "V09",
+				a131a AS "V10",
+				k412a AS "V11",
+		        k976a AS "V12",
+		        r01 AS "R01",
+				r02 AS "R02",
+				r03 AS "R03",
+				r04 AS "R04",
+				r05 AS "R05",
+				r06 AS "R06",
+				r07 AS "R07",
+				r08 AS "R08",
+				r09 AS "R09",
+				r10 AS "R10",
+				r11 AS "R11"
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="typeSector==1">
+				FROM ce2014.municipal_gransector_${year}
+			</when>
+			<when test="typeSector==2">
+				FROM ce2014.municipal_sector_${year}
+			</when>
+			<when test="typeSector==3">
+				FROM ce2014.municipal_subsector_${year}
+			</when>
+		</choose>
+		WHERE sector=#{id}
+		AND cve_ent=#{ent}
+		<foreach item="item" index="index" collection="listCompare"
+			open=" AND (" separator="OR" close=")">
+			cve_mun=#{item}
+		</foreach>
+		<choose>
+			<when test="type==1">
+				ORDER BY participa
+			</when>
+			<otherwise>
+				ORDER BY participa2
+			</otherwise>
+		</choose>
+		limit 10
+	</select>
+
+	<select id="find" resultType="java.util.LinkedHashMap">
+		<if test="ent!='00'">
+			SELECT cve_mun AS cvegeo ,nombre as name
+			FROM ce2014.mun
+		</if>
+		<if test="ent=='00'">
+			SELECT cvegeo,nombre as name
+			from ce2014.ent
+		</if>
+		WHERE the_geom &amp;&amp;
+		ST_Buffer(ST_GeomFromText(#{point},900913),5)
+		AND
+		ST_Intersects(the_geom, ST_Buffer(ST_GeomFromText(#{point},
+		900913),5))
+		<if test="ent!='00'">
+			AND cve_ent=#{ent}
+		</if>
+		limit 1
+	</select>
+
+</mapper>

@@ -1,0 +1,8 @@
+.shareSprite{ background:url("shareSprite.png") top left no-repeat; }
+.shareSprite-email:hover{ width:84px; height:24px; background-position:-10px -10px; }
+.shareSprite-email{ width:84px; height:24px; background-position:-10px -50px; }
+.shareSprite-t:hover{ width:84px; height:24px; background-position:-10px -90px; }
+.shareSprite-t{ width:84px; height:24px; background-position:-10px -130px; }
+.shareSprite-fb:hover{ width:84px; height:24px; background-position:-10px -170px; }
+.shareSprite-fb{ width:84px; height:24px; background-position:-10px -210px; }
+

@@ -1,0 +1,20 @@
+.sprite_infoCard{ background:url("sprite_infoCard.png") top left no-repeat; }
+.spriteOldCards:hover{ width:27px; height:27px; background-position:-10px -10px; }
+.spriteOldCards{ width:27px; height:27px; background-position:-10px -47px; }
+.spriteArrowDown:hover{ width:27px; height:27px; background-position:-10px -84px; }
+.spriteArrowDown{ width:27px; height:27px; background-position:-10px -121px; }
+.spriteDelete:hover{ width:25px; height:25px; background-position:-10px -158px; }
+.spriteDelete{ width:25px; height:25px; background-position:-10px -193px; }
+.spriteAnalysis:hover{ width:25px; height:25px; background-position:-10px -228px; }
+.spriteAnalysis{ width:25px; height:25px; background-position:-10px -263px; }
+.spriteBackArrow:hover{ width:23px; height:23px; background-position:-10px -298px; }
+.spriteBackArrow{ width:23px; height:23px; background-position:-10px -331px; }
+.spriteDownload:hover{ width:20px; height:20px; background-position:-10px -364px; }
+.spriteDownload{ width:20px; height:20px; background-position:-10px -394px; }
+.spritePrint:hover{ width:18px; height:18px; background-position:-10px -424px;  }
+.spritePrint{ width:18px; height:18px; background-position:-10px -452px; }
+.spriteInformation{ width:18px; height:18px; background-position:-10px -480px;  float: left; position: relative;top: -3px; }
+.spriteClose{ width:18px; height:15px; background-position:-10px -508px; display: inline-block; float: left; }
+.spriteSearch:hover{ width:18px; height:18px; background-position:-10px -536px; }
+.spriteSearch{ width:18px; height:18px; background-position:-10px -564px; }
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.LayerStatsMapper">
+
+	<insert id="insertLayer" parameterType="mx.org.inegi.geo.map.domain.Layer">
+		insert into control.layer_stats (proyecto, sesion, capa, ubicacion, tipo, fecha)
+		values (#{project}, #{session}, #{layer}, #{userLocation}, #{type}, now())
+	</insert>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.BufferMapper">
+
+    <select id="findBufferById" parameterType="java.lang.Long" resultType="java.lang.String">
+        select ST_AsText(the_geom) from control.mibuffer where gid = #{id}
+    </select>
+
+    <select id="findBuffer" parameterType="Buffer" resultType="Buffer">
+        select ST_AsText(ST_Buffer(the_geom, #{size})) as geometry
+        from ${schema}.${table}
+        where gid = #{id}
+    </select>
+	
+	<select id="simplify" parameterType="Buffer" resultType="Buffer">
+		select gid as id,
+		ST_AsText(ST_Simplify(the_geom, (ST_Area(the_geom)/100000000000))) as geometry
+		from control.mibuffer
+		where gid = #{id}
+	</select>
+
+	<insert id="insertGeometry" parameterType="Buffer" useGeneratedKeys="true" keyProperty="id">
+		insert into control.mibuffer (gid, fechahora, the_geom)
+		values ((select nextval('control.control_seq')),
+		now(), ST_GeomFromText(#{geometry}, 900913))
+	</insert>
+	
+	<insert id="insertBuffer" parameterType="Buffer" useGeneratedKeys="true" keyProperty="id">
+		insert into control.mibuffer (gid, fechahora, the_geom)
+		values ((select nextval('control.control_seq')), now(),
+		<choose>
+		    <when test="geometry != null">
+		        ST_GeomFromText(#{geometry}, 900913))
+		    </when>
+		    <otherwise>
+		        (select ST_Buffer(the_geom, #{size})		
+		        from control.mibuffer
+		        where gid = #{id}))
+		    </otherwise>
+		</choose>
+	</insert>
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.org.inegi.geo.map.mapper.PruebaMapper">
+	<select id="findGeometryByCvegeo" resultType="java.util.LinkedHashMap">
+		Select ST_AsText(ST_Union(the_geom_s)) as geometry
+		<choose>
+			<when test="national == true">
+				FROM atlas_info.entidad
+			</when>
+			<otherwise>
+				FROM atlas_info.municipal
+			</otherwise>
+		</choose>
+		where cvegeo = #{cvegeo}
+	</select>
+
+	<select id="findTownIndicatorByPoint" resultType="java.util.LinkedHashMap">
+		SELECT t.cvegeo, t.${indicator}_m as "Femenino",
+		<if test="male == true">
+			t.${indicator}_h as "Masculino",
+		</if>
+		'${label}' as label,e.nombre as town, ST_AsText(the_geom_s) as 	geometry
+		FROM atlas_info.base_genero t, atlas_info.entidad e
+		WHERE ST_Contains(the_geom, ST_GeomFromText(#{point}, 900913))
+		AND	t.cvegeo=e.cvegeo
+	</select>
+	
+	<select id="getAllMunicipalities" resultType="java.util.LinkedHashMap">	
+		SELECT cvegeo,entidad ,${indicator}${sector}_m  AS "Femenino"
+		 <if test="male == true">
+			,${indicator}${sector}_h AS "Masculino"
+		</if>	
+		<if test="difference == true">
+			,${indicator}${sector}_d AS "diferencia"
+		</if>			
+		FROM atlas_info.base_genero_vw	
+		ORDER BY cvegeo		
+		LIMIT 10		
+	</select>
+	
+	<select id="findLabel" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select descripcion
+		from atlas_info.indicadores_act
+		where id =
+		#{indicator}
+	</select>
+</mapper>

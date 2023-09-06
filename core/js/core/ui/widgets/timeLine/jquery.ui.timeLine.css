@@ -1,0 +1,496 @@
+.custom-timeline{
+  position: absolute;
+  overflow: hidden;
+  z-index: 2000;
+  bottom:0px;
+  left:0px;
+  /*width:542px;*/
+  
+  background-color:#FFF;
+  
+  -webkit-box-shadow: 0 0 2px 2px #ABABAB;
+  box-shadow: 0 0 2px 2px #ABABAB;
+}
+.timeline-leftSlider{
+	width:28px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	bottom:0px;
+	padding:2px;
+	border-left: 1px solid #CCC;
+	border-top: 1px solid #CCC;
+	
+	background-color:#FFF;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.timeline-leftSlider
+{
+	cursor:pointer;
+		
+}
+.timeline-layerContainer{
+	position: absolute;
+	left: 29px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	overflow:hidden;
+	
+	border: 1px solid #CCC;
+}
+.linetime-item{
+	float:left;
+	width:100%;
+	height:40px;
+	
+	border-bottom: 1px solid #CCC;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.linetime-yearsContainer{
+	position:absolute;
+	left:0px;
+	top:14px;
+	right:50px;
+	bottom:0px;
+	overflow:hidden;
+}
+.linetime-year{
+	overflow:hidden;
+	width:35px;
+	float:left;
+	height:25px;
+	cursor:pointer;
+	border-right: 1px solid #999;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.linetime-year:hover{
+	background-color:#059DEF;
+}
+.linetime-year-label{
+	margin-top: 3px;
+	padding: 2px;
+	padding-left:4px;
+	padding-right:4px;
+	text-align: center;
+	font-size:90%;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	/*-webkit-box-shadow: 0 0 1px 1px #ABABAB;
+	box-shadow: 0 0 1px 1px #ABABAB;*/
+}
+.linetime-year-label.odd{
+	background-color:#DDDDDD;/*#7ABDF1;*/
+	background-color:rgba(183,183,183,0.6);
+}
+.linetime-year-label.even{
+    background-color:#F1F1F1;
+	background-color:rgba(215,215,215,0.6);
+}
+.timeline-lineContainer{
+	position: absolute;
+	left: 0px;
+	top: 17px;
+	right: 0px;
+}
+.timeline-line{
+	background-color: #CACACA;
+	height: 4px;
+	position: absolute;
+	left: 0px;
+	top: 7px;
+	right: 45px;	
+}
+.timeLine_play{
+	position: absolute;
+	right: 22px;
+	top: -4px;
+	cursor:pointer;
+}
+
+.timeLine_eye{
+	position: absolute;
+	right: 0px;
+	top: -4px;
+	cursor:pointer;
+}
+.linetime-item-absolute{
+	position:absolute;
+	width:100%;
+	height:40px;
+}
+.timeline-layerName{
+	position: absolute;
+	left: 3px;
+	top: 1px;
+	font-size: 90%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	right: 25px;
+	overflow: hidden;
+}
+.linetime-item-selected{
+	background-color:#1275AC;
+	color:#F1F1F1;
+	
+}
+.linetime-item-selected .linetime-year-label{
+	background-color:#1275AC;
+	color:#F1F1F1;
+	-webkit-box-shadow: none;
+	box-shadow:none;
+	font-size:112%;
+}
+ 
+/* Main Slider IMG------------------------------------*/
+.timeline-player{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	
+	z-index:2100;
+}
+.timeline-imgs-container{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+.timeline-bg {
+	position: absolute;
+	width: 591px;
+	height: 55px;
+	background-color: #FFF;
+	bottom:-60px;
+	left:15px;
+	
+	z-index: 2100;
+	-webkit-box-shadow: 0 0 3px 3px #ABABAB;
+    box-shadow: 0 0 3px 3px #ABABAB;
+}
+
+.progress-bar {
+	position: absolute;
+	width: 100%;
+	height: 9px;
+	background-color: #999;
+	margin-top: 21px;
+}
+
+.year {
+	float: left;
+	width: 42px;
+	height: 21px;
+	background-color: #CFCFCF;
+	margin-top: 16px;
+	margin-left: 3px;
+	cursor: pointer;
+	
+	}
+
+
+.play-btn{
+	cursor:pointer;	
+	}
+	
+#timeline-play-button{
+	float: right;
+	margin-top: -3px;
+	margin-right: 15px;
+}
+
+.pause-btn{
+	cursor:pointer;	
+	}
+	
+#timeline-pause-button{
+	float: right;
+	margin-top: -3px;
+	margin-right: 15px;
+}
+.timeline-progressContainer{
+	position:absolute;
+	width:42px;
+	height:21px;
+	
+	
+}
+.timeline-progress{
+	position:absolute;
+	background-color:#693;
+	height:100%;
+	width:0%;
+}
+.timeline-progressContainer p{
+	position:absolute;
+	width:100%;
+	color: #fff;
+	margin-top: 4px;
+	margin-left: 7px;
+	
+}
+.timeline-closeBtn{
+	position:absolute;
+	right:12px;
+	top:12px;
+	cursor:pointer;
+	z-index:55;
+}
+.timeline-title{
+	position: absolute;
+	z-index:55;
+	font-style: italic;
+	right: 0px;
+	top: 0px;
+	height: 47px;
+	width: 350px;
+	background-color: #FFF;
+	background-color: rgba(255,255,255,0.9);
+	color: #6B6B6B;
+	padding: 15px;
+	padding-right: 48px;
+	font-size: 202%;
+	padding-top: 18px;
+	overflow:hidden;
+
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	 -webkit-box-shadow: 0 0 1px 1px #ABABAB;
+  	box-shadow: 0 0 1px 1px #ABABAB;
+	
+	-webkit-border-radius: 0 0 0 10px;
+	border-radius: 0 0 0 10px;
+}
+.timeline-title-layer{
+	position: absolute;
+	color: #333;
+	right: 46px;
+	top: 4px;
+	height: 11px;
+	width: 289px;
+	font-size:119%;
+	z-index: 69;
+	text-overflow: ellipsis;
+}
+
+
+.timeline-preloadSpinner-bg{
+	position:absolute;
+	z-index: 2010;
+	left: 0px;
+	bottom: 4px;
+	width: 105px;
+	height: 70px;
+	background-color:#FFF;
+	background-color:rgba(255,255,255,.8);
+	
+	-webkit-box-shadow: 0 0 1px 1px #ABABAB;
+  	box-shadow: 0 0 1px 1px #ABABAB;
+	
+	-webkit-border-radius: 0 50px 50px 0;
+	border-radius: 0 50px 50px 0;
+}
+
+.timeline-preloadSpinner{
+	position:absolute;
+	right:20px;
+	bottom:0px;
+	width:60px;
+	height:60px;
+	background-image:url(spinner.gif);
+	background-repeat:no-repeat;
+}
+
+/* Controls  -------------------------*/
+.timeline-player-container{
+	position:absolute;
+	z-index: 2100;
+	left:25px;
+	bottom:9px;
+	width:350px;
+	height:60px;
+}
+.timeline-controlButtons{
+	position:absolute;
+	z-index:2;
+	left:2px;
+}
+.timeline-speedControl{
+	position: absolute;
+	left: -17px;
+	top: 5px;
+}
+#timeline_1x{
+	position:absolute;	
+	cursor:pointer;
+}
+#timeline_1x_bg{
+	position: absolute;
+	background-color: #FFF;
+	height: 10px;
+	width: 15px;
+	left: 2px;
+	top: 11px;
+}
+.timeline-player-container[speed=x1] #timeline_1x_bg{
+	background-color: #FFA500;
+}
+
+#timeline_2x{
+	position:absolute;	
+	top:25px;
+	cursor:pointer;
+}
+#timeline_2x_bg{
+	position: absolute;
+	background-color: #FFF;
+	height: 10px;
+	width: 14px;
+	left: 3px;
+	top: 29px;
+}
+.timeline-player-container[speed=x2] #timeline_2x_bg{
+	background-color: #FFA500;
+}
+
+.timeline-playBtn{
+	position:absolute;
+	cursor:pointer;
+}
+.timeline-pauseBtn{
+	position:absolute;
+	cursor:pointer;
+}
+.timeline-player-container[mode=play] .timeline-playBtn{
+	display:none;
+}
+.timeline-player-container[mode=pause] .timeline-pauseBtn{
+	display:none;
+}
+.timeline-yearsContainer{
+	position: absolute;
+	overflow: hidden;
+	z-index:1;
+	left: 51px;
+	top: 9px;
+	background-color: rgba(255,255,255,0.7);
+	height: 43px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-family: arial;
+	color: #000;
+	font-weight:bold;
+	letter-spacing: 1.5px;
+	
+	-webkit-box-shadow: 0 0 1px 2px #ABABAB;
+  	box-shadow: 0 0 1px 2px #ABABAB;
+	
+	-webkit-border-radius: 0 15px 15px 0;
+	border-radius: 0 15px 15px 0;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	
+}
+.timeline-yearsItems{
+	float: left;
+	height: 100%;
+}
+.timeline-upperItems{
+	float:left;
+	height:16px;
+	
+	display: inline-block;
+    overflow: hidden;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.timeline-lowerItems{
+	float: left;
+	height: 16px;
+	clear: left;
+	padding-left: 25px;
+	
+	display: inline-block;
+    overflow: hidden;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.timeline-year-item{
+	float:left;
+	width:50px;
+	overflow:hidden;
+	cursor:pointer;
+	
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.timeline-year-item:hover{
+	background-color:rgba(0,102,255,.7);
+}
+.timeline-item-label{
+	float:left;
+	width:100%;
+	text-align:center;
+}
+.timeline-item-pillar{
+	float: left;
+	height: 5px;
+	width: 4px;
+	background-color: #1D1D1D;
+	margin-left: 24px
+}
+.timeline-years-bar{
+	float:left;
+	width:110%;
+	height:5px;
+	background-color:#333;
+}
+.timeline-progressBar{
+	position: absolute;
+	height: 57px;
+	width: 10px;
+	left: 73px;
+	background-color: #242323;
+	top: 2px;
+	border:1px solid #FFF;
+	
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}

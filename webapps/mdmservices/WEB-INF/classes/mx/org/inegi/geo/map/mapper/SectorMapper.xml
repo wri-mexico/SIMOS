@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.org.inegi.geo.map.mapper.SectorMapper">
+
+    <select id="findByParent" resultType="Sector">
+        select a.id, a.id_tipo as typeId, a.tipo as type, a.nombre as name,
+		(select case when b.count is null then 0 else b.count end)
+		from ce2014.cat_ce a left join (
+		     select superior, count(*) as count
+		     from ce2014.cat_ce
+		     where superior in (
+		           select id
+		           from ce2014.cat_ce
+		           where superior = #{parent})
+		     group by superior) b
+		on b.superior = a.id
+		where a.superior = #{parent}
+		order by a.id
+    </select>
+
+</mapper>

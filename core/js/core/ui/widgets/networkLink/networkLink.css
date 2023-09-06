@@ -1,0 +1,53 @@
+.networkLink_template{display:block;background-image:url(css/networkLink.png);overflow:hidden; background-repeat:no-repeat;}
+
+.cementerio{background-position:0px 0px; width:48px; height:48px;}
+.centro_comercial{width:48px; height:48px;background-position:0px -133px}
+.comunicacion{width:48px; height:48px;background-position:0px -178px}
+.alquiler_autos{width:48px; height:48px;background-position:0px -222px}
+.aeropuerto{width:48px; height:48px;background-position:0px 0px}
+.agencia{width:48px; height:48px;background-position:0px -34px}
+.banco{width:48px; height:48px;background-position:0px -267px}
+.casa_de_cambio{width:48px; height:48px;background-position:0px -34px}
+.central_de_autobuses{width:48px; height:48px;background-position:0px -34px}
+.centro_nocturno{width:48px; height:48px;background-position:0px -34px}
+.escuela{width:48px; height:48px;background-position:0px -34px}
+.farmacia{width:48px; height:48px;background-position:0px -356px}
+.gasolinera{width:48px; height:48px;background-position:0px -34px}
+.hospital{width:48px; height:48px;background-position:0px -45px}
+.hotel{width:48px; height:48px;background-position:0px -34px}
+.iglesias{width:48px; height:48px;background-position:0px -34px}
+.mensajeria_y_paqueteria{width:48px; height:48px;background-position:0px -34px}
+.museos{width:48px; height:48px;background-position:0px -34px}
+.oficinas_de_gobierno{width:48px; height:48px;background-position:0px -34px}
+.restaurante{width:48px; height:48px;background-position:0px -34px}
+.servicios_postales{width:48px; height:48px;background-position:0px -34px}
+.supermercados{width:48px; height:48px;background-position:0px -34px}
+.sitios_historicos{width:48px; height:48px;background-position:0px -34px}
+.taller_automotriz{width:48px; height:48px;background-position:0px -34px}
+.tienda_departamental{width:48px; height:48px;background-position:0px -34px}
+.zoologicos{width:48px; height:48px;background-position:0px -34px}
+.mercado{width:48px; height:48px;background-position:0px -34px}
+.plaza{width:48px; height:48px;background-position:0px -34px}
+.root{width:48px; height:48px;background-position:0px -1389px}
+.estacionamiento{width:41px; height:41px;background-position:0px -311px}
+
+.div2
+    {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        background-color: #ac5;
+        border-radius: 100px;
+    }
+    
+    #parentdiv{
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        /*background-color: #ac5;*/
+        /*border-radius: 150px;*/
+        /*margin: 150px;*/
+        left:300px;
+        top:200px;
+        
+    }

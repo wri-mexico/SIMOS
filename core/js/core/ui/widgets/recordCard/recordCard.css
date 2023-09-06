@@ -1,0 +1,136 @@
+
+@import url('template.css');
+
+/* tracking*/
+.recordCardItem{
+	/*position:absolute;top:5px;left:5px;right:5px;bottom:5px;*/
+	position:relative;left:0px;right:0px;font-size: 120%;height:100%;
+}
+
+.recordCardItem .Title{
+	height:50px;width:100%;position:relative;border-bottom:1px solid #DDDDDD
+}
+
+.recordCardItem .section_icon{
+	position:absolute;left:0px;width:43px;height:100%;
+}
+.recordCardItem .section_label{
+	position:absolute;right:0px;left: 45px;height:100%;font-size: 120%;color:#808080;font-weight: bold;text-align: center;
+	text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.recordCardItem .Row{
+	border-bottom:1px solid #DDDDDD;padding-top:6px;padding-bottom:6px;
+}
+
+.Row .option{
+	color:#808080;font-weight: bold;
+}
+.Row .value{
+	color:#9F9F9F;
+}
+
+.recordCardItem .section_pictures{
+	width:100%;background:#EEEEEE;position: absolute;bottom: 35px;
+}
+
+.recordCardItem .section_share{
+	height:35px;width:100%;background:#DDDDDD;
+	position: absolute;bottom:0px;
+}
+
+.recordCardItem .more_info{
+	padding-top:5px;
+	padding-bottom:30px;
+	text-align: right;
+	color: #808080;
+	font-weight:bold;
+	text-decoration: underline;
+	cursor: pointer;
+	
+}
+.section_pictures{
+	position: relative;
+}
+
+.section_pictures .left{
+	position:absolute;left:0px;cursor:pointer;
+}
+.section_pictures .center{
+	position:absolute;left:38px;right:38px;/*background:#CCC;*/top:7px;bottom: 6px;overflow: hidden;
+}
+.section_pictures .right{
+	position:absolute;right:0px;height:100%;cursor: pointer;
+}
+
+.center .container_image{
+	position:absolute;width:450px;left:0px;height:67px;overflow:hidden;height:100%;
+}
+
+.center .item_image{
+	height:67px;float:left;display: inline-block;vertical-align:top;cursor: pointer;
+}
+
+.center .item_image .imageDenue{
+	background: white;height: 100%;
+	width:100%;
+}
+.itemImageDenue :hover{
+	border: 2px solid #848282;
+}
+.Detail_recordCard{
+	width:100%;
+}
+.recordCardItem .Info{
+	overflow: auto;
+}
+.recordCardItem .hideInfoInitial > .Row{
+	display:none;
+}
+.images_recordCard{
+	width:100%;height:80px;
+}
+
+.pleg_images_recordCard{
+	height:25px;width:100%;
+}
+.pleg_images_recordCard label{
+	position:absolute;top: 3px;text-align:center;width:100%;cursor: pointer;color: #5B595A;font-weight:bold;
+}
+
+.section_share .btn_download{
+	float:left;padding-left: 5px;padding-top: 5px; display: none;
+}
+.section_share .btn_print{
+	float:left;padding-left: 5px;padding-top: 5px;
+}
+.section_share .btn_mail{
+	float:right;padding-right: 5px;padding-top: 5px;
+}
+.section_share .btn_twitter{
+	float:right;padding-right: 5px;padding-top: 5px;
+}
+.section_share .btn_facebook{
+	float:right;padding-right: 5px;padding-top: 5px;
+}
+.section_share .btn_web{
+	float:right;padding-right: 5px;padding-top: 5px;
+}
+
+
+.Title .section_icon .circle_icon{
+	position:absolute;left:4px;height:35px;width:35px;
+	-webkit-border-radius: 150px;
+	border-radius: 150px;
+}
+#circle_icon_mirror{
+	width: 50px !important;
+	height: 40px !important;
+}
+#circle_icon_mirror_canvas{
+	height: 40px !important;
+}

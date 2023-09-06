@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allow-origin>			 
+	<origin>http://localhost</origin>		
+	<origin>http://127.0.0.1</origin>	
+	<origin>http://127.0.0.1:80</origin>
+	<origin>http://127.0.0.1:8080</origin>			
+		
+</allow-origin>

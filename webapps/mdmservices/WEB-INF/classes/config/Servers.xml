@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<servers>
+	<server>
+		<alias>servidorsote</alias>
+		<ip>127.0.0.1</ip>
+		<port>5432</port>
+		<user>postgres</user>
+		<password>passowrd1</password>
+		<url>jdbc:postgresql://%s:%s/%s</url>
+		<driverClass>org.postgresql.Driver</driverClass>
+		<validationQuery>select version()</validationQuery>
+	</server>
+</servers>

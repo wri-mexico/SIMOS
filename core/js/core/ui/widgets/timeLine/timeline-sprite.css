@@ -1,0 +1,26 @@
+.timeLine-sprite{ background:url("timeLine-sprite.png") top left no-repeat; }
+.timeLine_big_pause:hover{ width:60px; height:60px; background-position:-10px -10px; }
+.timeLine_big_pause{ width:60px; height:60px; background-position:-10px -80px; }
+.timeLine_big_play:hover{ width:60px; height:60px; background-position:-10px -150px; }
+.timeLine_big_play{ width:60px; height:60px; background-position:-10px -220px; }
+.timeLine_speed_1x:hover{ width:32px; height:25px; background-position:-10px -290px; }
+.timeLine_speed_2x:hover{ width:32px; height:25px; background-position:-10px -325px; }
+.timeLine_speed_2x{ width:32px; height:25px; background-position:-10px -360px; }
+.timeLine_speed_1x{ width:32px; height:25px; background-position:-10px -395px; }
+.timeLine_zoom:hover{ width:25px; height:25px; background-position:-10px -430px; }
+.timeLine_play:hover{ width:25px; height:25px; background-position:-45px -430px; }
+.timeLine_zoom{ width:25px; height:25px; background-position:-10px -465px; }
+.timeLine_play{ width:25px; height:25px; background-position:-45px -465px; }
+.timeLine_pause:hover{ width:25px; height:25px; background-position:-10px -500px; }
+.timeLine_pause{ width:25px; height:25px; background-position:-45px -500px; }
+.timeLine_play-circle:hover{ width:25px; height:25px; background-position:-10px -535px; }
+.timeLine_play-circle{ width:25px; height:25px; background-position:-45px -535px; }
+.timeLine_eye:hover{ width:25px; height:25px; background-position:-10px -570px; }
+.timeLine_eye{ width:25px; height:25px; background-position:-45px -570px; }
+.timeLine_down:hover{ width:25px; height:25px; background-position:-10px -605px; }
+.timeLine_down{ width:25px; height:25px; background-position:-45px -605px; }
+.timeLine_repeat_off{ width:22px; height:22px; background-position:-10px -640px; }
+.timeLine_close:hover{ width:22px; height:22px; background-position:-42px -640px; }
+.timeLine_repeat_on{ width:22px; height:22px; background-position:-10px -672px; }
+.timeLine_close{ width:22px; height:22px; background-position:-42px -672px; }
+

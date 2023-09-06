@@ -1,0 +1,29 @@
+.input-text{
+    border: none; background-color: transparent;
+    color: #555;
+    font-size: 120%;
+    overflow: hidden;
+    height: 35px;
+    border: solid 1px #DDD;
+    background-color: #FFF;
+}
+
+/*-UI Dialogs ------------------------------ */
+.ui-dialog{
+	-webkit-box-shadow: 1px 1px 2px 1px #BABABA;
+	box-shadow: 1px 1px 2px 1px #BABABA;
+	
+	-webkit-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;	
+	z-index:2100;
+}
+.ui-dialog .ui-widget-header{
+	border:none;
+	border-bottom:2px solid #CCC;
+	-webkit-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;
+}
+.ui-dialog-titlebar .ui-button{
+	border:none;
+}
+
