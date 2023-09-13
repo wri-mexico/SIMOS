@@ -10,7 +10,7 @@ SIMOS es una aplicación que fomenta el acceso libre y gratuito a los datos geoe
 
 ## Demo
 
-Una instalación de [SIMOS](http://simos.col.gob.mx/mxsig/) esta disponible en la pagina oficial del proyecto, cargada con una variedad de capas.
+Una instalación de [SIMOS](http://simos.col.gob.mx/mxsig/) esta disponible en la página oficial del proyecto, cargada con una variedad de capas.
 
 <p align="center">
 <a href="http://simos.col.gob.mx/mxsig/">http://simos.col.gob.mx/mxsig/</a>
@@ -19,11 +19,11 @@ Una instalación de [SIMOS](http://simos.col.gob.mx/mxsig/) esta disponible en l
 
 ## Instalación
 
-El procedimiento detallado para la instlación de SIMOS se encuentran en el [manual de instalación](https://github.com/wri-mexico/SIMOS/blob/main/Docs/Instalacion%20SIMOS.pdf) disponible en la carpeta Docs del repositorio oficial. 
+El procedimiento detallado para la instalación de SIMOS se encuentran en el [manual de instalación](https://github.com/wri-mexico/SIMOS/blob/main/Docs/Instalacion%20SIMOS.pdf) disponible en la carpeta [Docs](https://github.com/wri-mexico/SIMOS/tree/main/Docs) del repositorio oficial. 
 
 ## Requerimientos
 
-Los requerimientos minimos para la instalación de SIMOS son los siguientes:
+Los requerimientos mínimos para la instalación de SIMOS son los siguientes:
 
 *	Servidor con sistema operativo CentOS 7 x86
 *	Clonar el repositorio de SIMOS [1][2]
@@ -47,9 +47,9 @@ Se recomienda leer el [manual de instalación](https://github.com/wri-mexico/SIM
 
 ## ¿Quien utiliza SIMOS?
 
-SIMOS es una alternativa confible para cualquier interesado en una aplicación para almacenamiendo y visualización de datos espaciales, especialmente en el territorio de México. 
+SIMOS es una alternativa confiable para cualquier interesado en una aplicación para almacenamiendo y visualización de datos espaciales, especialmente en el territorio de México. 
 
-SIMOS permite representar capas de datos originarlmente en formato shp a través de mapas interactivos, clusters y mapas de calor. Además, SIMOS es capas de realizar análisis espacial, busqueda y descarga de datos, entre otros.
+SIMOS permite representar capas de datos originalmente en formato .shp a través de mapas interactivos, clústeres y mapas de calor. Además, SIMOS es capaz de realizar análisis espacial, búsqueda y descarga de datos, entre otros.
 
 ## Instituciones involucradas
 
@@ -68,4 +68,4 @@ SIMOS permite representar capas de datos originarlmente en formato shp a través
 
 ## Licencia
 
-SIMOS es un proyecto disponible, gratuito y de codigo abierto bajo los terminos de la licencia del MIT.
+SIMOS es un proyecto disponible, gratuito y de código abierto bajo los términos de la licencia del MIT.
