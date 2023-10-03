@@ -4,7 +4,7 @@
   <img src="./img/headerSIMOS.png" alt="SIMOS logo" width="338">
 </p>
 
-El Sistema de Movilidad Integrado (SIMOS) es una aplicación de software libre (Open Source) potenciada por el core de MxSIG, una plataforma de código abierto para la web desarrollada para implementar soluciones geomáticas que facilitan el uso, integración, interpretación, publicación y análisis de la información geográfica y estadística.
+El Sistema de Movilidad Integrado (SIMOS) es una aplicación de software libre (Open Source) potenciada por el core de [MxSIG](http://simos.col.gob.mx/mxsig)(consulta el repositorio [aquí](https://github.com/MxSIG/mxsig)), una plataforma de código abierto para la web desarrollada para implementar soluciones geomáticas que facilitan el uso, integración, interpretación, publicación y análisis de la información geográfica y estadística.
 
 SIMOS es una aplicación que fomenta el acceso libre y gratuito a los datos geoespaciales de los que dispone con el objetivo de informar, generar estadística básica y ayudar a la toma de decisiones.
 
